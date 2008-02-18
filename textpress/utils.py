@@ -31,8 +31,8 @@ from simplejson import dumps as dump_json, loads as load_json
 from SimpleXMLRPCServer import SimpleXMLRPCDispatcher
 from htmlentitydefs import name2codepoint
 
-from werkzeug import cached_property, escape, url_quote, Local, \
-     LocalManager, ClosingIterator, BaseResponse
+from werkzeug import cached_property, escape, url_quote, import_string, \
+     Local, LocalManager, ClosingIterator, BaseResponse
 from werkzeug.exceptions import Forbidden
 from werkzeug.contrib.reporterstream import BaseReporterStream
 from werkzeug.contrib.atom import AtomFeed as BaseAtomFeed
@@ -135,6 +135,23 @@ def gettext(string, plural=None, n=1):
     return string
 
 _ = gettext
+
+
+def flash(msg, type='info'):
+    """
+    Add a message to the message flash buffer.
+
+    The default message type is "info", other possible values are
+    "add", "remove", "error", "ok" and "configure". The message type affects
+    the icon and visual appearance.
+
+    The flashes messages appear only in the admin interface!
+    """
+    assert type in ('info', 'add', 'remove', 'error', 'ok', 'configure')
+    if type == 'error':
+        msg = (u'<strong>%s:</strong> ' % _('Error')) + msg
+    local.request.session.setdefault('admin/flashed_messages', []).\
+            append((type, msg))
 
 
 def gen_salt(length=6):
@@ -308,6 +325,22 @@ def gen_slug(text):
             word = unicodedata.normalize('NFKD', word)
             result.append(word.encode('ascii', 'ignore'))
     return u'-'.join(result)
+
+
+_etree = None
+def get_etree():
+    """Get an etree implementation."""
+    global _etree
+    if _etree is not None:
+        return _etree
+    for name in 'lxml.etree', 'elementtree.cElementTree', \
+                'cElementTree', 'xml.etree.cElementTree', \
+                'ElementEtree', 'xml.etree.ElementTree':
+        etree = import_string(name, silent=True)
+        if etree is not None:
+            _etree = etree
+            return etree
+    raise RuntimeError('no elementtree implementation found')
 
 
 def format_datetime(obj, format=None):

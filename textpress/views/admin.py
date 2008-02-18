@@ -17,7 +17,7 @@
 
     -   Dashboard
 
-    :copyright: 2007 by Armin Ronacher.
+    :copyright: 2007-2008 by Armin Ronacher.
     :license: GNU GPL.
 """
 from datetime import datetime
@@ -28,8 +28,9 @@ from textpress.models import User, Post, Tag, Comment, ROLE_ADMIN, \
 from textpress.database import comments, posts, post_tags, post_links
 from textpress.utils import parse_datetime, format_datetime, \
      is_valid_email, is_valid_url, get_version_info, can_build_eventmap, \
-     build_eventmap, make_hidden_fields, dump_json, load_json, \
+     build_eventmap, make_hidden_fields, dump_json, load_json, flash, \
      CSRFProtector, IntelligentRedirect, TIMEZONES
+from textpress.importers import list_import_queue, load_import_dump
 from textpress.widgets import WidgetManager
 from textpress.pluginsystem import install_package, InstallationError, \
      SetupError
@@ -47,21 +48,6 @@ def simple_redirect(*args, **kwargs):
     and not using backredirects)
     """
     return redirect(url_for(*args, **kwargs))
-
-
-def flash(msg, type='info'):
-    """
-    Add a message to the message flash buffer.
-
-    The default message type is "info", other possible values are
-    "add", "remove", "error", "ok" and "configure". The message type affects
-    the icon and visual appearance.
-    """
-    assert type in ('info', 'add', 'remove', 'error', 'ok', 'configure')
-    if type == 'error':
-        msg = (u'<strong>%s:</strong> ' % _('Error')) + msg
-    get_request().session.setdefault('admin/flashed_messages', []).\
-            append((type, msg))
 
 
 def render_admin_response(template_name, _active_menu_item=None, **values):
@@ -112,6 +98,11 @@ def render_admin_response(template_name, _active_menu_item=None, **values):
                 ('cache', url_for('admin/cache'), _('Cache')),
                 ('configuration', url_for('admin/configuration'),
                  _('Configuration Editor'))
+            ]),
+            ('maintenance', url_for('admin/maintenance'), _('Maintenance'), [
+                ('overview', url_for('admin/maintenance'), _('Overview')),
+                ('import', url_for('admin/import'), _('Import')),
+                ('export', url_for('admin/export'), _('Export'))
             ])
         ]
 
@@ -1051,8 +1042,7 @@ def do_basic_options(request):
         'default_parser':       cfg['default_parser'],
         'comment_parser':       cfg['comment_parser'],
         'posts_per_page':       cfg['posts_per_page'],
-        'use_flat_comments':    cfg['use_flat_comments'],
-        'maintenance_mode':     cfg['maintenance_mode']
+        'use_flat_comments':    cfg['use_flat_comments']
     }
     errors = []
     csrf_protector = CSRFProtector()
@@ -1124,8 +1114,6 @@ def do_basic_options(request):
                 cfg['posts_per_page'] = posts_per_page
             if use_flat_comments != cfg['use_flat_comments']:
                 cfg['use_flat_comments'] = use_flat_comments
-            if maintenance_mode != cfg['maintenance_mode']:
-                cfg['maintenance_mode'] = maintenance_mode
             flash(_('Configuration altered successfully.'), 'configure')
             return simple_redirect('admin/basic_options')
 
@@ -1531,6 +1519,53 @@ def do_configuration(request):
     )
 
 
+@require_role(ROLE_ADMIN)
+def do_maintenance(request):
+    """Enable / Disable maintenance mode."""
+    cfg = request.app.cfg
+    form = {
+        'maintenance_mode':     cfg['maintenance_mode']
+    }
+    csrf_protector = CSRFProtector()
+    if request.method == 'POST':
+        csrf_protector.assert_safe()
+        cfg['maintenance_mode'] = 'maintenance_mode' in request.form
+        flash(_('Configuration altered successfully.'), 'configure')
+        return simple_redirect('admin/maintenance')
+
+    return render_admin_response('admin/maintenance.html',
+                                 'maintenance.overview',
+        form=form,
+        hidden_form_data=make_hidden_fields(csrf_protector)
+    )
+
+
+@require_role(ROLE_ADMIN)
+def do_import(request):
+    """Show the current import queue or add new items."""
+    return render_admin_response('admin/import.html', 'maintenance.import',
+        importers=sorted(request.app.importers.values(),
+                         key=lambda x: x.title.lower()),
+        queue=list_import_queue(request.app)
+    )
+
+
+@require_role(ROLE_ADMIN)
+def do_inspect_import(request, id):
+    """Inspect a database dump."""
+    dump = load_import_dump(request.app, id)
+    if dump is None:
+        raise NotFound()
+    return render_admin_response('admin/inspect_import.html',
+                                 'maintenance.import', blog=dump)
+
+
+@require_role(ROLE_ADMIN)
+def do_export(request):
+    """Not yet implemented."""
+    return render_admin_response('admin/export.html', 'maintenance.export')
+
+
 @require_role(ROLE_AUTHOR)
 def do_about(request):
     """
@@ -1544,7 +1579,6 @@ def do_about(request):
 
     thread_count = activeCount()
     version_info = get_version_info()
-    multithreaded = thread_count > 1 and request.is_multithread
 
     return render_admin_response('admin/about.html', 'about.system',
         apis=[{
@@ -1565,7 +1599,7 @@ def do_about(request):
         } for key, (_, default) in sorted(request.app.cfg.config_vars.iteritems())],
         hosting_env={
             'persistent':       not request.is_run_once,
-            'multithreaded':    multithreaded,
+            'multithreaded':    request.is_multithread,
             'thread_count':     thread_count,
             'multiprocess':     request.is_multiprocess,
             'wsgi_version':     '.'.join(map(str, request.environ['wsgi.version']))
