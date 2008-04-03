@@ -8,7 +8,7 @@
     changes the application is reloaded automatically.
 
 
-    :copyright: 2007 by Armin Ronacher.
+    :copyright: 2007-2008 by Armin Ronacher, Pedro Algarvio.
     :license: GNU GPL.
 """
 import os
@@ -51,6 +51,7 @@ DEFAULT_VARS = {
 
     # comments and pingback
     'comments_enabled':         (bool, True),
+    'moderate_comments':        (bool, True),
     'pings_enabled':            (bool, True),
 
     # post view
@@ -61,8 +62,10 @@ DEFAULT_VARS = {
 
     # email settings
     'smtp_host':                (unicode, u'localhost'),
+    'smtp_port':                (int, 25),
     'smtp_user':                (unicode, u''),
     'smtp_password':            (unicode, u''),
+    'smtp_use_tls':             (bool, False),
 
     # plugin settings
     'plugin_guard':             (bool, True),
@@ -215,6 +218,7 @@ class Configuration(object):
         self._values.pop(key, None)
         self._converted_values.pop(self, key)
         self.changed_local = True
+
 
     def touch(self):
         """Touch the file to trigger a reload."""
