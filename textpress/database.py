@@ -31,7 +31,7 @@
 
     `mapper`
         replacement for the normal SQLAlchemy mapper function. Works the
-        same but users our `ManagerExtension`.  See the notes below.
+        same but uses our `ManagerExtension`.  See the notes below.
 
     `save`
         bind an unbound object to the session and mark it for saving.
@@ -47,7 +47,7 @@
     Definiting Tables
     -----------------
 
-    So let's get started quickly.  To defin tables all you have to do is to
+    So let's get started quickly.  To define tables all you have to do is to
     create a metadata instances for your table collection (so that you can
     create them) and bind some tables to it::
 
