@@ -321,6 +321,7 @@ class ConfigTransaction(object):
         self.cfg = cfg
         self._values = {}
         self._converted_values = {}
+        self._remove = []
         self._committed = False
 
     def __getitem__(self, key):
@@ -361,8 +362,7 @@ class ConfigTransaction(object):
         self._assert_uncommitted()
         if key.startswith('textpress'):
             key = key[10:]
-        self._values.pop(key, None)
-        self._converted_values.pop(self, key)
+        self._remove.append(key)
 
     def update(self, *args, **kwargs):
         """Update multiple items at once."""
@@ -374,40 +374,42 @@ class ConfigTransaction(object):
         configuration file and only updates the config in memory when that is
         successful.
         """
-        self._assert_uncommitted()
-        if not self._values:
+        if self._committed:
+            raise ValueError('This transaction was already committed.')
+        if not self._values and not self._remove:
             self._committed = True
             return
-        self.cfg._lock.acquire()
+        all = self.cfg._values.copy()
+        all.update(self._values)
+        for key in self._remove:
+            all.pop(key)
+
+        sections = {}
+        for key, value in all.iteritems():
+            if '/' in key:
+                section, key = key.split('/', 1)
+            else:
+                section = 'textpress'
+            sections.setdefault(section, []).append((key, value))
+        sections = sorted(sections.items())
+        for section in sections:
+            section[1].sort()
+
+        f = file(self.cfg.filename, 'w')
+        f.write(CONFIG_HEADER)
         try:
-            all = self.cfg._values.copy()
-            all.update(self._values)
-
-            sections = {}
-            for key, value in all.iteritems():
-                if '/' in key:
-                    section, key = key.split('/', 1)
-                else:
-                    section = 'textpress'
-                sections.setdefault(section, []).append((key, value))
-            sections = sorted(sections.items())
-            for section in sections:
-                section[1].sort()
-
-            f = file(self.cfg.filename, 'w')
-            f.write(CONFIG_HEADER)
-            try:
-                for idx, (section, items) in enumerate(sections):
-                    if idx:
-                        f.write('\n')
-                    f.write('[%s]\n' % section.encode('utf-8'))
-                    for key, value in items:
-                        f.write('%s = %s\n' % (key, quote_value(value)))
-            finally:
-                f.close()
-            self.cfg._mark_loaded()
-            self.cfg._values.update(self._values)
-            self.cfg._converted_values.update(self._converted_values)
+            for idx, (section, items) in enumerate(sections):
+                if idx:
+                    f.write('\n')
+                f.write('[%s]\n' % section.encode('utf-8'))
+                for key, value in items:
+                    f.write('%s = %s\n' % (key, quote_value(value)))
+            self.cfg._load_time = path.getmtime(self.cfg.filename)
         finally:
-            self.cfg._lock.release()
+            f.close()
+        self.cfg._values.update(self._values)
+        self.cfg._converted_values.update(self._converted_values)
+        for key in self._remove:
+            self.cfg._values.pop(key, None)
+            self.cfg._converted_values.pop(key, None)
         self._committed = True
