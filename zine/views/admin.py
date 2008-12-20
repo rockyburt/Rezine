@@ -1220,7 +1220,7 @@ def information(request):
 
     if export:
         response.headers['Content-Disposition'] = 'attachment; ' \
-            'filename="textpress-environment.html"'
+            'filename="zine-environment.html"'
 
     return response
 
