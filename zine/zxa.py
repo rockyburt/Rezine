@@ -23,11 +23,10 @@ from zine.api import *
 from zine.models import Post, User
 from zine.utils import build_tag_uri
 from zine.utils.dates import format_iso8601
-from zine.utils.xml import escape
+from zine.utils.xml import escape, XML_NS
 from zine.utils.zeml import dump_parser_data
 
 
-XML_NS = 'http://www.w3.org/XML/1998/namespace'
 ATOM_NS = 'http://www.w3.org/2005/Atom'
 ZINE_NS = 'http://zine.pocoo.org/'
 ZINE_TAG_URI = ZINE_NS + '#tag-scheme'
@@ -66,7 +65,7 @@ XML_PREAMBLE = u'''\
     something else.
 
 -->
-<feed xmlns="%(atom_ns)s" xmlns:zine="%(zine_ns)s">\
+<feed xmlns="%(atom_ns)s" xmlns:zine="%(zine_ns)s" xml:lang="%(language)s">\
 <title>%(title)s</title>\
 <subtitle>%(subtitle)s</subtitle>\
 <id>%(id)s</id>\
@@ -159,7 +158,8 @@ class Writer(object):
             'zine_ns':      ZINE_NS,
             'id':           escape(feed_id),
             'blog_url':     escape(self.app.cfg['blog_url']),
-            'updated':      format_iso8601(last_update)
+            'updated':      format_iso8601(last_update),
+            'language':     self.app.cfg['language']
         }).encode('utf-8')
 
         def dump_node(node):
@@ -243,6 +243,7 @@ class Writer(object):
         self.z('pings_enabled', text=post.pings_enabled
                and 'yes' or 'no', parent=entry)
         self.z('status', text=str(post.status), parent=entry)
+        self.z('content_type', text=str(post.content_type))
 
         self.atom('content', type='text', text=post.text, parent=entry)
         self.atom('content', type='html', text=post.body.to_html(), parent=entry)
@@ -267,25 +268,31 @@ class Writer(object):
 
         for c in post.comments:
             comment = self.z('comment', parent=entry)
+            comment.attrib['id'] = str(c.id)
             author = self.z('author', parent=comment)
             self.z('name', text=c.author, parent=author)
             self.z('email', text=c.email, parent=author)
             self.z('uri', text=c.www, parent=author)
+            if c.user is not None:
+                author.attrib['dependency'] = self.users[c.user.id] \
+                                                  .attrib[self.z.dependency]
             self.z('published', text=format_iso8601(c.pub_date),
                    parent=comment)
             self.z('blocked', text=c.blocked and 'yes' or 'no',
                    parent=comment)
             self.z('is_pingback', text=c.is_pingback and 'yes' or 'no',
                    parent=comment)
+            self.z('status', text=str(c.status), parent=comment),
             self.z('blocked_msg', text=str(c.blocked_msg or ''),
                    parent=comment)
             self.z('parent', text=c.parent_id is not None and str(c.parent_id)
                    or '', parent=comment)
+            self.z('submitter_ip', text=c.submitter_ip, parent=comment)
             self.z('content', type='html', text=c.body.to_html(),
-                   parent=entry)
-            self.z('content', type='text', text=c.text, parent=entry)
+                   parent=comment)
+            self.z('content', type='text', text=c.text, parent=comment)
             self.z('data', text=dump_parser_data(c.parser_data).encode('base64'),
-                   parent=entry)
+                   parent=comment)
 
         for participant in self.participants:
             participant.process_post(entry, post)

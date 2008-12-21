@@ -1122,7 +1122,6 @@ def export(request):
     form = ExportForm()
 
     if request.method == 'POST' and form.validate(request.form):
-        print form.errors
         if request.form.get('format') == 'zxa':
             from zine.zxa import export
             response = export(request.app)
