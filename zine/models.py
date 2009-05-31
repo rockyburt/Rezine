@@ -18,19 +18,23 @@ from zine.database import users, categories, posts, post_links, \
      post_categories, post_tags, tags, comments, groups, group_users, \
      privileges, user_privileges, group_privileges, db
 from zine.utils import zeml
-from zine.utils.text import gen_slug, build_tag_uri, increment_string
+from zine.utils.text import gen_slug, gen_timestamped_slug, build_tag_uri, \
+     increment_string
 from zine.utils.pagination import Pagination
 from zine.utils.crypto import gen_pwhash, check_pwhash
 from zine.utils.http import make_external_url
 from zine.privileges import Privilege, _Privilege, privilege_attribute, \
      add_admin_privilege, MODERATE_COMMENTS, ENTER_ADMIN_PANEL, BLOG_ADMIN, \
-     VIEW_DRAFTS
+     VIEW_DRAFTS, VIEW_PROTECTED
 from zine.application import get_application, get_request, url_for
 
+from zine.i18n import to_blog_timezone
 
 #: all kind of states for a post
 STATUS_DRAFT = 1
 STATUS_PUBLISHED = 2
+STATUS_PROTECTED = 3
+STATUS_PRIVATE = 4
 
 #: Comment Status
 COMMENT_MODERATED = 0
@@ -38,6 +42,7 @@ COMMENT_UNMODERATED = 1
 COMMENT_BLOCKED_USER = 2
 COMMENT_BLOCKED_SPAM = 3
 COMMENT_BLOCKED_SYSTEM = 4
+COMMENT_DELETED = 5
 
 #: moderation modes
 MODERATE_NONE = 0
@@ -319,12 +324,37 @@ class PostQuery(db.Query):
             return self.filter_by(content_type=types[0].strip())
         return self.filter(Post.content_type.in_([x.strip() for x in types]))
 
-    def published(self, ignore_privileges=None):
+    def published(self, ignore_privileges=None, user=None):
         """Return a queryset for only published posts."""
-        return self.filter(
-            (Post.status == STATUS_PUBLISHED) &
-            (Post.pub_date <= datetime.utcnow())
-        )
+        if not user:
+            req = get_request()
+            user = req and req.user
+
+        if not user:
+            # Anonymous. Return only public entries.
+            return self.filter(
+                (Post.status == STATUS_PUBLISHED) &
+                (Post.pub_date <= datetime.utcnow())
+            )
+        elif not user.has_privilege(VIEW_PROTECTED):
+            # Authenticated user without protected viewing privilege
+            # Return public and their own private entries
+            return self.filter(
+                ((Post.status == STATUS_PUBLISHED) |
+                 ((Post.status == STATUS_PRIVATE) &
+                  (Post.author_id == user.id))) &
+                (Post.pub_date <= datetime.utcnow())
+            )
+        else:
+            # Authenticated and can view protected.
+            # Return public, protected and their own private
+            return self.filter(
+                ((Post.status == STATUS_PUBLISHED) |
+                 (Post.status == STATUS_PROTECTED) |
+                 ((Post.status == STATUS_PRIVATE) &
+                  (Post.author_id == user.id))) &
+                (Post.pub_date <= datetime.utcnow())
+            )
 
     def drafts(self, ignore_user=False, user=None):
         """Return a query that returns all drafts for the current user.
@@ -473,7 +503,7 @@ class Post(_ZEMLDualContainer):
     def __init__(self, title, author, text, slug=None, pub_date=None,
                  last_update=None, comments_enabled=True,
                  pings_enabled=True, status=STATUS_PUBLISHED,
-                 parser=None, uid=None, content_type='entry'):
+                 parser=None, uid=None, content_type='entry', extra=None):
         app = get_application()
         self.content_type = content_type
         self.title = title
@@ -483,7 +513,10 @@ class Post(_ZEMLDualContainer):
 
         self.parser = parser
         self.text = text or u''
-        self.extra = {}
+        if extra:
+            self.extra = dict(extra)
+        else:
+            self.extra = {}
 
         self.comments_enabled = comments_enabled
         self.pings_enabled = pings_enabled
@@ -566,23 +599,9 @@ class Post(_ZEMLDualContainer):
         cfg = get_application().cfg
         slug = gen_slug(self.title)
         if not slug:
-            slug = self.pub_date.strftime('%H:%M')
-        prefix = cfg['blog_url_prefix'].lstrip('/')
-        if prefix:
-            prefix += '/'
-        if cfg['fixed_url_date_digits']:
-            date_pattern = '%04d/%02d/%02d'
-        else:
-            date_pattern = '%d/%d/%d'
-        full_slug = u'%s%s/%s' % (
-            prefix,
-            date_pattern % (
-                self.pub_date.year,
-                self.pub_date.month,
-                self.pub_date.day,
-            ),
-            slug
-        )
+            slug = to_blog_timezone(self.pub_date).strftime('%H%M')
+
+        full_slug = gen_timestamped_slug(slug, self.content_type, self.pub_date)
 
         if full_slug != self.slug:
             while Post.query.autoflush(False).filter_by(slug=full_slug) \
@@ -660,7 +679,7 @@ class Post(_ZEMLDualContainer):
         for this thread defined.
         """
         # published posts are always accessible
-        if self.status == STATUS_PUBLISHED and \
+        if self.status == STATUS_PUBLISHED and self.pub_date is not None and \
            self.pub_date <= datetime.utcnow():
             return True
 
@@ -670,6 +689,12 @@ class Post(_ZEMLDualContainer):
         # users that are allowed to look at drafts may pass
         if user.has_privilege(VIEW_DRAFTS):
             return True
+
+        # if this is protected and user can view protected, allow them
+        if self.status == STATUS_PROTECTED and self.pub_date is not None and \
+            self.pub_date <= datetime.utcnow() and \
+            user.has_privilege(VIEW_PROTECTED):
+             return True
 
         # if we have the privilege to edit other entries or if we are
         # a blog administrator we can always look at posts.
@@ -688,6 +713,16 @@ class Post(_ZEMLDualContainer):
     def is_published(self):
         """`True` if the post is visible for everyone."""
         return self.can_read(AnonymousUser())
+
+    @property
+    def is_private(self):
+        """`True` if the post is marked private."""
+        return self.status == STATUS_PRIVATE
+
+    @property
+    def is_protected(self):
+        """`True` if the post is marked protected."""
+        return self.status == STATUS_PROTECTED
 
     @property
     def is_scheduled(self):
@@ -867,7 +902,7 @@ class Comment(_ZEMLContainer):
         else:
             assert email is www is None, \
                 'email and www can only be provided if the author is ' \
-                'an anonmous user'
+                'an anonymous user'
             self.user = author
 
         if parser is None:
@@ -967,13 +1002,18 @@ class Comment(_ZEMLContainer):
 
     @property
     def is_spam(self):
-        """This is true if the comment is currently flagges as spam."""
+        """This is true if the comment is currently flagged as spam."""
         return self.status == COMMENT_BLOCKED_SPAM
 
     @property
     def is_unmoderated(self):
         """True if the comment is not yet approved."""
         return self.status == COMMENT_UNMODERATED
+
+    @property
+    def is_deleted(self):
+        """True if the comment has been deleted."""
+        return self.status == COMMENT_DELETED
 
     def get_url_values(self):
         return url_for(self.post) + '#comment-%d' % self.id
@@ -1001,12 +1041,10 @@ class TagQuery(db.Query):
         q = ((pt.tag_id == t.tag_id) &
              (pt.post_id == p.post_id) &
              (p.status == STATUS_PUBLISHED) &
-             (p.pub_date >= datetime.utcnow()))
+             (p.pub_date <= datetime.utcnow()))
 
         s = db.select([t.slug, t.name, db.func.count(p.post_id).label('s_count')],
-                      (pt.tag_id == t.tag_id) &
-                      (pt.post_id == p.post_id),
-                      group_by=[t.slug, t.name]).alias('post_count_query').c
+                      q, group_by=[t.slug, t.name]).alias('post_count_query').c
 
         options = {'order_by': [db.asc(s.s_count)]}
         if max is not None:
@@ -1078,7 +1116,7 @@ db.mapper(User, users, properties={
                                           cascade='all, delete, delete-orphan'),
     'comments':         db.dynamic_loader(Comment,
                                           backref=db.backref('user', lazy=False),
-                                          cascade='all, delete, delete-orphan'),
+                                          cascade='all, delete'),
     '_own_privileges':  db.relation(_Privilege, lazy=True,
                                     secondary=user_privileges,
                                     collection_class=set,

@@ -147,6 +147,23 @@ def show_tag(req, slug, page=1):
     return render_response('show_tag.html', tag=tag, **data)
 
 
+def tags(req):
+    """
+    Show a tagcloud.
+
+    Available template variables:
+
+        `tags`:
+            list of tag summaries that contain the size of the cloud
+            item, the name of the tag and it's slug
+
+    :Template name: ``tags.html``
+    :URL endpoint: ``blog/tags``
+    """
+    return render_response('tags.html',
+                           tags=Tag.query.get_cloud())
+
+
 def show_author(req, username, page=1):
     """Show the user profile of an author / editor or administrator.
 
@@ -358,7 +375,8 @@ def atom_feed(req, author=None, year=None, month=None, day=None,
         for post in query.for_index().order_by(Post.pub_date.desc()) \
                          .limit(15).all():
             links = [link.as_dict() for link in post.links]
-            feed.add(post.title, unicode(post.body), content_type='html',
+            feed.add(post.title or '%s @ %s' % (post.author.display_name,
+                     post.pub_date), unicode(post.body), content_type='html',
                      author=post.author.display_name, links=links,
                      url=url_for(post, _external=True), id=post.uid,
                      updated=post.last_update, published=post.pub_date)

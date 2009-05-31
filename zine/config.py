@@ -21,7 +21,7 @@ from zine.utils import log
 from zine.utils.forms import TextField, IntegerField, BooleanField, \
     ChoiceField, CommaSeparated
 from zine.utils.validators import ValidationError, is_valid_url_prefix, \
-    is_netaddr
+    is_valid_url_format, is_netaddr
 from zine.application import InternalError
 
 
@@ -37,6 +37,15 @@ DEFAULT_VARS = {
     'blog_email':               TextField(default=u''),
     'timezone':                 ChoiceField(choices=sorted(list_timezones()),
                                             default=u'UTC'),
+    'primary_author':           TextField(default=u'',
+                                    help_text=lazy_gettext(u'If this blog is '\
+                                                           u'written primarily '\
+                                                           u'by one author, '\
+                                                           u'some themes can '\
+                                                           u'skip the author\'s '\
+                                                           u'name on posts '\
+                                                           u'unless written '\
+                                                           u'by a guest.')),
     'maintenance_mode':         BooleanField(default=False),
     'session_cookie_name':      TextField(default=u'zine_session'),
     'theme':                    TextField(default=u'default'),
@@ -73,6 +82,12 @@ DEFAULT_VARS = {
                                           validators=[is_valid_url_prefix()]),
     'profiles_url_prefix':      TextField(default=u'/authors',
                                           validators=[is_valid_url_prefix()]),
+    'upload_url_prefix':        TextField(default=u'/files',
+                                          validators=[is_valid_url_prefix()]),
+    'upload_path_format':       TextField(default=u'%year%/%month%/%day%/',
+                                          validators=[is_valid_url_format()]),
+    'post_url_format':          TextField(default=u'%year%/%month%/%day%/%slug%',
+                                          validators=[is_valid_url_format()]),
     'ascii_slugs':              BooleanField(default=True),
     'fixed_url_date_digits':    BooleanField(default=False),
 
@@ -84,7 +99,7 @@ DEFAULT_VARS = {
         (u'simple', lazy_gettext(u'Simple Cache')),
         (u'memcached', lazy_gettext(u'memcached')),
         (u'filesystem', lazy_gettext(u'Filesystem'))
-                                            ], default=u'null'),
+    ], default=u'null'),
     'memcached_servers':        CommaSeparated(TextField(
                                                     validators=[is_netaddr()]),
                                                default=list),
