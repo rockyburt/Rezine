@@ -795,7 +795,7 @@ class PostLink(object):
 
     def as_dict(self):
         """Return the values as dict.  Useful for feed building."""
-        result = {'href': href}
+        result = {'href': self.href}
         for key in 'rel', 'type', 'hreflang', 'title', 'length':
             value = getattr(self, key, None)
             if value is not None:
