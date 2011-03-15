@@ -1,10 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Rezine
-========
-
-A WSGI-based weblog engine in Python.
-"""
 
 from setuptools import setup, find_packages
 
@@ -30,10 +24,10 @@ setup(
     version='0.3dev',
     url='https://github.com/rockyburt/Rezine',
     license='BSD',
-    author='Armin Ronacher',
-    author_email='armin.ronacher@active-4.com',
+    author='Rocky Burt',
+    author_email='rocky@serverzen.com',
     description='A WSGI-based weblog engine in Python',
-    long_description=__doc__,
+    long_description=open('README').read() + '\n\n' + open('CHANGES').read(),
     zip_safe=False,
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',

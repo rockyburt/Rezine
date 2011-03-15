@@ -2,8 +2,10 @@
 Rezine - a Python powered blog engine
 ===================================
 
-This is Rezine 0.2 the second release of Rezine.
-It already provides quite a few features:
+Overview
+========
+
+Rezine provides quite a few features:
 
 - of course, basic blog functionality: posting, comments, categories,
   tags, and ATOM feeds
@@ -14,51 +16,72 @@ It already provides quite a few features:
 - a translatable interface (although with this first release, only
   English and German translations are available)
 
-But some things are still missing.  The following things (and more) will
-be included in Rezine 0.2 (tentatively set to be released in April, 2009):
-
-- search functionality
-- file upload system
-- notifications about new posts, comments, etc
-- more translations
-- documentation for (plugin) developers (for now, there's a documented
-  example plugin called "Eric The Fish" included in Rezine's source.  If
-  you want to develop plugins, that's the starting point.)
-
-
 Installation
 ============
 
-See the file INSTALL for a list of dependencies and installation
-instructions.
+Simple to install via ``easy_install``::
+
+    $ easy_install Rezine
+
+*To install lxml you may need the development packages of libxml2 and libxslt*
+
+mod_wsgi
+--------
+
+The following example shows how to set up Rezine for `mod_wsgi`.
+
+1.  Create a new folder `/var/rezine/yourblog` where `yourblog` is a name
+    that make sense for you.
+2.  Copy the `rezine.wsgi` file from
+    `/path/to/python/lib/python/site-packages/rezine/servers`
+    into the newly created folder and open it with an editor.
+3.  Modify the `INSTANCE_FOLDER` variable to point to the `yourblog` folder.
+4.  Open your Apache vhost config or your Apache config, whatever you use
+    and add the following lines::
+
+        WSGIScriptAlias /yourblog /var/lib/rezine/yourblog/rezine.wsgi
+
+    This tells Apache that it should hook your blog into the webserver at
+    `/yourblog`.  You can also move it to a different vhost and mount it
+    in the root or ask Apache to spawn as different user.  More details
+    about that are available in the `mod_wsgi documentation`_.
+5.  Make sure the user your Apache (or application if you configured a
+    different user for mod_wsgi) has read and write access to the
+    `yourblog` folder.
+6.  Reload your apache and go to the URL of your blog and follow the
+    installation instructions.
+
+
+.. _mod_wsgi documentation: http://code.google.com/p/modwsgi/wiki/InstallationInstructions
+
+
+Development Quickstart
+----------------------
+
+For a quickstart with the development server do this::
+
+    $ mkdir yourblog
+    $ rezine-manage -I yourblog
+
+After the first start you will find yourself in an installation wizard
+that helps you to create the database tables and an administrator
+account.
 
 
 License and Copyright
 =====================
 
-Rezine was mainly written and is maintained by Armin Ronacher.  See the
+Rezine is a fork of the `Zine <http://zine.pocoo.org/>`_ weblog software.
+It is currently maintained by Rocky Burt.
+
+Zine was mainly written by Armin Ronacher.  See the
 files AUTHORS and THANKS for a complete list of contributors known as
 the Rezine Team.
 
 Rezine is released under a BSD-style license, see the LICENSE file for more
 details.
 
+Resources
+=========
 
-Getting in touch with the developers
-====================================
-
-The best way to communicate with the developers is the IRC channel
-`#pocoo`_ on irc.freenode.net.  Beware, several projects have their
-"home" there, so be sure to tell the people you're talking about Rezine.
-
-The wiki and bug tracker is available on the `Rezine Development Center`_.
-If you encounter bugs or if you want to suggest a new feature be sure to
-file a new ticket there.
-
-Other resources:
-
--  `Main repository <http://dev.pocoo.org/hg/rezine-main>`_
--  `bitbucket mirror <http://www.bitbucket.org/mitsuhiko/rezine-main>`_
-
-.. _#pocoo: irc://irc.freenode.net/%23pocoo
-.. _Rezine Development Center: http://dev.pocoo.org/projects/rezine/
+-  `Main repository <https://github.com/rockyburt/Rezine>`_
