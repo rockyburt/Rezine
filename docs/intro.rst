@@ -6,44 +6,48 @@ Linux.  It's currently not possible to develop on Windows as some of
 tools depend on a POSIX environment.  You may have success by using
 cygwin, but we don't have any experience with it.
 
-Checking out the Code
----------------------
-
-Depending on what feature you want to work on you should check out one
-of the following mercurial repositories:
-
-- ``http://dev.pocoo.org/hg/rezine-main`` — the main repository for new features
-- ``http://dev.pocoo.org/hg/rezine-0.1`` — 0.1 maintenance branch for bugfixes and translations
-
-If you have troubles selecting the correct branch, ask in the `IRC channel`_.
-
-Clone the branch using hg::
-
-    $ hg clone http://dev.pocoo.org/hg/rezine-0.1 rezine
-
 Creating a Development Environment
 ----------------------------------
 
-After you have cloned the code, step into the directory and initialize
-a new virtual python environment::
+The Rezine team suggests you use `virtualenv <http://pypi.python.org/pypi/virtualenv>`_
+to separate dev work from your normal Python environment. Setting
+up a virtualenv_ is as simple as the following:
 
-    $ cd rezine
-    $ ./scripts/setup-virtualenv env
+.. code-block:: bash
+ :linenos:
 
-Now you have a virtual environment called “env” in the root of your repository
-initialized with all the libraries required for developing on that branch with
-the correct version.
+ wget http://pypi.python.org/packages/source/v/virtualenv/virtualenv-1.5.2.tar.gz
+ tar zxf virtualenv-1.5.2.tar.gz
+ python virtualenv-1.5.2/virtualenv.py rezine
+ source rezine/bin/activate
 
-Make sure to enable it before working on Rezine::
+Checking out the Code
+---------------------
 
-    $ source env/bin/activate
+The source code repository is hosted at github here:
 
-To leave the virtual environment run this command::
+- `Rezine GitHub Project <https://github.com/rockyburt/Rezine>`_
 
-    $ deactivate
+Clone the branch using git:
 
-Check in often and merge often with upstream.  When you're happy with the result,
-create a bundle or patch and attach it to a ticket in the trac.
+.. code-block:: bash
+ :linenos:
 
+ git clone git://github.com/rockyburt/Rezine.git
 
-.. _IRC channel: http://rezine.pocoo.org/community/irc
+Once the code has been cloned you can install it into your
+development environment by simply using (assuming your virtualenv_
+is still active) ``pip``:
+
+.. code-block:: bash
+ :linenos:
+
+ cd Rezine
+ pip install -e .
+
+To leave the virtual environment run this command:
+
+.. code-block:: bash
+ :linenos:
+
+ deactivate

@@ -1,5 +1,5 @@
 Rezine API Documentation
-======================
+========================
 
 Welcome in the Rezine developer documentation.  No matter if you are
 developing third party plugins, themes or if you want to get started
