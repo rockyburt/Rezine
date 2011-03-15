@@ -16,6 +16,7 @@ REQUIRES = [
     'Babel >= 0.9.4',
     'lxml >= 2.0',
     'sqlalchemy-migrate >= 0.6.1',
+    'html5lib >= 0.90',
     ]
 
 try:
