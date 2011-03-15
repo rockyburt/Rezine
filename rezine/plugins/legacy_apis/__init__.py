@@ -49,7 +49,6 @@ def dump_post(post):
     """Dumps a post into a structure for the MetaWeblog API."""
     link = url_for(post, _external=True)
     tags = ','.join([x.name for x in post.tags])
-    print '[%s]' % tags
 
     return dict(
         pubDate=post.pub_date,
@@ -372,6 +371,11 @@ def mt_get_post_categories(post_id, username, password):
     return map(dump_category, post.categories)
 
 
+def mt_get_category_list(post_id, username, password):
+    request = login(username, password)
+    return map(dump_category, Category.query.all())
+
+
 def mt_set_post_categories(post_id, username, password, categories):
     request = login(username, password)
     post = Post.query.get(post_id)
@@ -450,6 +454,7 @@ service.register_functions([
     (mt_get_post_categories, 'mt.getPostCategories'),
     (mt_set_post_categories, 'mt.setPostCategories'),
     (mt_supported_text_filters, 'mt.supportedTextFilters'),
+    (mt_get_category_list, 'mt.getCategoryList'),
     (mt_supported_methods, 'mt.supportedMethods')
 ])
 
