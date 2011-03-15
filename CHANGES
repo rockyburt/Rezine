@@ -1,12 +1,17 @@
 Rezine Changelog
 ==============
 
-This file lists the major changes between the Rezine releases.
+This file lists the major changes between the Rezine and Zine releases.
 
-Rezine 0.2
+Rezine 0.3
+----------
+
+- Can now add plugins via [rezine_plugins] entry points (eggs)
+
+Zine 0.2
 --------
 
-(Codename yet to be chosen; Release date yet unknown)
+(not released)
 
 - Themes can specify the number of items they want to have on a
   tag/category/author post listing.
@@ -21,7 +26,7 @@ Rezine 0.2
 - Added importer for blogger feeds.
 
 
-Rezine 0.1.3
+Zine 0.1.3
 ----------
 
 (Bugfix release)
@@ -31,7 +36,7 @@ Rezine 0.1.3
 - Fixed the author feed.
 
 
-Rezine 0.1.2
+Zine 0.1.2
 ----------
 
 (Bugfix release)
@@ -69,7 +74,7 @@ Rezine 0.1.2
 - Fixed some display bugs in the admin panel for webkit.
 
 
-Rezine 0.1.1
+Zine 0.1.1
 ----------
 
 (Bugfix release; Released December 29th 2008)
@@ -84,7 +89,7 @@ Rezine 0.1.1
 - Fixed various problems if the blog was mounted outside of the URL root.
 
 
-Rezine 0.1
+Zine 0.1
 --------
 
 (Codename Aldus; Released December 24th 2008)

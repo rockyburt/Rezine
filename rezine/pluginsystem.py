@@ -86,7 +86,9 @@ from os import path, listdir, walk, makedirs
 from types import ModuleType
 from shutil import rmtree
 from time import localtime, time
+import sys
 
+import pkg_resources
 from urllib import quote
 from werkzeug import cached_property, escape
 
@@ -144,6 +146,16 @@ def find_plugins(app):
                 found_plugins.add(filename)
                 yield Plugin(app, str(filename), path.abspath(full_name),
                              filename in enabled_plugins)
+
+    for ep in pkg_resources.iter_entry_points('rezine_plugins'):
+        m = ep.load()
+        if pkg_resources.resource_exists(m.__name__, 'metadata.txt') and \
+                ep.name not in found_plugins:
+            package = sys.modules[m.__package__]
+            p = Plugin(app, ep.name, package.__path__[0],
+                       ep.name in enabled_plugins)
+            p.module = package
+            yield p
 
 
 def install_package(app, package):
@@ -582,6 +594,7 @@ class Plugin(object):
 
     def setup(self):
         """Setup the plugin."""
+
         try:
             self.module.setup(self.app, self)
         except:
