@@ -24,7 +24,10 @@
     :copyright: (c) 2010 by the Zine Team, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
 """
-__version__ = '0.2-dev'
+
+import pkg_resources
+
+__version__ = pkg_resources.get_distribution('Zine').version
 __url__ = 'http://zine.pocoo.org/'
 
 
