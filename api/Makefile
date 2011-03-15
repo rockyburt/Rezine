@@ -67,7 +67,7 @@ qthelp:
 	      ".qhcp project file in _build/qthelp, like this:"
 	@echo "# qcollectiongenerator _build/qthelp/Sphinx.qhcp"
 	@echo "To view the help file:"
-	@echo "# assistant -collectionFile _build/qthelp/Zine.qhc"
+	@echo "# assistant -collectionFile _build/qthelp/Rezine.qhc"
 
 latex:
 	mkdir -p _build/latex _build/doctrees

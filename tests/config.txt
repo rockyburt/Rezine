@@ -8,7 +8,7 @@ Basics:
 	>>> app.cfg                             # doctest: +ELLIPSIS
 	<Configuration ...>
 	>>> app.cfg['blog_title']
-	iu'My Zine Blog'
+	iu'My Rezine Blog'
 
 
 Are those changes written to the config file correctly?
@@ -24,7 +24,7 @@ config file.
 	>>> t = app.cfg.edit()
 	>>> t['pings_enabled'] = True
 	>>> t['blog_title']
-	iu'My Zine Blog'
+	iu'My Rezine Blog'
 	>>> t['blog_title'] = 'Another Blog Title'
 	>>> t.commit()
 	>>> len([line for line in open(app.cfg.filename) if 'pings_enabled' in line])
@@ -38,10 +38,10 @@ Test revert_to_default
 	>>> t = app.cfg.edit()
 	>>> t.revert_to_default('blog_title')
 	>>> t['blog_title']
-	iu'My Zine Blog'
+	iu'My Rezine Blog'
 	>>> t.commit()
 	>>> app.cfg['blog_title']
-	iu'My Zine Blog'
+	iu'My Rezine Blog'
 
 
 Transactions can only be committed once:
@@ -56,21 +56,21 @@ Somewhat bigger transaction. Tests update(), set_from_string() and if changes
 are really only written to the config when the transaction is committed.
 
 	>>> big_t = app.cfg.edit()
-	>>> big_t.update({'zine/blog_tagline': '...and the test goes on',
+	>>> big_t.update({'rezine/blog_tagline': '...and the test goes on',
 	...               'language': 'de'})
 	>>> big_t['blog_tagline']
 	u'...and the test goes on'
 	>>> app.cfg['blog_tagline']
-	iu'just another Zine blog'
+	iu'just another Rezine blog'
 	>>> app.cfg['language']
 	u'en'
-	>>> big_t.set_from_string('zine/posts_per_page', '42')
+	>>> big_t.set_from_string('rezine/posts_per_page', '42')
 	>>> big_t.commit()
 
 
 Was the transaction commited correctly?
 
-	>>> app.cfg['zine/language']
+	>>> app.cfg['rezine/language']
 	u'de'
 	>>> app.cfg['blog_tagline']
 	u'...and the test goes on'
@@ -92,7 +92,7 @@ Handling of inexisting keys
 
 __contains__
 
-	>>> 'zine/blog_title' in app.cfg
+	>>> 'rezine/blog_title' in app.cfg
 	True
 	>>> 'foobar' in app.cfg
 	False
@@ -101,7 +101,7 @@ __contains__
 Reset the config so future tests get the same initial values
 	
 	>>> reset = app.cfg.edit()
-	>>> reset.revert_to_default('zine/blog_tagline')
+	>>> reset.revert_to_default('rezine/blog_tagline')
 	>>> reset.revert_to_default('posts_per_page')
 	>>> reset.revert_to_default('language')
 	>>> reset.commit()

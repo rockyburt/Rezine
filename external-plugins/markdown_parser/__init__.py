@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    zine.plugins.markdown_parser
+    rezine.plugins.markdown_parser
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Use Markdown for your blog posts.
@@ -8,22 +8,22 @@
     TODO: this parser does not support `<intro>` sections and has a
           very bad implementation as it requires multiple parsing steps.
 
-    :copyright: (c) 2010 by the Zine Team, see AUTHORS for more details.
+    :copyright: (c) 2010 by the Rezine Team, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
 """
 import os.path
 import re
-from zine.api import *
-from zine.parsers import BaseParser
-from zine.views.admin import render_admin_response
-from zine.privileges import BLOG_ADMIN
-from zine.utils.admin import flash, require_admin_privilege
-from zine.utils.zeml import parse_html
-from zine.utils import forms
+from rezine.api import *
+from rezine.parsers import BaseParser
+from rezine.views.admin import render_admin_response
+from rezine.privileges import BLOG_ADMIN
+from rezine.utils.admin import flash, require_admin_privilege
+from rezine.utils.zeml import parse_html
+from rezine.utils import forms
 try:
     import markdown as md
 except ImportError:
-    from zine.plugins.markdown_parser import local_markdown as md
+    from rezine.plugins.markdown_parser import local_markdown as md
 
 TEMPLATES = os.path.join(os.path.dirname(__file__), 'templates')
 CFG_EXTENSIONS='markdown_parser/extensions'

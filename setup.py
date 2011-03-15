@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Zine
+Rezine
 ========
 
 A WSGI-based weblog engine in Python.
@@ -25,9 +25,9 @@ except ImportError:
     REQUIRES.append('simplejson')
 
 setup(
-    name='Zine',
+    name='Rezine',
     version='0.2dev-sz1',
-    url='https://github.com/rockyburt/Zine',
+    url='https://github.com/rockyburt/Rezine',
     license='GPLv2',
     author='Armin Ronacher',
     author_email='armin.ronacher@active-4.com',
@@ -47,7 +47,7 @@ setup(
     install_requires=REQUIRES,
     entry_points={
         'console_scripts': [
-            'zine-manage = zine.manage:main'
+            'rezine-manage = rezine.manage:main'
             ],
         },
     platforms='any',

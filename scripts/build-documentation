@@ -4,9 +4,9 @@
     Build the Documentation
     ~~~~~~~~~~~~~~~~~~~~~~~
 
-    This command builds the documentation for Zine or a plugin.
+    This command builds the documentation for Rezine or a plugin.
 
-    :copyright: (c) 2010 by the Zine Team, see AUTHORS for more details.
+    :copyright: (c) 2010 by the Rezine Team, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
 """
 import sys
@@ -15,15 +15,15 @@ from optparse import OptionParser
 
 
 sys.path.append(dirname(__file__))
-import _init_zine
-from zine.docs.builder import walk
+import _init_rezine
+from rezine.docs.builder import walk
 
 
 def main():
     parser = OptionParser(usage='%prog [options] [path]')
     options, args = parser.parse_args()
     if not args:
-        path = join(dirname(__file__), pardir, 'zine', 'docs')
+        path = join(dirname(__file__), pardir, 'rezine', 'docs')
     elif len(args) == 1:
         path = join(args[0], 'docs')
         if not isdir(path):

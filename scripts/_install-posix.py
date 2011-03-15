@@ -3,9 +3,9 @@
     POSIX Installation
     ~~~~~~~~~~~~~~~~~~
 
-    This script is invoked by the makefile to install Zine on a POSIX system.
+    This script is invoked by the makefile to install Rezine on a POSIX system.
 
-    :copyright: (c) 2010 by the Zine Team, see AUTHORS for more details.
+    :copyright: (c) 2010 by the Rezine Team, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
 """
 import sys
@@ -93,7 +93,7 @@ def copy_core_translations(src_dir, lib_dir, share_dir):
             continue
         lang_share_dir = join(share_dir, language, 'LC_MESSAGES')
         silent(os.makedirs, lang_share_dir)
-        shutil.copy2(lang_src, join(lang_share_dir, 'zine.mo'))
+        shutil.copy2(lang_src, join(lang_share_dir, 'rezine.mo'))
 
 
 def copy_plugins(src_dir, lib_dir, share_dir):
@@ -121,13 +121,13 @@ def copy_plugins(src_dir, lib_dir, share_dir):
 
 def copy_scripts(source, destination, lib_dir):
     silent(os.makedirs, destination)
-    f = file(join(source, '_init_zine.py'))
+    f = file(join(source, '_init_rezine.py'))
     try:
         contents = f.read().replace('ZINE_LIB = None',
                                     'ZINE_LIB = %r' % strip_destdir(lib_dir))
     finally:
         f.close()
-    f = file(join(destination, '_init_zine.py'), 'w')
+    f = file(join(destination, '_init_rezine.py'), 'w')
     try:
         f.write(contents)
     finally:
@@ -150,48 +150,48 @@ def main(prefix):
 
     python = sys.executable
     source = os.path.abspath('.')
-    zine_source = join(source, 'zine')
-    lib_dir = join(dest_dir, 'lib', 'zine')
-    share_dir = join(dest_dir, 'share', 'zine')
+    rezine_source = join(source, 'rezine')
+    lib_dir = join(dest_dir, 'lib', 'rezine')
+    share_dir = join(dest_dir, 'share', 'rezine')
 
     print 'Installing to ' + dest_dir
     print 'Using ' + python
 
     # create some folders for us
-    silent(os.makedirs, join(lib_dir, 'zine'))
+    silent(os.makedirs, join(lib_dir, 'rezine'))
     silent(os.makedirs, share_dir)
 
-    # copy the packages and modules into the zine package
-    copy_folder(zine_source, join(lib_dir, 'zine'),
+    # copy the packages and modules into the rezine package
+    copy_folder(rezine_source, join(lib_dir, 'rezine'),
                 recurse=False, delete_if_exists=True)
     for package in PACKAGES:
-        copy_folder(join(zine_source, package),
-                    join(lib_dir, 'zine', package))
+        copy_folder(join(rezine_source, package),
+                    join(lib_dir, 'rezine', package))
 
-    # old zine installations had the translations at a different
+    # old rezine installations had the translations at a different
     # location.  Delete them if we find them there.
     old_translations = join(share_dir, 'i18n')
     if os.path.isdir(old_translations):
         shutil.rmtree(old_translations)
 
     # copy the core translations
-    copy_core_translations(join(zine_source, 'i18n'),
-                           join(lib_dir, 'zine', 'i18n'),
+    copy_core_translations(join(rezine_source, 'i18n'),
+                           join(lib_dir, 'rezine', 'i18n'),
                            join(dest_dir, 'share', 'locale'))
 
     # copy the plugins over
-    copy_plugins(join(zine_source, 'plugins'),
+    copy_plugins(join(rezine_source, 'plugins'),
                  join(lib_dir, 'plugins'),
                  share_dir)
 
     # compile all files
     run([sys.executable, '-O', '-mcompileall', '-qf',
-         join(lib_dir, 'zine'), join(lib_dir, 'plugins')])
+         join(lib_dir, 'rezine'), join(lib_dir, 'plugins')])
 
     # templates and shared data
-    copy_folder(join(zine_source, 'shared'),
+    copy_folder(join(rezine_source, 'shared'),
                 join(share_dir, 'htdocs', 'core'), delete_if_exists=True)
-    copy_folder(join(zine_source, 'templates'),
+    copy_folder(join(rezine_source, 'templates'),
                 join(share_dir, 'templates', 'core'), delete_if_exists=True)
 
     # copy the server files

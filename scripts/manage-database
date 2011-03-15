@@ -6,7 +6,7 @@
 
     Database maintenance script.
 
-    :copyright: (c) 2010 by the Zine Team, see AUTHORS for more details.
+    :copyright: (c) 2010 by the Rezine Team, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
 """
 # for now
@@ -16,8 +16,8 @@ warnings.filterwarnings('ignore')
 import sys
 from os.path import dirname
 sys.path.append(dirname(__file__))
-from _init_zine import find_instance
-from zine.upgrades import CommandLineInterface
+from _init_rezine import find_instance
+from rezine.upgrades import CommandLineInterface
 
 def main():
     manage = CommandLineInterface()

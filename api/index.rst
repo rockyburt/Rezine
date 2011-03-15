@@ -1,9 +1,9 @@
-Zine API Documentation
+Rezine API Documentation
 ======================
 
-Welcome in the Zine developer documentation.  No matter if you are
+Welcome in the Rezine developer documentation.  No matter if you are
 developing third party plugins, themes or if you want to get started
-with hacking on the Zine core, this documentation is ment to you.
+with hacking on the Rezine core, this documentation is ment to you.
 
 Contents:
 

@@ -1,0 +1,6 @@
+{% extends "account/layout.html" %}
+{% from "_about_rezine.html" import render_about_rezine_title, render_about_rezine_body %}
+{% block title %}{{ render_about_rezine_title() }}{% endblock %}
+{% block contents %}
+  {{ render_about_rezine_body() }}
+{% endblock %}

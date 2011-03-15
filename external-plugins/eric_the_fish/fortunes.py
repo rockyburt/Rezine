@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-    zine.plugins.eric_the_fish.fortunes
+    rezine.plugins.eric_the_fish.fortunes
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Erics fortune cookies (ripped and stripped from the ubuntu `fortune`
     fortune data file.)
 
-    :copyright: (c) 2010 by the Zine Team, see AUTHORS for more details.
+    :copyright: (c) 2010 by the Rezine Team, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
 """
 

@@ -1178,7 +1178,7 @@ def after_install(options, home_dir):
     for requirement in REQUIREMENTS:
         install(home_dir, requirement)
     install(home_dir, 'lxml>=2.0', static_deps=lxml_static_deps)
-    call(['ln', '-s', '../zine', os.path.join(site_packages, 'zine')])
+    call(['ln', '-s', '../rezine', os.path.join(site_packages, 'rezine')])
 
 
 ##file site.py

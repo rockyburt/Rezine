@@ -1,5 +1,5 @@
 """Move fortunes to the database"""
-from zine.upgrades.versions import *
+from rezine.upgrades.versions import *
 
 metadata = db.MetaData()
 
@@ -34,7 +34,7 @@ def upgrade(migrate_engine):
     if not fortunes.exists():
         fortunes.create(migrate_engine)
 
-    from zine.plugins.eric_the_fish.fortunes import FORTUNES
+    from rezine.plugins.eric_the_fish.fortunes import FORTUNES
 
     yield '<p>Adding fortunes to the database:</p>\n'
     yield '<ul>'

@@ -1,0 +1,4496 @@
+# Russian translations for Rezine.
+# Copyright (C) 2008 The Pocoo Team
+# This file is distributed under the same license as the Rezine project.
+# Translated by Nikita Kabardin <wackum@gmail.com>, 2008.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: rezine-i18n@pocoo.org\n"
+"POT-Creation-Date: 2009-01-02 02:02+0000\n"
+"PO-Revision-Date: 2009-07-03 00:48+0100\n"
+"Last-Translator: Nikita Kabardin <wackum@gmail.com>\n"
+"Language-Team: ru <LL@li.org>\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 0.9.4\n"
+
+#: rezine/application.py:693
+msgid "Default Theme"
+msgstr "Тема по умолчанию"
+
+#: rezine/application.py:694
+msgid "Simple default theme that doesn't contain any style information."
+msgstr "Простая стандартная тема, не содержащая никаких стилей."
+
+#: rezine/application.py:761
+#, python-format
+msgid "Theme “%s” is no longer available, falling back to default theme."
+msgstr "Тема «%s» более недоступна, возвращаемся к стандартной теме."
+
+#: rezine/application.py:784
+#, python-format
+msgid "Copyright %(years)s by the Rezine Team"
+msgstr "%(years)s «Rezine Team»"
+
+#: rezine/config.py:33
+msgid ""
+"The database URI.  For more information about database settings consult the "
+"Rezine help."
+msgstr ""
+
+#: rezine/config.py:36
+msgid ""
+"If a request to an http URL comes in, Rezine will redirect to the same URL on "
+"https if this is savely possible.  This requires a working SSL setup or "
+"otherwise Rezine will become unresponsive."
+msgstr ""
+
+#: rezine/config.py:40
+msgid ""
+"If enabled the database will collect the SQL statements and add them to the "
+"bottom of the page for easier debugging"
+msgstr ""
+
+#: rezine/config.py:43
+msgid "My Rezine Blog"
+msgstr "Мой блог на Rezine"
+
+#: rezine/config.py:44
+msgid "just another Rezine blog"
+msgstr "еще один блог на Rezine"
+
+#: rezine/config.py:45
+msgid ""
+"The base URL of the blog.  This has to be set to a full canonical URL "
+"(including http or https).  If not set the application will behave "
+"confusingly.  Remember to change this value if you move your blog to a new "
+"location."
+msgstr ""
+
+#: rezine/config.py:50
+msgid ""
+"The email address given here is used by the notification system to send "
+"mails from.  Also plugins that send mails will use this address as sender "
+"address."
+msgstr ""
+
+#: rezine/config.py:55
+msgid ""
+"The timezone of the blog.  All times and dates in the user interface and on "
+"the website will be shown in this timezone.  It's save to change the "
+"timezone after posts were created because the information in the database is"
+" stored as UTC."
+msgstr ""
+
+#: rezine/config.py:60
+msgid ""
+"If this blog is written primarily by one author, some themes can skip the "
+"author's name on posts unless written by a guest."
+msgstr ""
+
+#: rezine/config.py:63
+msgid "If set to true the blog enables the maintainance mode."
+msgstr ""
+
+#: rezine/config.py:66
+msgid ""
+"If there are multiple rezine installations on the same host the cookie name "
+"should be set to something different for each blog."
+msgstr ""
+
+#: rezine/config.py:70
+msgid ""
+"The secret key is used for vairous security related tasks in the system.  "
+"For example the cookie is signed with this value."
+msgstr ""
+
+#: rezine/config.py:76
+msgid ""
+"The iid uniquely identifies the Rezine instance.  Currently this value is "
+"unused, but once set you should not modify it."
+msgstr ""
+
+#: rezine/config.py:87
+msgid ""
+"During development this is helpful to log emails into a mail.log file in "
+"your instance folder instead of delivering them to your MTA."
+msgstr ""
+
+#: rezine/config.py:91
+msgid ""
+"If this is set to true, errors in Rezine are not catched so that debuggers can"
+" catch it instead.  This is useful for plugin and core development."
+msgstr ""
+
+#: rezine/config.py:110
+#, python-format
+msgid ""
+"Use %year%, %month%, %day%, %hour%, %minute% and %second%. Changes here will"
+" only affect new posts."
+msgstr ""
+
+#: rezine/config.py:113
+msgid "Automatically generated slugs are limited to ASCII"
+msgstr "Ярлыки, созданные автоматически, используют только ASCII"
+
+#: rezine/config.py:116
+msgid "Dates are zero padded like 2009/04/22 instead of 2009/4/22"
+msgstr ""
+
+#: rezine/config.py:124
+msgid "No Cache"
+msgstr "Без кэширования"
+
+#: rezine/config.py:125
+msgid "Simple Cache"
+msgstr "Простое кэширование"
+
+#: rezine/config.py:126
+msgid "memcached"
+msgstr "memcached"
+
+#: rezine/config.py:127
+msgid "Filesystem"
+msgstr "Файловая система"
+
+#: rezine/config.py:144
+msgid "Automatically approve all comments"
+msgstr "Автоматически одобрять все комментарии"
+
+#: rezine/config.py:145
+msgid "An administrator must always approve the comment"
+msgstr "Каждый комментарий должен быть проверен администратором"
+
+#: rezine/config.py:146
+msgid "Automatically approve comments by known comment authors"
+msgstr "Автоматически одобрять комментарии ранее комментировавших пользователей"
+
+#: rezine/config.py:151
+msgid ""
+"The number of posts that are shown on a page.  This value might not be "
+"honored by some themes and is probably only used for the index page."
+msgstr ""
+
+#: rezine/config.py:170
+msgid ""
+"This timeout is used by default for all network related operations. The "
+"default should be fine for most environments but if you have a very bad "
+"network connection during development you should increase it."
+msgstr ""
+
+#: rezine/config.py:179
+msgid ""
+"It's possible to one or more comma separated paths here that are searched "
+"for plugins.  If the is not absolute, it's considered relative to the "
+"instance folder."
+msgstr ""
+
+#: rezine/config.py:186
+msgid ""
+"Set this to true if you want to see the most recent entries on the Rezine "
+"reddit on your dashbaord."
+msgstr ""
+
+#: rezine/config.py:241
+msgid ""
+"\n"
+"    <p>\n"
+"      This error can happen if the configuration file is not writeable.\n"
+"      Make sure the folder of the configuration file is writeable and\n"
+"      that the file itself is writeable as well.\n"
+"    "
+msgstr ""
+"\n"
+"    <p>\n"
+"      Эта ошибка может возникнуть при невозможности записи\n"
+"      в файл конфигурации. Убедитесь, что папка с этим файлом,\n"
+"      а так же сам файл, имеют права на запись для пользователя,\n"
+"      под которым работает сайт.\n"
+"    "
+
+#: rezine/config.py:253
+#, python-format
+msgid "Could not save configuration file: %s"
+msgstr "Не получается сохранить файл конфигурации: %s"
+
+#: rezine/database.py:171
+msgid ""
+"Error when loading parsed data from database. Maybe the database was "
+"manually edited and got corrupted? The system returned an empty value."
+msgstr ""
+
+#: rezine/forms.py:51
+#, python-format
+msgid "User “%(value)s” does not exist."
+msgstr "Пользователя «%(value)s» не существует."
+
+#: rezine/forms.py:52
+msgid "You have to enter a username."
+msgstr "Введите имя пользователя."
+
+#: rezine/forms.py:54
+#, python-format
+msgid "Failed login attempt, user “%s” does not exist"
+msgstr "Неудачная попытка входа, пользователь «%s» не существует"
+
+#: rezine/forms.py:62
+#, python-format
+msgid "Failed login attempt from “%s”, invalid password"
+msgstr "Неудачная попытка входа под именем «%s», неверный пароль"
+
+#: rezine/forms.py:64
+msgid "Incorrect password."
+msgstr "Неверный пароль."
+
+#: rezine/forms.py:69
+msgid "Old password"
+msgstr "Старый пароль"
+
+#: rezine/forms.py:71
+msgid "New password"
+msgstr "Новый пароль"
+
+#: rezine/forms.py:73
+msgid "Repeat password"
+msgstr "Повторите пароль"
+
+#: rezine/forms.py:83
+msgid "The old password you've entered is wrong."
+msgstr "Вы ввели неверный старый пароль."
+
+#: rezine/forms.py:88
+msgid "The two passwords don't match."
+msgstr "Пароли не совпадают."
+
+#: rezine/forms.py:97
+msgid "Name*"
+msgstr "Имя*"
+
+#: rezine/forms.py:99
+msgid "Your name is too long."
+msgstr "Имя слишком длинное."
+
+#: rezine/forms.py:100
+msgid "You have to enter your name."
+msgstr "Введите имя."
+
+#: rezine/forms.py:102
+msgid "Mail* (not published)"
+msgstr "Почта* (не публикуется)"
+
+#: rezine/forms.py:105 rezine/utils/validators.py:78
+msgid "You have to enter a valid e-mail address."
+msgstr "Введите правильный адрес e-mail."
+
+#: rezine/forms.py:107 rezine/forms.py:460 rezine/forms.py:818 rezine/forms.py:941
+msgid "Website"
+msgstr "Сайт"
+
+#: rezine/forms.py:108
+msgid "You have to enter a valid URL or omit the field."
+msgstr "Введите правильный URL или оставьте поле пустым."
+
+#: rezine/forms.py:110 rezine/forms.py:246 rezine/forms.py:462 rezine/parsers.py:176
+msgid "Text"
+msgstr "Текст"
+
+#: rezine/forms.py:112
+msgid "Your comment is too short."
+msgstr "Комментарий слишком короткий."
+
+#: rezine/forms.py:113
+msgid "Your comment is too long."
+msgstr "Комментарий слишком длинный."
+
+#: rezine/forms.py:114
+msgid "You have to enter a comment."
+msgstr "Введите комментарий."
+
+#. this message is only displayed if the user tempered with
+#. the form data
+#: rezine/forms.py:137
+msgid "Invalid object referenced."
+msgstr "Указан неверный объект."
+
+#: rezine/forms.py:141
+msgid "Post is closed for commenting."
+msgstr "Запись закрыта для комментирования."
+
+#: rezine/forms.py:179
+msgid "Comment waiting for approval"
+msgstr "Комментарий ожидает проверки."
+
+#: rezine/forms.py:208
+msgid "Disable plugin guard"
+msgstr "Поставьте галочку, чтобы выключить «защитника» расширений "
+
+#: rezine/forms.py:209
+msgid "If the plugin guard is disabled errors on plugin setup are not caught."
+msgstr "(когда «защитник» выключен, ошибки установки расширений не будут отслежены)"
+
+#: rezine/forms.py:243 rezine/templates/admin/_post_helpers.html:4
+#: rezine/templates/admin/import.html:25 rezine/templates/admin/inspect_import.html:49
+#: rezine/templates/admin/write_page.html:7
+msgid "Title"
+msgstr "Заголовок"
+
+#: rezine/forms.py:248
+msgid "Publication status"
+msgstr "Статус публикации"
+
+#: rezine/forms.py:249
+msgid "Draft"
+msgstr "Черновик"
+
+#: rezine/forms.py:250
+msgid "Published"
+msgstr "Опубликовано"
+
+#: rezine/forms.py:251
+msgid "Protected"
+msgstr ""
+
+#: rezine/forms.py:252
+#, fuzzy
+msgid "Private"
+msgstr "Написать"
+
+#: rezine/forms.py:253
+msgid "Publication date"
+msgstr "Дата публикации"
+
+#: rezine/forms.py:254
+msgid "Clear this field to update to current time"
+msgstr ""
+
+#: rezine/forms.py:255 rezine/forms.py:579
+#: rezine/templates/admin/manage_categories.html:8
+msgid "Slug"
+msgstr "Ярлык"
+
+#: rezine/forms.py:256
+msgid "Clear this field to autogenerate a new slug"
+msgstr ""
+
+#: rezine/forms.py:257 rezine/forms.py:457 rezine/templates/admin/_post_helpers.html:5
+#: rezine/templates/admin/information.html:163
+#: rezine/templates/admin/inspect_import.html:50
+msgid "Author"
+msgstr "Автор"
+
+#: rezine/forms.py:259 rezine/templates/widgets/tag_cloud.html:2
+msgid "Tags"
+msgstr "Теги"
+
+#: rezine/forms.py:261 rezine/templates/_entry.html:4
+#: rezine/templates/admin/_post_helpers.html:6
+#: rezine/templates/widgets/category_list.html:2 rezine/views/admin.py:102
+msgid "Categories"
+msgstr "Категории"
+
+#: rezine/forms.py:263 rezine/forms.py:464 rezine/templates/admin/write_page.html:22
+msgid "Parser"
+msgstr "Парсер"
+
+#: rezine/forms.py:264
+msgid "Enable comments"
+msgstr "Разрешить комментарии"
+
+#: rezine/forms.py:265
+msgid "Enable pingbacks"
+msgstr "Разрешить pingback"
+
+#: rezine/forms.py:266
+msgid "Ping links"
+msgstr "Ping-ссылки"
+
+#: rezine/forms.py:305 rezine/forms.py:482
+#, python-format
+msgid "%s (missing)"
+msgstr "%s (отсутствует)"
+
+#: rezine/forms.py:339
+msgid "This slug is already in use."
+msgstr "Такой ярлык уже используется"
+
+#: rezine/forms.py:344
+msgid "Selected parser is no longer available on the system."
+msgstr "Выбранный парсер больше не доступен в системе."
+
+#: rezine/forms.py:458 rezine/forms.py:816 rezine/forms.py:939
+msgid "Email"
+msgstr "E-mail"
+
+#: rezine/forms.py:463 rezine/templates/admin/_post_helpers.html:8
+#: rezine/templates/admin/import.html:24 rezine/templates/admin/inspect_import.html:48
+msgid "Date"
+msgstr "Дата"
+
+#: rezine/forms.py:465 rezine/templates/admin/block_comment.html:2
+#: rezine/templates/admin/block_comment.html:4
+msgid "Block Comment"
+msgstr "Заблокировать комментарий"
+
+#: rezine/forms.py:466 rezine/forms.py:529
+msgid "Reason"
+msgstr "Причина"
+
+#: rezine/forms.py:538
+#, python-format
+msgid "blocked by %s"
+msgstr "заблокировал(а) %s"
+
+#: rezine/forms.py:553
+#, python-format
+msgid "Comment reported as spam by %s"
+msgstr ""
+
+#: rezine/forms.py:580 rezine/templates/admin/manage_categories.html:9
+msgid "Name"
+msgstr "Имя"
+
+#: rezine/forms.py:582 rezine/forms.py:814 rezine/forms.py:937
+#: rezine/templates/admin/plugins.html:18
+msgid "Description"
+msgstr "Описание"
+
+#: rezine/forms.py:601
+msgid "This slug is already in use"
+msgstr "Такой ярлык уже используется"
+
+#: rezine/forms.py:640
+#, fuzzy
+msgid "Comments Per Page:"
+msgstr "Записей на страницу"
+
+#: rezine/forms.py:678
+#, fuzzy, python-format
+msgid "Comment blocked by %s"
+msgstr "заблокировал(а) %s"
+
+#: rezine/forms.py:685
+#, python-format
+msgid "Comment marked as spam by %s"
+msgstr ""
+
+#: rezine/forms.py:710 rezine/templates/admin/manage_groups.html:8
+msgid "Groupname"
+msgstr "Имя группы"
+
+#: rezine/forms.py:713 rezine/forms.py:822 rezine/templates/admin/information.html:102
+msgid "Privileges"
+msgstr "Привилегии"
+
+#: rezine/forms.py:730
+msgid "This groupname is already in use"
+msgstr "Такое имя группы уже используется"
+
+#: rezine/forms.py:752
+msgid "What should Rezine do with users assigned to this group?"
+msgstr "Что сделать с пользователями этой группы?"
+
+#: rezine/forms.py:755
+msgid "Do nothing, just detach the membership"
+msgstr "Ничего не делать, просто отменить членство в группе"
+
+#: rezine/forms.py:756
+msgid "Move the users to another group"
+msgstr "Переместить пользователей в другую группу"
+
+#: rezine/forms.py:758
+msgid "Relocate users to"
+msgstr "Переместить пользователей в"
+
+#: rezine/forms.py:771
+msgid "You have to select a group that gets the users assigned."
+msgstr "Выберите группу"
+
+#: rezine/forms.py:809 rezine/forms.py:844 rezine/forms.py:932 rezine/forms.py:961
+#: rezine/templates/account/login.html:29 rezine/templates/admin/manage_users.html:8
+#: rezine/websetup/templates/admin_account.html:10
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: rezine/forms.py:812 rezine/forms.py:845 rezine/forms.py:935 rezine/forms.py:962
+#: rezine/templates/admin/manage_users.html:9
+msgid "Realname"
+msgstr "Полное имя"
+
+#: rezine/forms.py:813 rezine/forms.py:936
+msgid "Display name"
+msgstr "Отображаемое имя"
+
+#: rezine/forms.py:820 rezine/forms.py:943 rezine/templates/account/login.html:32
+#: rezine/websetup/templates/admin_account.html:12
+msgid "Password"
+msgstr "Пароль"
+
+#: rezine/forms.py:824 rezine/views/admin.py:152
+msgid "Groups"
+msgstr "Группы"
+
+#: rezine/forms.py:826
+msgid "List as author"
+msgstr "Выводить как автора"
+
+#: rezine/forms.py:827
+msgid "This user is listed as author"
+msgstr "Этот пользователь выводится в качестве автора"
+
+#: rezine/forms.py:856
+msgid "This username is already in use"
+msgstr "Имя пользователя уже используется"
+
+#: rezine/forms.py:892
+msgid "What should Rezine do with posts written by this user?"
+msgstr "Что сделать с записями, уже созданными пользователем?"
+
+#: rezine/forms.py:894
+msgid "Delete them permanently"
+msgstr "Удалить их полностью"
+
+#: rezine/forms.py:895
+msgid "Reassign posts"
+msgstr "Передать записи"
+
+#: rezine/forms.py:898
+msgid "Reassign posts to"
+msgstr "Передать записи пользователю"
+
+#: rezine/forms.py:913
+msgid "You have to select the user that gets the posts assigned."
+msgstr "Выберите пользователя, которому будут переданы записи."
+
+#: rezine/forms.py:945 rezine/forms.py:947
+#, fuzzy
+msgid "Confirm password"
+msgstr "Неверный пароль."
+
+#: rezine/forms.py:970
+#, fuzzy
+msgid "This email address is already in use"
+msgstr "Такой ярлык уже используется"
+
+#: rezine/forms.py:979
+#, fuzzy
+msgid "Passwords do not match"
+msgstr "Пароли не совпадают."
+
+#: rezine/forms.py:1035
+msgid "Filename"
+msgstr "Имя файла"
+
+#: rezine/forms.py:1036
+msgid "Log Level"
+msgstr "Уровень логгирования"
+
+#: rezine/forms.py:1041 rezine/forms.py:1303
+msgid "Blog title"
+msgstr "Название блога"
+
+#: rezine/forms.py:1042
+msgid "Blog tagline"
+msgstr "Краткое описание блога"
+
+#: rezine/forms.py:1043
+msgid "Blog email"
+msgstr "E-mail блога"
+
+#: rezine/forms.py:1044
+msgid "Language"
+msgstr "Язык"
+
+#: rezine/forms.py:1045
+msgid "Timezone"
+msgstr "Часовой пояс"
+
+#: rezine/forms.py:1047
+msgid "Cookie Name"
+msgstr "Имя Cookie"
+
+#: rezine/forms.py:1049
+msgid "Comments enabled"
+msgstr "Комментарии разрешены"
+
+#: rezine/forms.py:1050
+msgid "enable comments per default"
+msgstr "по умолчанию, разрешать комментирование"
+
+#: rezine/forms.py:1052
+msgid "Comment Moderation"
+msgstr "Модерирование комментариев"
+
+#: rezine/forms.py:1055
+msgid "Pingbacks enabled"
+msgstr "Pingback"
+
+#: rezine/forms.py:1056
+msgid "enable pingbacks per default"
+msgstr "по умолчанию, разрешать pingback"
+
+#: rezine/forms.py:1058
+msgid "Use flat comments"
+msgstr "Использовать простые комментарии"
+
+#: rezine/forms.py:1059
+msgid "All comments are posted top-level"
+msgstr "Все комментарии появляются сверху"
+
+#: rezine/forms.py:1061
+msgid "Default parser"
+msgstr "Парсер по умолчанию"
+
+#: rezine/forms.py:1063
+msgid "Comment parser"
+msgstr "Парсер комментариев"
+
+#: rezine/forms.py:1065
+msgid "Posts per page"
+msgstr "Записей на страницу"
+
+#: rezine/forms.py:1080
+msgid "Blog URL prefix"
+msgstr "URL-префикс блога"
+
+#: rezine/forms.py:1082
+msgid "Admin URL prefix"
+msgstr "URL-префикс панели управления"
+
+#: rezine/forms.py:1084
+msgid "Category URL prefix"
+msgstr "URL-префикс категорий"
+
+#: rezine/forms.py:1086
+msgid "Tag URL prefix"
+msgstr "URL-префикс тегов"
+
+#: rezine/forms.py:1088
+msgid "Author Profiles URL prefix"
+msgstr "URL-префикс профилей авторов"
+
+#: rezine/forms.py:1090
+msgid "Post permalink URL format"
+msgstr ""
+
+#: rezine/forms.py:1092
+msgid "Limit slugs to ASCII"
+msgstr "Использовать только ASCII"
+
+#: rezine/forms.py:1094
+msgid "Use zero-padded dates"
+msgstr ""
+
+#: rezine/forms.py:1095
+msgid "Force HTTPS"
+msgstr ""
+
+#: rezine/forms.py:1121
+msgid "Cache system"
+msgstr "Система кэширования"
+
+#: rezine/forms.py:1123
+msgid "Default cache timeout"
+msgstr "Таймаут кэширования по умолчанию"
+
+#: rezine/forms.py:1125
+msgid "Enable eager caching"
+msgstr "Включить интенсивное кэширование"
+
+#: rezine/forms.py:1126
+msgid "Enable"
+msgstr "Включить"
+
+#: rezine/forms.py:1133
+msgid "You have to provide at least one server to use memcached."
+msgstr "Чтобы использовать memcached, введите хотя бы один сервер."
+
+#: rezine/forms.py:1137
+msgid "You have to provide cache folder to use filesystem cache."
+msgstr ""
+"Чтобы использовать файловое кэширование, вы должны указать директорию "
+"хранения."
+
+#: rezine/forms.py:1147
+msgid "Dump Download URL"
+msgstr "URL дампа"
+
+#: rezine/forms.py:1153
+msgid "Feed Download URL"
+msgstr "URL потока"
+
+#: rezine/forms.py:1202
+msgid "Use default value"
+msgstr "Использовать значение по умолчанию"
+
+#: rezine/forms.py:1289
+msgid "Create new user"
+msgstr "Создать пользователя"
+
+#: rezine/forms.py:1305
+msgid "Blog description"
+msgstr "Описание блога"
+
+#: rezine/forms.py:1310
+msgid "Load config values"
+msgstr "Загрузить значения конфигурации"
+
+#: rezine/forms.py:1311
+msgid "Load the configuration values from the import."
+msgstr "Использовать параметры конфигурации из импорта."
+
+#: rezine/notifications.py:176 rezine/websetup/templates/admin_account.html:16
+msgid "E-Mail"
+msgstr "Электропочта"
+
+#: rezine/notifications.py:283
+msgid "When a new comment is received."
+msgstr ""
+
+#: rezine/notifications.py:285
+#, fuzzy
+msgid "When a comment requires moderation."
+msgstr "Модерирование комментариев"
+
+#: rezine/notifications.py:287
+msgid "When Rezine found an urgent security alarm."
+msgstr ""
+
+#: rezine/parsers.py:152
+msgid "Rezine-Markup"
+msgstr "Rezine-разметка"
+
+#: rezine/parsers.py:164
+msgid "HTML"
+msgstr "HTML"
+
+#: rezine/pingback.py:55
+msgid "source URL does not exist"
+msgstr "нет URL источника"
+
+#: rezine/pingback.py:56
+msgid "The source URL does not contain a link to the target URL"
+msgstr "URL источника не содержит ссылку на целевой URL"
+
+#: rezine/pingback.py:57
+msgid "The specified target URL does not exist"
+msgstr "Указанный целевой URL не существует"
+
+#: rezine/pingback.py:58
+msgid "The specified target URL cannot be used as a target"
+msgstr "Указанный целевой URL не может быть использован"
+
+#: rezine/pingback.py:59
+msgid "The pingback has already been registered"
+msgstr "Pingback был уже зарегистрирован"
+
+#: rezine/pingback.py:60 rezine/templates/403.html:2 rezine/templates/403.html:4
+msgid "Access Denied"
+msgstr "Доступ запрещен"
+
+#: rezine/pingback.py:97
+#, python-format
+msgid "An unknown server error (%s) occurred"
+msgstr "Произошла неизвестная ошибка сервера (%s)"
+
+#: rezine/pluginsystem.py:334
+msgid ""
+"Could not install the plugin because the uploaded file is not a valid plugin"
+" file."
+msgstr ""
+"Невозможно установить расширение, поскольку загруженный файл не является "
+"правильным файлом расширения."
+
+#: rezine/pluginsystem.py:336
+msgid ""
+"The plugin uploaded has a newer package version than this Rezine installation "
+"can handle."
+msgstr ""
+"Версия загруженного расширения слишком новая — текущая инсталляция Rezine не "
+"сможет его обработать."
+
+#: rezine/pluginsystem.py:339
+msgid "A plugin with the same UID is already installed. Aborted."
+msgstr "Расширение с таким же UID уже было установлено. Действие отменено."
+
+#: rezine/pluginsystem.py:341
+msgid ""
+"Could not install the package because the installer wasn't able to write the"
+" package information. Wrong permissions?"
+msgstr ""
+"Не получается установить пакет, поскольку инсталлятор не может записать "
+"информацию о нем. Неверные права доступа?"
+
+#: rezine/pluginsystem.py:363
+msgid "Plugin setup error"
+msgstr "Ошибка установки расширения"
+
+#: rezine/pluginsystem.py:374
+#, python-format
+msgid "Exception happend on setup: %(error)s (%(file)s, line %(line)d)"
+msgstr "Произошла ошибка при инсталляции: %(error)s (%(file)s, строка %(line)d)"
+
+#: rezine/privileges.py:156
+msgid "can enter admin panel"
+msgstr "может входить в панель управления"
+
+#: rezine/privileges.py:157
+msgid "can administer the blog"
+msgstr "может администрировать блог"
+
+#: rezine/privileges.py:158
+msgid "can create new entries"
+msgstr "может создавать новые записи"
+
+#: rezine/privileges.py:160
+#, fuzzy
+msgid "can edit their own entries"
+msgstr "может редактировать собственные записи"
+
+#: rezine/privileges.py:162
+msgid "can edit another person's entries"
+msgstr "может редактировать записи других пользователей"
+
+#: rezine/privileges.py:164
+msgid "can create new pages"
+msgstr "может создавать страницы"
+
+#: rezine/privileges.py:166
+#, fuzzy
+msgid "can edit their own pages"
+msgstr "может редактировать собственные страницы"
+
+#: rezine/privileges.py:168
+msgid "can edit another person's pages"
+msgstr "может редактировать страницы других пользователей"
+
+#: rezine/privileges.py:170
+msgid "can view drafts"
+msgstr "может просматривать черновики"
+
+#: rezine/privileges.py:171
+msgid "can manage categories"
+msgstr "может управлять категориями"
+
+#: rezine/privileges.py:173
+msgid "can moderate comments"
+msgstr "может модерировать комментарии"
+
+#: rezine/privileges.py:175
+#, fuzzy
+msgid "can moderate comments on it's own entries"
+msgstr "может модерировать комментарии"
+
+#: rezine/privileges.py:177
+#, fuzzy
+msgid "can moderate comments on it's own pages"
+msgstr "может модерировать комментарии"
+
+#: rezine/privileges.py:179
+#, fuzzy
+msgid "can view protected entries"
+msgstr "может создавать новые записи"
+
+#: rezine/privileges.py:182
+#, fuzzy
+msgid "can enter his account panel"
+msgstr "может входить в панель управления"
+
+#: rezine/privileges.py:183
+#, fuzzy
+msgid "can edit own comments"
+msgstr "может редактировать собственные записи"
+
+#: rezine/privileges.py:185
+#, fuzzy
+msgid "can delete own comments"
+msgstr "может модерировать комментарии"
+
+#: rezine/docs/__init__.py:67
+msgid "no documented plugins installed."
+msgstr "не установлено документированных плагинов."
+
+#: rezine/i18n/__init__.py:478
+msgid "now"
+msgstr "сейчас"
+
+#: rezine/importers/__init__.py:156
+msgid "set blog title from dump"
+msgstr "установить заголовок блога из дампа"
+
+#: rezine/importers/__init__.py:159
+msgid "set blog tagline from dump"
+msgstr "установить теги блога из дампа"
+
+#: rezine/importers/__init__.py:224 rezine/importers/__init__.py:239
+msgid "done"
+msgstr "готово"
+
+#: rezine/importers/__init__.py:227
+msgid "Committing transaction..."
+msgstr "Выполнение операции..."
+
+#: rezine/importers/__init__.py:232
+msgid "Updating configuration..."
+msgstr "Обновление конфигурации..."
+
+#: rezine/importers/feed.py:99
+msgid "Unknown feed uploaded."
+msgstr "Загружен неизвестный поток."
+
+#: rezine/importers/feed.py:145
+msgid "Importing of RSS feeds is currently not possible."
+msgstr "Импортирование RSS невозможно в текущий момент."
+
+#: rezine/importers/feed.py:323
+msgid "Feed Importer"
+msgstr "Импортер потоков"
+
+#: rezine/importers/feed.py:334 rezine/importers/wordpress.py:239
+#, python-format
+msgid "Error downloading from URL: %s"
+msgstr "Ошибка загрузки с URL: %s"
+
+#: rezine/importers/feed.py:341 rezine/importers/wordpress.py:247
+msgid "Error parsing uploaded file"
+msgstr "Не получается обработать залитый файл"
+
+#: rezine/importers/feed.py:342
+#, python-format
+msgid "Error parsing feed: %s"
+msgstr "Ошибка обработки потока: %s"
+
+#: rezine/importers/feed.py:345 rezine/importers/wordpress.py:251
+msgid "Added imported items to queue."
+msgstr "Импортированные объекты добавлены в очередь."
+
+#: rezine/importers/wordpress.py:248
+#, python-format
+msgid "Error parsing uploaded file: %s"
+msgstr "Ошибка обработки загруженного файла: %s"
+
+#: rezine/plugins/akismet_spam_filter/__init__.py:32
+#, fuzzy
+msgid "blocked by akismet"
+msgstr "заблокировал(а) %s"
+
+#: rezine/plugins/akismet_spam_filter/__init__.py:69
+msgid "The key is invalid."
+msgstr "Ключ неверен."
+
+#: rezine/plugins/akismet_spam_filter/__init__.py:80
+msgid "Could not verify key because of a server to server connection error."
+msgstr "Невозможно проверить ключ из-за ошибки подключения."
+
+#: rezine/plugins/akismet_spam_filter/__init__.py:160
+#: rezine/plugins/akismet_spam_filter/__init__.py:174
+#, fuzzy, python-format
+msgid "Comment by %s reported to Akismet"
+msgstr "Все комментарии появляются сверху"
+
+#: rezine/plugins/akismet_spam_filter/__init__.py:186
+msgid "Akismet"
+msgstr "Akismet"
+
+#: rezine/plugins/akismet_spam_filter/__init__.py:191
+#: rezine/plugins/akismet_spam_filter/templates/admin/akismet_spam_filter_stats.html:2
+#: rezine/plugins/akismet_spam_filter/templates/admin/akismet_spam_filter_stats.html:20
+msgid "Akismet Statistics"
+msgstr ""
+
+#: rezine/plugins/akismet_spam_filter/__init__.py:206
+msgid "Akismet has been successfully enabled."
+msgstr "Akismet активирован."
+
+#: rezine/plugins/akismet_spam_filter/__init__.py:208
+msgid "Akismet disabled."
+msgstr "Akismet деактивирован."
+
+#: rezine/plugins/akismet_spam_filter/__init__.py:235
+#, fuzzy
+msgid "Akismet Blocked Comments"
+msgstr "Разрешить комментарии"
+
+#: rezine/plugins/akismet_spam_filter/__init__.py:243
+msgid "Comments Blocked by Akismet"
+msgstr "Комментарии, заблокированные Akismet"
+
+#: rezine/plugins/akismet_spam_filter/templates/akismet_widget.html:4
+#, python-format
+msgid "Akismet has blocked <b>%(spam_comments)s</b> comments."
+msgstr "Akismet заблокировал <b>%(spam_comments)s</b> комментариев."
+
+#: rezine/plugins/akismet_spam_filter/templates/admin/akismet_spam_filter.html:2
+#: rezine/plugins/akismet_spam_filter/templates/admin/akismet_spam_filter.html:4
+msgid "Akismet Configuration"
+msgstr "Конфигурация Akismet"
+
+#: rezine/plugins/akismet_spam_filter/templates/admin/akismet_spam_filter.html:5
+#, python-format
+msgid ""
+"\n"
+"    Akismet will help you to reduce or even completely eliminate the comment"
+" spam\n"
+"    you get on your site. If you don't have a WordPress.com account yet, you"
+" can\n"
+"    get one at <a href=\"%(api_link)s\">WordPress.com</a>.\n"
+"  "
+msgstr ""
+"\n"
+"    Akismet поможет вам сократить, а то и полностью уничтожить, спам\n"
+"    в комментариях к вашему блогу. Если у вас еще нет аккаунта Wordpress.com"
+"\n"
+"    вы можете <a href=\"%(api_link)s\">зарегистрировать</a> его.\n"
+"  "
+
+#: rezine/plugins/akismet_spam_filter/templates/admin/akismet_spam_filter.html:14
+msgid "Update Key"
+msgstr "Ключ обновления"
+
+#: rezine/plugins/creole_parser/__init__.py:57
+#, python-format
+msgid "Macro “%s” was passed a body but does not support it."
+msgstr ""
+
+#: rezine/plugins/creole_parser/__init__.py:109
+msgid "Creole"
+msgstr "Creole"
+
+#: rezine/plugins/dark_vessel_colorscheme/__init__.py:21
+msgid "Dark"
+msgstr "Темный"
+
+#: rezine/plugins/miniblog_theme/templates/_widgets.html:5
+#: rezine/plugins/vessel_theme/templates/_widgets.html:4
+#: rezine/templates/account/layout.html:20 rezine/templates/admin/layout.html:6
+msgid "Administration"
+msgstr "Панель управления"
+
+#: rezine/plugins/miniblog_theme/templates/_widgets.html:7
+#: rezine/plugins/vessel_theme/templates/_widgets.html:6
+#, python-format
+msgid "logged in as %(username)s."
+msgstr "авторизован как %(username)s."
+
+#: rezine/plugins/miniblog_theme/templates/_widgets.html:8
+#: rezine/plugins/vessel_theme/templates/_widgets.html:7
+msgid "go to admin panel"
+msgstr "войти в панель управления"
+
+#: rezine/plugins/miniblog_theme/templates/layout.html:27
+#: rezine/plugins/vessel_theme/templates/layout.html:28
+#: rezine/templates/layout.html:20
+#, python-format
+msgid "Proudly powered by %(rezine)s."
+msgstr "Работает на %(rezine)s."
+
+#: rezine/plugins/myrtle_theme/templates/layout.html:28
+#, python-format
+msgid "Proudly powered by %(rezine)s, %(theme)s designed by %(author)s."
+msgstr "Работает на %(rezine)s, используется тема %(theme)s (автор: %(author)s)."
+
+#: rezine/plugins/myrtle_theme/templates/layout.html:33
+#: rezine/websetup/templates/finished.html:10
+msgid "Admin Panel"
+msgstr "Панель управления"
+
+#: rezine/plugins/myrtle_theme/templates/layout.html:34
+#: rezine/templates/account/layout.html:22 rezine/templates/admin/layout.html:20
+msgid "Logout"
+msgstr "Выход"
+
+#: rezine/plugins/pygments_support/__init__.py:166
+msgid "Pygments theme changed successfully."
+msgstr "Тема pygments успешно изменена."
+
+#: rezine/plugins/pygments_support/templates/admin/pygments_support.html:2
+#: rezine/plugins/pygments_support/templates/admin/pygments_support.html:4
+msgid "Pygments"
+msgstr "Pygments"
+
+#: rezine/plugins/pygments_support/templates/admin/pygments_support.html:5
+msgid ""
+"\n"
+"    Pygments allows you to select one of many themes for your code tags.\n"
+"    You can preview and select one below.\n"
+"  "
+msgstr ""
+"\n"
+"    Pygments дает вам возможность выбрать одну или несколько тем.\n"
+"    Вы можете посмотреть и выбрать одну из них.\n"
+"  "
+
+#: rezine/plugins/pygments_support/templates/admin/pygments_support.html:13
+#: rezine/views/admin.py:144
+msgid "Theme"
+msgstr "Тема"
+
+#: rezine/plugins/pygments_support/templates/admin/pygments_support.html:15
+#: rezine/templates/admin/_form_helpers.html:18
+#: rezine/templates/admin/edit_entry.html:10 rezine/templates/admin/edit_page.html:8
+msgid "Preview"
+msgstr "Предпросмотр"
+
+#: rezine/plugins/pygments_support/templates/admin/pygments_support.html:16
+msgid "Select"
+msgstr "Выбрать"
+
+#: rezine/plugins/rst_parser/__init__.py:100
+msgid "reStructuredText"
+msgstr ""
+
+#: rezine/plugins/typography/__init__.py:129
+#: rezine/plugins/typography/templates/admin/typography.html:2
+#: rezine/plugins/typography/templates/admin/typography.html:33
+msgid "Typography"
+msgstr "Типографика"
+
+#: rezine/plugins/typography/__init__.py:146
+msgid "Typography settings could not be changed."
+msgstr "Настройки типографики не могут быть изменены."
+
+#: rezine/plugins/typography/__init__.py:148
+msgid "Typography settings changed."
+msgstr "Настройки типографики изменены."
+
+#: rezine/plugins/typography/templates/admin/typography.html:34
+msgid ""
+"\n"
+"    From here you can configure the typography settings. Note that the\n"
+"    typography plugin has hardcoded semantics at the moment, so there is\n"
+"    no way to change the algorithm from this config panel.\n"
+"  "
+msgstr ""
+"\n"
+"    Здесь вы можете изменить настройки типографики. Обратите внимание:\n"
+"    текущая функциональность содержит предопределенную семантику, поэтому\n"
+"    нет возможности сменить алгоритм из панели управления.\n"
+"  "
+
+#: rezine/plugins/typography/templates/admin/typography.html:41
+msgid "Double Quote Pairs"
+msgstr "Пары двойных кавычек"
+
+#: rezine/plugins/typography/templates/admin/typography.html:46
+msgid "Single Quote Pairs"
+msgstr "Пары одинарных кавычек"
+
+#: rezine/plugins/typography/templates/admin/typography.html:53
+msgid "Use Common Character"
+msgstr "Использовать обыкновенный символ"
+
+#: rezine/plugins/typography/templates/admin/typography.html:59
+#: rezine/plugins/vessel_theme/templates/admin/configure_vessel_theme.html:11
+#: rezine/templates/account/notification_settings.html:28
+#: rezine/templates/admin/_form_helpers.html:12
+#: rezine/templates/admin/basic_options.html:12 rezine/templates/admin/cache.html:100
+#: rezine/templates/admin/configuration.html:47
+#: rezine/templates/admin/edit_category.html:14
+#: rezine/templates/admin/edit_comment.html:38
+#: rezine/templates/admin/edit_group.html:13 rezine/templates/admin/edit_user.html:27
+#: rezine/templates/admin/pages_config.html:23
+#: rezine/templates/admin/url_options.html:23
+#: rezine/templates/admin/write_page.html:51
+msgid "Save"
+msgstr "Сохранить"
+
+#: rezine/plugins/vessel_theme/__init__.py:25
+msgid "Blue"
+msgstr "Синий"
+
+#: rezine/plugins/vessel_theme/__init__.py:26
+msgid "Gray"
+msgstr "Серый"
+
+#: rezine/plugins/vessel_theme/__init__.py:27
+msgid "Green"
+msgstr "Зеленый"
+
+#: rezine/plugins/vessel_theme/__init__.py:33
+msgid "Color variation"
+msgstr "Варьирование цветов"
+
+#: rezine/plugins/vessel_theme/__init__.py:62
+msgid "Color variation changed successfully."
+msgstr "Цветовая схема успешно сохранена."
+
+#: rezine/plugins/vessel_theme/templates/admin/configure_vessel_theme.html:2
+#: rezine/plugins/vessel_theme/templates/admin/configure_vessel_theme.html:4
+msgid "Configure Vessel Theme"
+msgstr "Настроить тему «Vessel»"
+
+#: rezine/plugins/vessel_theme/templates/admin/configure_vessel_theme.html:5
+msgid ""
+"\n"
+"    This theme comes with various color variations you can choose from.\n"
+"  "
+msgstr ""
+"\n"
+"    Эта тема включает в себя возможность выбрать цветовую схему.\n"
+"  "
+
+#: rezine/plugins/vessel_theme/templates/admin/configure_vessel_theme.html:12
+#: rezine/templates/account/edit_profile.html:24
+#: rezine/templates/admin/_form_helpers.html:17
+#: rezine/templates/admin/change_password.html:9
+#: rezine/templates/admin/edit_category.html:16
+#: rezine/templates/admin/edit_comment.html:40
+#: rezine/templates/admin/edit_group.html:18 rezine/templates/admin/edit_user.html:32
+#: rezine/templates/admin/inspect_import.html:75
+#: rezine/templates/admin/write_page.html:55
+msgid "Cancel"
+msgstr "Отменить"
+
+#: rezine/shared/js/Admin.js:48
+msgid "Bookmarklet"
+msgstr "Букмарклет"
+
+#: rezine/shared/js/Admin.js:50
+msgid ""
+"Right click on the following link and choose “Add to favorites” or “Bookmark"
+" link” to create a posting shortcut."
+msgstr ""
+"Кликните правой кнопкой мыши на этой ссылке и выберите «Добавить в "
+"закладки», чтобы сделать ссылку на функцию добавления записи."
+
+#: rezine/shared/js/Admin.js:54
+msgid ""
+"Next time you visit an interesting page, just select some text and click on "
+"the bookmark."
+msgstr ""
+"В следующий раз, когда увидите что-то интересное, просто выделите текст и "
+"нажмите на эту закладку."
+
+#: rezine/shared/js/Admin.js:58
+msgid "Blog It!"
+msgstr "Добавить в блог!"
+
+#: rezine/shared/js/Admin.js:60
+msgid ""
+"Right click on this link and choose “Add to favorites” or “Bookmark link” to"
+" create a posting shortcut."
+msgstr ""
+"Кликните правой кнопкой мыши на этой ссылке и выберите «Добавить в "
+"закладки», чтобы сделать ссылку на функцию добавления записи."
+
+#: rezine/shared/js/Rezine.js:31
+#, python-format
+msgid "Replying to comment by %s."
+msgstr "Ответ на комментарий %s."
+
+#: rezine/shared/js/Rezine.js:33
+msgid "(Create as top level comment)"
+msgstr "(Написать комментарий верхнего уровня)"
+
+#: rezine/templates/403.html:5
+msgid ""
+"\n"
+"    The access to the requested resource was restricted.\n"
+"  "
+msgstr ""
+"\n"
+"    Доступ на запрашиваемый ресурс ограничен.\n"
+"  "
+
+#: rezine/templates/404.html:2 rezine/templates/404.html:4
+msgid "Page Not Found"
+msgstr "Страница не найдена"
+
+#: rezine/templates/404.html:5
+msgid "Sorry, the page you requested does not exist."
+msgstr "Извините, но запрошенная вами страница не найдена."
+
+#: rezine/templates/404.html:6
+msgid ""
+"You may have followed a bad link or mis-typed a URL.\n"
+"    That’s most likely what went wrong."
+msgstr "Возможно, вы прошли по «битой» ссылке или неверно ввели адрес страницы."
+
+#: rezine/templates/404.html:8
+#, python-format
+msgid ""
+"You may want to\n"
+"    have a look at the <a href=\"%(index_link)s\">blog index</a>."
+msgstr ""
+"Возможно, вы бы хотели\n"
+"    перейти на <a href=\"%(index_link)s\">главную страницу</a>."
+
+#: rezine/templates/500.html:2
+msgid "Rezine Internal Server Error"
+msgstr "Внутренняя ошибка сервера Rezine"
+
+#: rezine/templates/500.html:4
+msgid "Internal Server Error"
+msgstr "Внутренняя ошибка сервера"
+
+#: rezine/templates/500.html:5
+msgid ""
+"\n"
+"    An internal error happened in the application. The blog administrator\n"
+"    has been informed about the problem.\n"
+"  "
+msgstr ""
+"\n"
+"    В приложении произошла внутренняя ошибка. Администратор блога\n"
+"    получил уведомление о возникшей проблеме.\n"
+"  "
+
+#: rezine/templates/_about_rezine.html:2 rezine/templates/_about_rezine.html:6
+msgid "About Rezine"
+msgstr "Про Rezine"
+
+#: rezine/templates/_about_rezine.html:9
+msgid ""
+"\n"
+"      Rezine is an open source content publishing platform emphasizing ease\n"
+"      of use and extensibility. It provides powerful internal "
+"infrastructure,\n"
+"      a simple and intuitive user interface.\n"
+"    "
+msgstr ""
+"\n"
+"      Rezine — система публикации контента, сочетающая в себе легкость\n"
+"      использования и гибкость, мощное программное ядро и\n"
+"      интуитивно-понятный пользовательский интерфейс.\n"
+"    "
+
+#: rezine/templates/_about_rezine.html:14
+#, python-format
+msgid "© Copyright %(years)s by the Rezine Team. Some rights reserved."
+msgstr "© %(years)s «Rezine Team». Некоторые права защищены."
+
+#: rezine/templates/_about_rezine.html:17
+msgid ""
+"\n"
+"      Redistribution and use in source and binary forms, with or without\n"
+"      modification, are permitted provided that the following conditions\n"
+"      are met:"
+msgstr ""
+
+#: rezine/templates/_about_rezine.html:22
+msgid ""
+"Redistributions of source code must retain the above\n"
+"        copyright notice, this list of conditions and the following\n"
+"        disclaimer."
+msgstr ""
+
+#: rezine/templates/_about_rezine.html:25
+msgid ""
+"Redistributions in binary form must reproduce the above\n"
+"        copyright notice, this list of conditions and the following\n"
+"        disclaimer in the documentation and/or other materials provided\n"
+"        with the distribution."
+msgstr ""
+
+#: rezine/templates/_about_rezine.html:29
+msgid ""
+"The names of the contributors may not be used to endorse\n"
+"        or promote products derived from this software without specific\n"
+"        prior written permission."
+msgstr ""
+
+#: rezine/templates/_about_rezine.html:34
+msgid ""
+"THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS\n"
+"      “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT\n"
+"      LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR\n"
+"      A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT\n"
+"      OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,\n"
+"      SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT\n"
+"      LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,\n"
+"      DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY\n"
+"      THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n"
+"      (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE\n"
+"      OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE."
+msgstr ""
+
+#: rezine/templates/_comment.html:5
+msgid "Pingback by"
+msgstr "Pingback отправлен"
+
+#: rezine/templates/_comment.html:6
+msgid "Comment by"
+msgstr "Прокомментировал"
+
+#: rezine/templates/_comment.html:9
+msgid "Anonymous"
+msgstr ""
+
+#: rezine/templates/_comment.html:15
+msgid "reply to this comment"
+msgstr "ответить"
+
+#: rezine/templates/_comment.html:64
+msgid "Submit Comment"
+msgstr "Добавить комментарий"
+
+#: rezine/templates/_comment.html:65
+msgid "Reset Form"
+msgstr "Очистить форму"
+
+#: rezine/templates/_entry.html:11
+msgid "Tagged as"
+msgstr "Указаны теги"
+
+#: rezine/templates/_entry.html:18
+#, fuzzy, python-format
+msgid "%(comments)s comment"
+msgid_plural "%(comments)s comments"
+msgstr[0] "%(comments)s комментарий"
+msgstr[1] "%(comments)s комментария"
+msgstr[2] "%(comments)s комментариев"
+
+#: rezine/templates/_entry.html:22 rezine/templates/admin/_comment.html:12
+#: rezine/templates/admin/index.html:56
+msgid "Edit"
+msgstr "Редактировать"
+
+#: rezine/templates/_entry.html:31 rezine/templates/show_entry.html:8
+#, python-format
+msgid "written by %(author)s, on %(pub_date)s."
+msgstr "написал(а) %(author)s (%(pub_date)s)."
+
+#: rezine/templates/_entry.html:36
+#, python-format
+msgid "<strong>Scheduled Post:</strong> This entry will appear in %(time_span)s."
+msgstr ""
+"<strong>Запланированная запись:</strong> Эта запись появится через "
+"%(time_span)s."
+
+#: rezine/templates/_entry.html:45
+msgid "Read on"
+msgstr "Читать полностью"
+
+#: rezine/templates/_help.html:8
+msgid "Table Of Contents"
+msgstr "Оглавление"
+
+#: rezine/templates/archive.html:2 rezine/templates/archive.html:6
+#: rezine/templates/widgets/post_archive_summary.html:2
+msgid "Archive"
+msgstr "Архив"
+
+#: rezine/templates/archive.html:12
+msgid "empty archive"
+msgstr "пустой архив"
+
+#: rezine/templates/archive.html:17
+#, python-format
+msgid "Archive for %(year)s"
+msgstr "Архив %(year)s"
+
+#: rezine/templates/archive.html:19
+#, python-format
+msgid "Archive for %(month)s"
+msgstr "Архив (%(month)s)"
+
+#: rezine/templates/archive.html:21
+#, python-format
+msgid "Archive for %(day)s"
+msgstr "Архив от %(day)s"
+
+#: rezine/templates/authors.html:2 rezine/templates/authors.html:4
+#: rezine/templates/admin/inspect_import.html:23
+msgid "Authors"
+msgstr "Авторы"
+
+#: rezine/templates/error_layout.html:5
+msgid "Rezine Error"
+msgstr "Ошибка Rezine"
+
+#: rezine/templates/index.html:2
+msgid "Index"
+msgstr "Индекс"
+
+#: rezine/templates/index.html:8
+msgid "Welcome"
+msgstr "Добро пожаловать"
+
+#: rezine/templates/index.html:10
+msgid "So far there are no entries in this blog."
+msgstr "В этом блоге пока что нет записей."
+
+#: rezine/templates/internal_error.html:2
+msgid "Rezine Internal Error"
+msgstr "Внутренняя ошибка сервера Rezine"
+
+#: rezine/templates/internal_error.html:4
+msgid "Internal Error"
+msgstr "Внутренняя ошибка сервера"
+
+#: rezine/templates/internal_error.html:6
+msgid "Rezine encountered an internal error during processing:"
+msgstr ""
+
+#: rezine/templates/internal_error.html:13
+msgid ""
+"\n"
+"    If you have troubles fixing the problem have a look at the Rezine\n"
+"    documentation.\n"
+"  "
+msgstr ""
+
+#: rezine/templates/internal_error.html:17
+msgid ""
+"\n"
+"    This error is only visible to blog administrators.  If a regular user\n"
+"    triggered the error an entry to the log is added and a generic error\n"
+"    message is displayed.\n"
+"  "
+msgstr ""
+
+#: rezine/templates/maintenance.html:40
+msgid "Maintenance Mode"
+msgstr "Режим обслуживания"
+
+#: rezine/templates/maintenance.html:41
+msgid ""
+"\n"
+"      This Rezine instance is currently in maintenance mode.\n"
+"      Please wait until the administrator reopens the blog."
+msgstr ""
+"\n"
+"      Сайт находится в режиме обслуживания. Подождите,\n"
+"      пока администратор откроет его снова."
+
+#: rezine/templates/page.html:10 rezine/templates/show_entry.html:22
+#: rezine/templates/admin/_post_helpers.html:7
+#: rezine/templates/admin/inspect_import.html:51 rezine/views/admin.py:125
+msgid "Comments"
+msgstr "Комментарии"
+
+#: rezine/templates/page.html:14 rezine/templates/show_entry.html:26
+msgid "Leave a Reply"
+msgstr "Ответить"
+
+#: rezine/templates/server_error.html:2
+msgid "Rezine Maintenance Mode"
+msgstr "Режим обслуживания"
+
+#: rezine/templates/show_author.html:12
+msgid "Posts written by user"
+msgstr "Записи, которые написал(а)"
+
+#: rezine/templates/show_author.html:15
+#, python-format
+msgid "%(post)s, on %(date)s"
+msgstr "%(post)s (%(date)s)"
+
+#: rezine/templates/show_category.html:2
+#, python-format
+msgid "Show “%(category)s”"
+msgstr "Показать «%(category)s»"
+
+#: rezine/templates/show_category.html:5
+#, python-format
+msgid "Entries in the Category “%(category)s”"
+msgstr "Записи в категории «%(category)s»"
+
+#: rezine/templates/show_category.html:10 rezine/templates/show_tag.html:10
+msgid "No public posts found"
+msgstr "Не найдено публичных записей"
+
+#: rezine/templates/show_tag.html:2
+#, python-format
+msgid "Show “%(tag)s”"
+msgstr "Показать «%(tag)s»"
+
+#: rezine/templates/show_tag.html:5
+#, python-format
+msgid "Entries tagged “%(tag)s”"
+msgstr "Записи с тегом «%(tag)s»"
+
+#: rezine/templates/tags.html:2 rezine/templates/tags.html:4
+msgid "Tag Cloud"
+msgstr ""
+
+#: rezine/templates/tags.html:8 rezine/templates/widgets/tag_cloud.html:7
+#, fuzzy, python-format
+msgid "%(count)s post tagged %(tag)s"
+msgid_plural "%(count)s posts tagged %(tag)s"
+msgstr[0] "%(count)s записи установлен тег %(tag)s"
+msgstr[1] "%(count)s записям установлен тег %(tag)s"
+msgstr[2] "%(count)s записям установлен тег %(tag)s"
+
+#: rezine/templates/account/delete_account.html:2
+#: rezine/templates/account/delete_account.html:4
+#: rezine/templates/account/edit_profile.html:23
+#, fuzzy
+msgid "Delete Account"
+msgstr "Удалить комментарий"
+
+#: rezine/templates/account/delete_account.html:6
+#, fuzzy
+msgid "Do you really want to delete your account?"
+msgstr "Вы действительно хотите удалить выбранные комментарии?"
+
+#: rezine/templates/account/delete_account.html:7
+msgid "All your comments will also be deleted!"
+msgstr ""
+
+#: rezine/templates/account/delete_account.html:9
+#: rezine/templates/admin/approve_comment.html:12
+#: rezine/templates/admin/block_comment.html:11
+#: rezine/templates/admin/block_comments.html:10
+#: rezine/templates/admin/delete_category.html:10
+#: rezine/templates/admin/delete_comment.html:10
+#: rezine/templates/admin/delete_comments.html:10
+#: rezine/templates/admin/delete_comments_all.html:10
+#: rezine/templates/admin/delete_entry.html:17
+#: rezine/templates/admin/delete_group.html:16
+#: rezine/templates/admin/delete_import.html:11
+#: rezine/templates/admin/delete_page.html:17
+#: rezine/templates/admin/delete_user.html:17
+#: rezine/templates/admin/mark_comment.html:10
+#: rezine/templates/admin/mark_ham_comments.html:10
+#: rezine/templates/admin/mark_spam_comments.html:10
+#: rezine/templates/admin/remove_plugin.html:12
+#: rezine/templates/admin/unblock_comment.html:12
+msgid "No"
+msgstr "Нет"
+
+#: rezine/templates/account/delete_account.html:10
+#: rezine/templates/admin/approve_comment.html:11
+#: rezine/templates/admin/block_comment.html:12
+#: rezine/templates/admin/block_comments.html:11
+#: rezine/templates/admin/delete_category.html:11
+#: rezine/templates/admin/delete_comment.html:11
+#: rezine/templates/admin/delete_comments.html:11
+#: rezine/templates/admin/delete_comments_all.html:11
+#: rezine/templates/admin/delete_entry.html:18
+#: rezine/templates/admin/delete_group.html:17
+#: rezine/templates/admin/delete_import.html:12
+#: rezine/templates/admin/delete_page.html:18
+#: rezine/templates/admin/delete_user.html:18
+#: rezine/templates/admin/mark_comment.html:11
+#: rezine/templates/admin/mark_ham_comments.html:11
+#: rezine/templates/admin/mark_spam_comments.html:11
+#: rezine/templates/admin/remove_plugin.html:13
+#: rezine/templates/admin/unblock_comment.html:13
+msgid "Yes"
+msgstr "Да"
+
+#: rezine/templates/account/edit_profile.html:3
+msgid "Edit Profile"
+msgstr ""
+
+#: rezine/templates/account/edit_profile.html:22
+#: rezine/templates/account/index.html:19
+msgid "Update Profile"
+msgstr ""
+
+#: rezine/templates/account/help.html:6 rezine/templates/admin/help_404.html:4
+msgid "Documentation Not Found"
+msgstr "Документация не найдена"
+
+#: rezine/templates/account/help.html:7 rezine/templates/admin/help_404.html:5
+msgid "The online documentation could not be found."
+msgstr "Онлайн-документация не найдена."
+
+#: rezine/templates/account/index.html:2 rezine/templates/account/index.html:5
+#: rezine/templates/admin/index.html:2 rezine/templates/admin/index.html:5
+#: rezine/views/account.py:39 rezine/views/admin.py:78
+msgid "Dashboard"
+msgstr "Рабочий стол"
+
+#: rezine/templates/account/index.html:8
+#, fuzzy, python-format
+msgid "Howdy.  Welcome to your Rezine account interface %(user)s."
+msgstr "Привет, %(user)s. Добро пожаловать в интерфейс администрирования Rezine."
+
+#: rezine/templates/account/index.html:11
+#, fuzzy, python-format
+msgid "You have written <strong>%(your_comments)s</strong> comment so far."
+msgid_plural "You have written <strong>%(your_comments)s</strong> comments so far."
+msgstr[0] "Вы создали <strong>%(your_posts)s</strong> запись."
+msgstr[1] "Вы создали <strong>%(your_posts)s</strong> записи."
+msgstr[2] "Вы создали <strong>%(your_posts)s</strong> записей."
+
+#: rezine/templates/account/index.html:17 rezine/templates/admin/index.html:17
+msgid "Quickstart"
+msgstr "Быстрый старт"
+
+#: rezine/templates/account/index.html:20 rezine/views/account.py:42
+#, fuzzy
+msgid "Notifications"
+msgstr "Расположение"
+
+#: rezine/templates/account/layout.html:6 rezine/templates/admin/layout.html:19
+msgid "My Account"
+msgstr ""
+
+#: rezine/templates/account/layout.html:16
+#, fuzzy, python-format
+msgid "%(blog_title)s &mdash; My Account"
+msgstr "%(blog_title)s — Панель управления"
+
+#: rezine/templates/account/layout.html:18 rezine/templates/admin/layout.html:18
+msgid "View Blog"
+msgstr "Смотреть блог"
+
+#: rezine/templates/account/layout.html:53 rezine/templates/admin/layout.html:49
+#, python-format
+msgid "Powered by %(rezine)s %(version)s."
+msgstr "Работает на %(rezine)s %(version)s."
+
+#: rezine/templates/account/login.html:5 rezine/templates/account/login.html:15
+#: rezine/templates/account/login.html:45
+msgid "Login"
+msgstr "Логин"
+
+#: rezine/templates/account/login.html:11
+#: rezine/templates/account/sorry_to_see_you_go.html:11
+msgid "&laquo; back to the blog index"
+msgstr "&laquo; вернуться на главную"
+
+#: rezine/templates/account/login.html:42
+msgid "Remember me"
+msgstr "Запомнить меня"
+
+#: rezine/templates/account/notification_settings.html:2
+#: rezine/templates/account/notification_settings.html:4
+#, fuzzy
+msgid "Notification Settings"
+msgstr "Статус публикации"
+
+#: rezine/templates/account/notification_settings.html:6
+msgid "You can configure your notification subscriptions from here."
+msgstr ""
+
+#: rezine/templates/account/sorry_to_see_you_go.html:5
+#, fuzzy
+msgid "Bye"
+msgstr "написал(а)"
+
+#: rezine/templates/account/sorry_to_see_you_go.html:16
+msgid "We're sorry to see you go!"
+msgstr ""
+
+#: rezine/templates/admin/_comment.html:14
+#: rezine/templates/admin/_form_helpers.html:15
+#: rezine/templates/admin/edit_category.html:15
+#: rezine/templates/admin/edit_comment.html:39
+#: rezine/templates/admin/edit_group.html:16 rezine/templates/admin/edit_user.html:30
+#: rezine/templates/admin/index.html:58 rezine/templates/admin/inspect_import.html:74
+#: rezine/templates/admin/manage_comments.html:28
+#: rezine/templates/admin/manage_comments.html:33
+#: rezine/templates/admin/manage_comments.html:38
+#: rezine/templates/admin/manage_comments.html:45
+#: rezine/templates/admin/manage_comments.html:50
+#: rezine/templates/admin/write_page.html:53
+msgid "Delete"
+msgstr "Удалить"
+
+#: rezine/templates/admin/_comment.html:16
+#: rezine/templates/admin/manage_comments.html:54
+msgid "Mark and Report as Not Spam"
+msgstr ""
+
+#: rezine/templates/admin/_comment.html:17
+#: rezine/templates/admin/manage_comments.html:44
+#: rezine/templates/admin/manage_comments.html:54
+msgid "Mark as Not Spam"
+msgstr ""
+
+#: rezine/templates/admin/_comment.html:20 rezine/templates/admin/index.html:60
+#: rezine/templates/admin/manage_comments.html:26
+#: rezine/templates/admin/manage_comments.html:37
+#: rezine/templates/admin/manage_comments.html:48
+msgid "Approve"
+msgstr "Одобрить"
+
+#: rezine/templates/admin/_comment.html:23 rezine/templates/admin/_comment.html:30
+#: rezine/templates/admin/manage_comments.html:27
+#: rezine/templates/admin/manage_comments.html:32
+#: rezine/templates/admin/manage_comments.html:49
+msgid "Block"
+msgstr "Заблокировать"
+
+#: rezine/templates/admin/_comment.html:26 rezine/templates/admin/_comment.html:32
+#: rezine/templates/admin/manage_comments.html:30
+#: rezine/templates/admin/manage_comments.html:35
+#: rezine/templates/admin/manage_comments.html:41
+#: rezine/templates/admin/manage_comments.html:52
+msgid "Mark and Report as Spam"
+msgstr ""
+
+#: rezine/templates/admin/_comment.html:27 rezine/templates/admin/_comment.html:33
+#: rezine/templates/admin/manage_comments.html:30
+#: rezine/templates/admin/manage_comments.html:35
+#: rezine/templates/admin/manage_comments.html:41
+#: rezine/templates/admin/manage_comments.html:52
+msgid "Mark as Spam"
+msgstr ""
+
+#: rezine/templates/admin/_form_helpers.html:13
+#: rezine/templates/admin/edit_group.html:14 rezine/templates/admin/edit_user.html:28
+msgid "Save and continue editing"
+msgstr "Сохранить и продолжить"
+
+#: rezine/templates/admin/_post_helpers.html:18
+msgid "no categories"
+msgstr "нет категорий"
+
+#: rezine/templates/admin/_post_helpers.html:24
+msgid "No pages."
+msgstr "Нет страниц."
+
+#: rezine/templates/admin/_post_helpers.html:32
+#, fuzzy
+msgid "Your draft:"
+msgid_plural "Your drafts:"
+msgstr[0] "Ваш черновик:"
+msgstr[1] "Ваши черновики:"
+msgstr[2] "Ваши черновики:"
+
+#: rezine/templates/admin/approve_comment.html:2
+#: rezine/templates/admin/approve_comment.html:4
+msgid "Approve Comment"
+msgstr "Одобрить комментарий"
+
+#: rezine/templates/admin/approve_comment.html:7
+#, python-format
+msgid ""
+"\n"
+"        Do you really want to approve the comment by %(comment_author)s?\n"
+"      "
+msgstr ""
+"\n"
+"        Вы действительно хотите одобрить этот комментарий, написанный "
+"%(comment_author)s?\n"
+"      "
+
+#: rezine/templates/admin/basic_options.html:2
+#: rezine/templates/admin/basic_options.html:4
+msgid "Basic Options"
+msgstr "Базовые опции"
+
+#: rezine/templates/admin/basic_options.html:5
+msgid ""
+"\n"
+"    From here you can configure the basic blog settings like the blog\n"
+"    title and tagline.\n"
+"  "
+msgstr ""
+"\n"
+"    Здесь вы можете настроить базовые настройки блога, такие как\n"
+"    название и краткое описание блога.\n"
+"  "
+
+#: rezine/templates/admin/block_comment.html:7
+#, python-format
+msgid ""
+"\n"
+"        Do you really want to block the comment by %(comment_author)s?\n"
+"      "
+msgstr ""
+"\n"
+"        Вы действительно хотите заблокировать этот комментарий "
+"от%(comment_author)s?\n"
+"      "
+
+#: rezine/templates/admin/block_comments.html:2
+#: rezine/templates/admin/block_comments.html:4
+#, fuzzy
+msgid "Block Comments"
+msgstr "Разблокировать комментарий"
+
+#: rezine/templates/admin/block_comments.html:7
+#, fuzzy
+msgid "Do you really want to block the selected comments?"
+msgstr "Вы действительно хотите удалить выбранные комментарии?"
+
+#: rezine/templates/admin/blogger_perform_import.html:2
+#: rezine/templates/admin/blogger_perform_import.html:4
+#: rezine/templates/admin/perform_import.html:2
+#: rezine/templates/admin/perform_import.html:4
+msgid "Importing..."
+msgstr "Импортирование..."
+
+#: rezine/templates/admin/blogger_perform_import.html:5
+msgid ""
+"\n"
+"    The importer will download your data from Blogger.com\n"
+"    This can take some time.\n"
+"    <strong>Don't hit cancel!</strong>\n"
+"  "
+msgstr ""
+"\n"
+"    Импортер скачает ваши данные с Blogger.com.\n"
+"    Это займет некоторое время.\n"
+"    <strong>Не нажимайте «Отменить»!</strong>\n"
+"  "
+
+#: rezine/templates/admin/blogger_perform_import.html:11
+msgid ""
+"\n"
+"    Data import completed successfully. You can review your import here:\n"
+"  "
+msgstr ""
+"\n"
+"    Данные были успешно импортированы. Вы можете проверить их здесь:\n"
+"  "
+
+#: rezine/templates/admin/blogger_perform_import.html:15
+msgid "Import review page"
+msgstr "Страница просмотра импортированного"
+
+#: rezine/templates/admin/cache.html:2 rezine/templates/admin/cache.html:4
+msgid "Cache Options"
+msgstr "Настройки кэширования"
+
+#: rezine/templates/admin/cache.html:6
+msgid ""
+"\n"
+"      Rezine comes with a cache system that allows you to survive a sudden\n"
+"      storm of visitors. The caching system has different backends you can\n"
+"      choose from and also different settings that you should set depending "
+"on\n"
+"      the type of server you have and the number of visitors.\n"
+"    "
+msgstr ""
+"\n"
+"      Rezine содержит в себе систему кэширования, которая позволит сайту\n"
+"      выжить в случае большого наплыва посетителей. Система\n"
+"      имеет поддержку нескольких способов кэширования, любой из которых\n"
+"      вы можете выбрать и настроить в зависимости от типа вашего сервера,\n"
+"      особенностей системы и планируемого трафика.\n"
+"    "
+
+#: rezine/templates/admin/cache.html:12
+msgid ""
+"\n"
+"      Keep in mind that if caching is enabled templates will be cached too "
+"and\n"
+"      as a result of that, they are not reloaded. If you are trying to "
+"develop \n"
+"      plugins it might be a good idea to disable all caching.\n"
+"    "
+msgstr ""
+"\n"
+"      Имейте ввиду, что когда кэширование включено, шаблоны тоже\n"
+"      кэшируются. Если вы разрабатываете расширение или тему,\n"
+"      и хотите, чтобы шаблоны могли перезагружаться на лету,\n"
+"      отключите кэширование.\n"
+"    "
+
+#: rezine/templates/admin/cache.html:28
+msgid "Cache System"
+msgstr "Система кэширования"
+
+#: rezine/templates/admin/cache.html:29
+msgid "Currently Rezine supports three caching systems:"
+msgstr "Rezine поддерживает три способа кэширования:"
+
+#: rezine/templates/admin/cache.html:31
+msgid ""
+"<strong>Simple Cache</strong>: The simple cache is a very\n"
+"          basic memory cache inside the server process. This cache works "
+"only\n"
+"          if you have a persistent environment. Roughly speaking this cache\n"
+"          works better the higher the number of threads in a process and the"
+"\n"
+"          lower the number or processes. If you have the chance to use a\n"
+"          memcached you should not use the simple cache."
+msgstr ""
+"<strong>Простое</strong>: Очень простое кеширование\n"
+"          внутри процесса сервера. Этот метод работает только если у вас\n"
+"          постоянное окружение. Точнее, этот кэш тем лучше работает,\n"
+"          чем больше потоков у вас в процессе, и чем меньше процессов.\n"
+"          Если у вас есть возможность использовать memcached, не\n"
+"          используйте простое кэширование."
+
+#: rezine/templates/admin/cache.html:37
+msgid ""
+"<strong>memcached</strong>: This cache system uses one\n"
+"          or multiple remote memcached servers for storing the cache\n"
+"          information. It requires at least one running memcached daemon. "
+"This\n"
+"          is useful for high traffic sites."
+msgstr ""
+"<strong>memcached</strong>: Эта система кэширования использует один\n"
+"          или несколько удаленных серверов memcached для хранения кэша.\n"
+"          Требует как минимум один memcached демон. Актуально для\n"
+"          сайтов с большой посещаемостью."
+
+#: rezine/templates/admin/cache.html:41
+msgid ""
+"<strong>Filesystem</strong>: This cache system stores the\n"
+"          cache information on the filesystem. If IO is a problem for you,\n"
+"          you should not use this cache. However for most of the cases the \n"
+"          filesystem it should be fast enough."
+msgstr ""
+"<strong>Файловый</strong>: Эта система кэширования использует\n"
+"           файловую систему для хранения кэша. Если ввод-вывод является\n"
+"           возможной проблемой, не используйте этот кэш. Но в большинстве\n"
+"           cлучаев, файловый кэш дает неплохую скорость работы."
+
+#: rezine/templates/admin/cache.html:46
+msgid "Per default no cache system is active."
+msgstr "По умолчанию, ни какая система кэширования не включена."
+
+#: rezine/templates/admin/cache.html:49
+msgid "Memcached Options"
+msgstr "Настройки memcached"
+
+#: rezine/templates/admin/cache.html:50
+msgid ""
+"\n"
+"        In order to use the memcached system you have to provide the address"
+"\n"
+"        of at least one machine running memcached.  For further details have"
+"\n"
+"        a look at <a href=\"http://www.danga.com/memcached/\">the memcached\n"
+"        webpage</a>.  Separate multiple addresses with commas.  This also\n"
+"        requires either the <a href=\"http://gijsbert.org/cmemcache/\"\n"
+"        >cmemcache</a> or <a href=\"ftp://ftp.tummy.com/pub/python-"
+"memcached/\"\n"
+"        >python-memcached</a> module.\n"
+"      "
+msgstr ""
+"\n"
+"        Чтобы использовать memcached, вам необходимо указать адрес хотя бы\n"
+"        одного компьютера с запущенным memcached. Разделяйте несколько\n"
+"        адресов запятыми. Кроме всего прочего, это требует модуль\n"
+"        <a href=\"http://gijsbert.org/cmemcache/\"\n"
+"        >cmemcache</a> или <a href=\"ftp://ftp.tummy.com/pub/python-"
+"memcached/\"\n"
+"        >python-memcached</a>.\n"
+"       "
+
+#: rezine/templates/admin/cache.html:59
+msgid ""
+"\n"
+"        If you for example have a memcached running on localhost (127.0.0.1)"
+"\n"
+"        port 11211 you would have to enter <code>127.0.0.1:11211</code> into"
+"\n"
+"        the following text field.\n"
+"      "
+msgstr ""
+"\n"
+"        Если, например, ваш memcached запущен локально (127.0.0.1)\n"
+"        и используется порт 11211, вам нужно будет ввести "
+"<code>127.0.0.1:11211</code>\n"
+"        в это текстовое поле\n"
+"      "
+
+#: rezine/templates/admin/cache.html:67
+msgid "Filesystem Options"
+msgstr "Опции файловой системы"
+
+#: rezine/templates/admin/cache.html:68
+msgid ""
+"\n"
+"        When using the filesystem cache you can control where Rezine puts\n"
+"        all the cache data.  This path is relative to your Rezine instance\n"
+"        folder and will be created automatically by Rezine.  Keep in mind\n"
+"        that if you change that path and old cache data is left in the old\n"
+"        folder, Rezine won't clean up the data left for you.\n"
+"      "
+msgstr ""
+"\n"
+"        При использовании файлового кэширования, вы можете управлять тем,\n"
+"        где Rezine размещает все данные кэширования. Этот пусть указывается\n"
+"        в качестве относительного к директории вашего блога Rezine и\n"
+"        и будет создана автоматически. Имейте в виду, что если вы смените "
+"этот\n"
+"        путь, а на старом месте останутся какие-то данные, Rezine не сотрет их"
+" для вас.\n"
+"      "
+
+#: rezine/templates/admin/cache.html:75
+msgid ""
+"\n"
+"        One thing you have to keep in mind is that the cache path "
+"<em>must</em>\n"
+"        be a directory that only Rezine uses for file management. The\n"
+"        Rezine code cleans up there from time to time and it could delete\n"
+"        files that are otherwise not tracked by Rezine. This is especially\n"
+"        the case if you try to cache into <code>/tmp</code> or a similar\n"
+"        folder that all kinds of applications use for storing temporary "
+"files.\n"
+"      "
+msgstr ""
+"\n"
+"        Имейте ввиду, что кэш-путь <em>должен</em> быть такой\n"
+"        директорией, которую не используют никакие приложения\n"
+"        кроме Rezine.\n"
+"      "
+
+#: rezine/templates/admin/cache.html:85
+msgid "General Cache Settings"
+msgstr "Основные настройки кэширования"
+
+#: rezine/templates/admin/cache.html:86
+msgid ""
+"\n"
+"      The following configuration values are cache system-independent. You\n"
+"      can use them to fine-tune the caching. The timeout is the number of\n"
+"      seconds an item is cached per default. Some items have different cache"
+"\n"
+"      timeouts though. If “eager caching” is enabled the cache system will\n"
+"      cache a lot more but it will have visible side-effects. For example\n"
+"      new blog posts won't appear on the index or in the feed for up to the\n"
+"      default timeout.\n"
+"    "
+msgstr ""
+"\n"
+"      Следующие параметры не привязаны ни к одной системе кэширования,\n"
+"      вы можете использовать их для тонкой настройки.\n"
+"      Таймаут — это количество секунд, на которое объект кэшируется по "
+"умолчанию.\n"
+"      Разные объекты имеют разные таймауты. Если используется агрессивное\n"
+"      кэширование, система будет стараться кэшировать на наибольшее время.\n"
+"      Но из-за этого могут возникнуть некоторые проблемы. Например, новые\n"
+"      записи блога не появятся до тех пор, пока не пройдет таймаут.\n"
+"   "
+
+#: rezine/templates/admin/cache.html:101
+msgid "Clear Cache"
+msgstr "Очистить кэш"
+
+#: rezine/templates/admin/change_password.html:2
+#: rezine/templates/admin/change_password.html:4
+#: rezine/templates/admin/change_password.html:8
+msgid "Change Password"
+msgstr "Изменить пароль"
+
+#: rezine/templates/admin/configuration.html:2
+#: rezine/templates/admin/configuration.html:4 rezine/views/admin.py:147
+msgid "Configuration Editor"
+msgstr "Редактор конфигурации"
+
+#: rezine/templates/admin/configuration.html:5
+msgid ""
+"\n"
+"    Here you can tune all registered configuration values. Note that some of"
+"\n"
+"    them (especially the core configuration values) can easily break your\n"
+"    installation if set to an illegal value. Don't alter any of those values"
+"\n"
+"    if you don't know what effect they have. This editor is especially\n"
+"    useful if you want to configure plugins that don't provide a "
+"configuration\n"
+"    page (yet).\n"
+"  "
+msgstr ""
+"\n"
+"    Здесь вы можете настроить все зарегистрированные параметры конфигурации."
+"\n"
+"    Некоторые из них (в особенности настройки ядра системы) могут легко "
+"сломать\n"
+"    вашу инсталляцию, если будут установлены неверно. Не меняйте никакие\n"
+"    из этих значений, если вы полностью не уверены в том, к какому это может"
+"\n"
+"    привести эффекту. Эта страница может быть полезна, если вы хотите "
+"настроить\n"
+"    параметры расширения, которое пока не имеет собственной страницы\n"
+"    конфигурации.  "
+
+#: rezine/templates/admin/configuration.html:48
+msgid "Disable Editor"
+msgstr "Выключить редактор"
+
+#: rezine/templates/admin/configuration.html:51
+msgid ""
+"\n"
+"        The configuration editor is disabled because of this. If you really "
+"want\n"
+"        to use it, click the button to proceed.\n"
+"      "
+msgstr ""
+"\n"
+"       Если вы действительно хотите использовать редактор конфигурации,\n"
+"       нажмите кнопку «Включить редактор».\n"
+"      "
+
+#: rezine/templates/admin/configuration.html:56
+msgid "Enable Editor"
+msgstr "Включить редактор"
+
+#: rezine/templates/admin/delete_category.html:2
+#: rezine/templates/admin/delete_category.html:4
+msgid "Delete Category"
+msgstr "Удалить категорию"
+
+#: rezine/templates/admin/delete_category.html:7
+#, python-format
+msgid ""
+"\n"
+"        Do you really want to delete category “%(category_name)s”?\n"
+"      "
+msgstr ""
+"\n"
+"        Вы действительно хотите удалить категорию «%(category_name)s»?\n"
+"      "
+
+#: rezine/templates/admin/delete_comment.html:2
+#: rezine/templates/admin/delete_comment.html:4
+msgid "Delete Comment"
+msgstr "Удалить комментарий"
+
+#: rezine/templates/admin/delete_comment.html:7
+#, python-format
+msgid ""
+"\n"
+"        Do you really want to delete the comment by %(comment_author)s?\n"
+"      "
+msgstr ""
+"\n"
+"        Вы действительно хотите удалить комментарий, написанный "
+"%(comment_author)s?\n"
+"      "
+
+#: rezine/templates/admin/delete_comments.html:2
+#: rezine/templates/admin/delete_comments.html:4
+msgid "Delete Comments"
+msgstr "Удалить комментарии"
+
+#: rezine/templates/admin/delete_comments.html:7
+msgid "Do you really want to delete the selected comments?"
+msgstr "Вы действительно хотите удалить выбранные комментарии?"
+
+#: rezine/templates/admin/delete_comments_all.html:2
+#: rezine/templates/admin/delete_comments_all.html:4
+#, fuzzy
+msgid "Delete All Comments"
+msgstr "Удалить комментарии"
+
+#: rezine/templates/admin/delete_comments_all.html:7
+#, python-format
+msgid ""
+"Do you really want to delete ALL(%d) %s comments; not just the ones shown on"
+" the page you were in?"
+msgstr ""
+
+#: rezine/templates/admin/delete_entry.html:2
+#: rezine/templates/admin/delete_entry.html:4
+msgid "Delete Entry"
+msgstr "Удалить запись"
+
+#: rezine/templates/admin/delete_entry.html:6
+#, python-format
+msgid ""
+"\n"
+"      Do you really want to delete entry “%(entry_title)s”?\n"
+"    "
+msgstr ""
+"\n"
+"      Вы действительно хотите удалить запись «%(entry_title)s»?\n"
+"    "
+
+#: rezine/templates/admin/delete_entry.html:10
+#: rezine/templates/admin/delete_page.html:10
+#, fuzzy, python-format
+msgid ""
+"\n"
+"      This will also delete %(comment_count)s comment.\n"
+"    "
+msgid_plural ""
+"\n"
+"      This will also delete %(comment_count)s comments.\n"
+"    "
+msgstr[0] ""
+"\n"
+"      Также будет удален %(comment_count)s комментарий.\n"
+"    "
+msgstr[1] ""
+"\n"
+"      Также будет удалены %(comment_count)s комментария.\n"
+"    "
+msgstr[2] ""
+"\n"
+"      Также будет удалено %(comment_count)s комментариев.\n"
+"    "
+
+#: rezine/templates/admin/delete_group.html:2
+#: rezine/templates/admin/delete_group.html:4
+msgid "Delete Group"
+msgstr "Удалить группу"
+
+#: rezine/templates/admin/delete_group.html:6
+#, python-format
+msgid ""
+"\n"
+"      Do you really want to delete the group “%(name)s”?\n"
+"    "
+msgstr ""
+"\n"
+"      Вы действительно хотите удалить группу «%(name)s»?\n"
+"    "
+
+#: rezine/templates/admin/delete_group.html:9
+msgid ""
+"\n"
+"      What should happen to the users assigned with this group?\n"
+"    "
+msgstr ""
+"\n"
+"      Что сделать с пользователями, включенными в группу?\n"
+"    "
+
+#: rezine/templates/admin/delete_import.html:2
+#: rezine/templates/admin/delete_import.html:4
+msgid "Delete Import Dump"
+msgstr "Удалить дамп импорта"
+
+#: rezine/templates/admin/delete_import.html:7
+#, python-format
+msgid ""
+"\n"
+"        Do you really want to delete the imported dump “%(dump_title)s”?\n"
+"      "
+msgstr ""
+"\n"
+"        Вы действительно хотите удалить импортированный дамп "
+"«%(dump_title)s»?\n"
+"      "
+
+#: rezine/templates/admin/delete_page.html:2 rezine/templates/admin/delete_page.html:4
+msgid "Delete Page"
+msgstr "Удалить страницу"
+
+#: rezine/templates/admin/delete_page.html:6
+#, python-format
+msgid ""
+"\n"
+"      Do you really want to delete page “%(page_title)s”?\n"
+"    "
+msgstr ""
+"\n"
+"      Вы действительно хотите удалить страницу «%(page_title)s»?\n"
+"    "
+
+#: rezine/templates/admin/delete_user.html:2 rezine/templates/admin/delete_user.html:4
+msgid "Delete User"
+msgstr "Удалить пользователя"
+
+#: rezine/templates/admin/delete_user.html:6
+#, python-format
+msgid ""
+"\n"
+"      Do you really want to delete the user “%(username)s”?\n"
+"    "
+msgstr ""
+"\n"
+"      Вы действительно хотите удалить пользователя «%(username)s»?\n"
+"    "
+
+#: rezine/templates/admin/delete_user.html:9
+#, fuzzy, python-format
+msgid ""
+"\n"
+"      What should happen to the %(post_count)s post this user wrote?\n"
+"    "
+msgid_plural ""
+"\n"
+"      What should happen to the %(post_count)s posts this user wrote?\n"
+"    "
+msgstr[0] ""
+"\n"
+"      Что должно случиться с %(post_count)s записью, которую написал "
+"пользователь?\n"
+"    "
+msgstr[1] ""
+"\n"
+"      Что должно случиться с %(post_count)s записями, которые написал "
+"пользователь?\n"
+"    "
+msgstr[2] ""
+"\n"
+"      Что должно случиться с %(post_count)s записями, которые написал "
+"пользователь?\n"
+"    "
+
+#: rezine/templates/admin/edit_category.html:3
+#: rezine/templates/admin/edit_category.html:5
+msgid "Edit Category"
+msgstr "Редактировать категорию"
+
+#: rezine/templates/admin/edit_comment.html:3
+#: rezine/templates/admin/edit_comment.html:5
+msgid "Edit Comment"
+msgstr "Редактировать комментарий"
+
+#: rezine/templates/admin/edit_entry.html:3 rezine/templates/admin/index.html:19
+#: rezine/templates/admin/manage_entries.html:10
+msgid "New Entry"
+msgstr "Новая запись"
+
+#: rezine/templates/admin/edit_entry.html:3
+#, fuzzy
+msgid "Edit Entry"
+msgstr "Редактировать запись «%s»"
+
+#: rezine/templates/admin/edit_entry.html:10 rezine/templates/admin/edit_page.html:8
+msgid "skip"
+msgstr ""
+
+#: rezine/templates/admin/edit_entry.html:19 rezine/templates/admin/edit_page.html:20
+msgid "Important:"
+msgstr "Важно:"
+
+#: rezine/templates/admin/edit_entry.html:20 rezine/templates/admin/edit_page.html:21
+msgid ""
+"This post was created with a parser that is no longer\n"
+"        available.  You won't be able to save the post with the same parser\n"
+"        unless you re-activate the plugin that provided it."
+msgstr ""
+"Эта запись была создана парсером, который больше не доступен.\n"
+"        Вы не сможете больше сохранить запись с этим же парсером,\n"
+"        пока вы снова не активируете расширение, предоставившее его."
+
+#: rezine/templates/admin/edit_entry.html:38
+#: rezine/templates/admin/manage_categories.html:21
+msgid "No categories."
+msgstr "Нет категорий."
+
+#: rezine/templates/admin/edit_entry.html:42 rezine/templates/admin/edit_page.html:48
+msgid "Discussion"
+msgstr "Обсуждение"
+
+#: rezine/templates/admin/edit_entry.html:54
+msgid "View Entry"
+msgstr "Просмотреть запись"
+
+#: rezine/templates/admin/edit_group.html:3
+#: rezine/templates/admin/manage_groups.html:22
+msgid "New Group"
+msgstr "Создать группу"
+
+#: rezine/templates/admin/edit_group.html:3
+msgid "Edit Group"
+msgstr "Редактировать группу"
+
+#: rezine/templates/admin/edit_page.html:3 rezine/templates/admin/manage_pages.html:10
+#: rezine/templates/admin/write_page.html:2 rezine/templates/admin/write_page.html:4
+msgid "New Page"
+msgstr "Создать страницу"
+
+#: rezine/templates/admin/edit_page.html:3
+#, fuzzy
+msgid "Edit Page"
+msgstr "Редактировать страницу «%s»"
+
+#: rezine/templates/admin/edit_page.html:58 rezine/templates/admin/write_page.html:46
+msgid "View Page"
+msgstr "Просмотреть страницу"
+
+#: rezine/templates/admin/edit_user.html:3 rezine/templates/admin/manage_users.html:24
+msgid "New User"
+msgstr "Создать пользователя"
+
+#: rezine/templates/admin/edit_user.html:3
+msgid "Edit User"
+msgstr "Редактировать пользователя"
+
+#: rezine/templates/admin/export.html:2 rezine/templates/admin/export.html:4
+#: rezine/templates/admin/export.html:21 rezine/templates/admin/information.html:206
+#: rezine/views/admin.py:166
+msgid "Export"
+msgstr "Экспорт"
+
+#: rezine/templates/admin/export.html:5
+msgid ""
+"\n"
+"    Here you can dump your Rezine database information into an standardized\n"
+"    format (Atom) with Rezine extensions which we call “Rezine eXtended\n"
+"    Atom” (RezineXA).  You can use this file to import your posts into another"
+"\n"
+"    weblog software that supports Atom.  You should not use this file for\n"
+"    Rezine migrations as this file will not include attachments, the blog\n"
+"    configuration and probably data stored by plugins.\n"
+"  "
+msgstr ""
+"\n"
+"    Здесь вы можете экспортировать все данные из базы данных Rezine в\n"
+"    стандартизированный формат (Atom) с расширениями Rezine (которые\n"
+"    мы называем «Rezine eXtended Atom»). Вы можете использовать полученный\n"
+"    дамп в любой другой блог-системе, поддерживающей Atom. Лучше\n"
+"    не использовать этот файл для миграции между Rezine, поскольку\n"
+"    он не будет содержать аттачменты, конфигурацию блога и данные\n"
+"    расширений.\n"
+"  "
+
+#: rezine/templates/admin/export.html:13
+msgid ""
+"\n"
+"    Please keep in mind that the exported file will contain confidential\n"
+"    information such as password hashes and database passwords from the\n"
+"    configuration.\n"
+"  "
+msgstr ""
+"\n"
+"    Обратите внимание! Полученный файл будет содержать конфиденциальные\n"
+"    данные, такие как хэши паролей и пароли к базе данных.\n"
+"  "
+
+#: rezine/templates/admin/help_404.html:6
+msgid ""
+"Possibly you have to generate the docs first by running the\n"
+"\t  <tt>build-documentation</tt> script from rezine's scripts\n"
+"\t  folder."
+msgstr ""
+"Видимо, вам нужно сначала сгенерировать документацию,\n"
+"\t  используя скрипт <tt>build-documentation</tt> из папки\n"
+"\t  скриптов rezine."
+
+#: rezine/templates/admin/import.html:2 rezine/templates/admin/import.html:4
+#: rezine/templates/admin/import_blogger.html:41
+#: rezine/templates/admin/import_feed.html:17
+#: rezine/templates/admin/import_wordpress.html:19 rezine/views/admin.py:165
+msgid "Import"
+msgstr "Импорт"
+
+#: rezine/templates/admin/import.html:5
+msgid ""
+"\n"
+"    If you have posts or comments in another system, Rezine can import those\n"
+"    into this blog.  The data imported doesn't directly end up in the blog "
+"but a\n"
+"    queue so that you can pick which data you want to import.  To get "
+"started,\n"
+"    choose a system to import from below:\n"
+"  "
+msgstr ""
+"\n"
+"    Если у вас есть записи в других системах, Rezine может импортировать их\n"
+"    в этот блог. Данные не записываются сразу в базу, а попадают в очередь,\n"
+"    поэтому перед записью в блог, вы можете проверить их. Чтобы начать,\n"
+"    выберите систему из представленных ниже:\n"
+"  "
+
+#: rezine/templates/admin/import.html:17
+msgid ""
+"\n"
+"      The following list lists all the imports that are not yet in the "
+"database\n"
+"      or deleted.  Click on one of the links to inspect the imported data "
+"and\n"
+"      select what you want to have in the database.\n"
+"    "
+msgstr ""
+"\n"
+"      В этом списке находятся те импорты, которые еще не записаны в базу\n"
+"      данных и не были удалены. Кликните на одну из ссылок ниже, проверьте\n"
+"      данные и решите, импортировать их в базу или удалить.\n"
+"    "
+
+#: rezine/templates/admin/import.html:26
+msgid "Importer Used"
+msgstr "Использованный способ импорта"
+
+#: rezine/templates/admin/import_blogger.html:14
+#: rezine/templates/admin/import_blogger.html:16
+msgid "Import from Blogger.com"
+msgstr "Импортировать из Blogger.com"
+
+#: rezine/templates/admin/import_blogger.html:17
+msgid ""
+"\n"
+"  This importer allows you to import a blog from Blogger.com.\n"
+"  "
+msgstr ""
+"\n"
+"  Этот импортер дает вам возможность импортировать блог с Blogger.com.\n"
+"  "
+
+#: rezine/templates/admin/import_blogger.html:24
+#, python-format
+msgid ""
+"\n"
+"  You are authenticated with %(google)s.\n"
+"  "
+msgstr ""
+"\n"
+"  Вы авторизованы как %(google)s.\n"
+"  "
+
+#: rezine/templates/admin/import_blogger.html:30
+msgid "Select Blog To Import"
+msgstr "Выберите блог для импортирования"
+
+#: rezine/templates/admin/import_blogger.html:42
+msgid "Log out of Google"
+msgstr "Выйти из аккаунта Google"
+
+#: rezine/templates/admin/import_blogger.html:50
+#, python-format
+msgid ""
+"\n"
+"  You are not authenticated with %(google)s. You need to authenticate to "
+"continue\n"
+"  the import. This link will take you to %(google)s, and once you are\n"
+"  authenticated you will be redirected back to this importer. This is the\n"
+"  preferred way to authenticate, and although it's a bit clumsy, it is safe."
+"\n"
+"  "
+msgstr ""
+"\n"
+"  Вы не авторизованы в %(google)s. Вам нужно авторизоваться, чтобы "
+"продолжить\n"
+"  импортирование. Эта ссылка отправит вас в %(google)s, и в тот момент, "
+"когда вы\n"
+"  авторизуетесь, вы будете отправлены обратно. Это лучший и самый безопасный"
+"\n"
+"  способ авторизации.\n"
+"  "
+
+#: rezine/templates/admin/import_blogger.html:57
+#, python-format
+msgid ""
+"\n"
+"    <a href=\"%(url)s\">Log into your %(google)s account</a>\n"
+"  "
+msgstr ""
+"\n"
+"    <a href=\"%(url)s\">Авторизоваться в ваш %(google)s аккаунт</a>\n"
+"  "
+
+#: rezine/templates/admin/import_feed.html:2 rezine/templates/admin/import_feed.html:4
+msgid "Import from Feed"
+msgstr "Импортировать из потока"
+
+#: rezine/templates/admin/import_feed.html:5
+msgid ""
+"\n"
+"    This importer can be used to import standard compliant feeds with "
+"optional\n"
+"    proprietary extensions.  Because of different incompatible RSS standards"
+"\n"
+"    this importer can currently only handle Atom feeds.\n"
+"  "
+msgstr ""
+"\n"
+"    Импортер может быть использован для импортирования соответствующих\n"
+"    стандартам потоков с опциональными проприетарными расширениями.\n"
+"    Из-за разных несовместимых форматов RSS, этот импортер сейчас может\n"
+"    обрабатывать только потоки Atom.\n"
+"  "
+
+#: rezine/templates/admin/import_feed.html:13
+msgid "Upload Feed"
+msgstr "Залить поток"
+
+#: rezine/templates/admin/import_wordpress.html:2
+#: rezine/templates/admin/import_wordpress.html:4
+msgid "Import from WordPress"
+msgstr "Импортировать из WordPress"
+
+#: rezine/templates/admin/import_wordpress.html:5
+msgid ""
+"\n"
+"    This importer allows you to import posts and comments from your "
+"WordPress\n"
+"    blog into your new Rezine blog.  Either upload your WordPress eXtended\n"
+"    RSS (WXR) file created in the WordPress admin panel or give the importer"
+"\n"
+"    the location of such a file on an external URL and it will import the "
+"posts,\n"
+"    comments, custom fields, and categories into this blog.\n"
+"  "
+msgstr ""
+"\n"
+"    Этот импортер дает вам возможность импортировать записи, комментарии и "
+"категории\n"
+"    из вашего WordPress-блога в Rezine-блог. Вы можете загрузить файл\n"
+"    eXtended RSS (WXR), созданный в панели управления WordPress, а можете\n"
+"    дать импортеру URL к этому файлу.  "
+
+#: rezine/templates/admin/import_wordpress.html:15
+msgid "Upload Dump"
+msgstr "Залить дамп"
+
+#: rezine/templates/admin/index.html:8
+#, python-format
+msgid "Howdy.  Welcome to the Rezine administration interface %(user)s."
+msgstr "Привет, %(user)s. Добро пожаловать в интерфейс администрирования Rezine."
+
+#: rezine/templates/admin/index.html:11
+#, fuzzy, python-format
+msgid "You have written <strong>%(your_posts)s</strong> post so far."
+msgid_plural "You have written <strong>%(your_posts)s</strong> posts so far."
+msgstr[0] "Вы создали <strong>%(your_posts)s</strong> запись."
+msgstr[1] "Вы создали <strong>%(your_posts)s</strong> записи."
+msgstr[2] "Вы создали <strong>%(your_posts)s</strong> записей."
+
+#: rezine/templates/admin/index.html:20
+msgid "Moderate Comments"
+msgstr "Модерирование комментариев"
+
+#: rezine/templates/admin/index.html:21 rezine/templates/admin/manage_entries.html:3
+#: rezine/templates/admin/manage_entries.html:5
+msgid "Manage Entries"
+msgstr "Управление записями"
+
+#: rezine/templates/admin/index.html:22
+msgid "Configure Rezine"
+msgstr "Конфигурирование Rezine"
+
+#: rezine/templates/admin/index.html:23
+msgid "Manage Plugins"
+msgstr "Управление расширениями"
+
+#: rezine/templates/admin/index.html:24 rezine/templates/admin/manage_users.html:2
+#: rezine/templates/admin/manage_users.html:4
+msgid "Manage Users"
+msgstr "Управление пользователями"
+
+#: rezine/templates/admin/index.html:25
+msgid "Get Help"
+msgstr "Получить помощь"
+
+#: rezine/templates/admin/index.html:27
+#, python-format
+msgid ""
+"\n"
+"        If you need help, have a look at the <a "
+"href=\"%(help)s\">documentation</a>.  If that doesn't solve your problems "
+"you might\n"
+"        find answers in the <a href=\"%(support)s\">support section</a> of "
+"the\n"
+"        <a href=\"%(website)s\">Rezine website</a>.\n"
+"      "
+msgstr ""
+"\n"
+"        Если у вас возникли вопросы, посмотрите <a "
+"href=\"%(help)s\">документацию</a>. Если вы не нашли там ответов,\n"
+"        поищите их в разделе <a href=\"%(support)s\">поддержки</a> на\n"
+"        <a href=\"%(website)s\">сайте Rezine</a>.\n"
+"      "
+
+#: rezine/templates/admin/index.html:37
+msgid "Drafts"
+msgstr "Черновики"
+
+#: rezine/templates/admin/index.html:46
+msgid "Comments Awaiting Approval"
+msgstr "Комментарии, ожидающие проверки"
+
+#: rezine/templates/admin/index.html:65
+msgid "Last Posts"
+msgstr "Последние записи"
+
+#: rezine/templates/admin/index.html:76
+msgid "Rezine at Reddit"
+msgstr "Rezine в Reddit"
+
+#: rezine/templates/admin/index.html:77
+#, python-format
+msgid ""
+"\n"
+"        Rezine is present at %(reddit)s.  The latest popular items in the Rezine"
+"\n"
+"        subreddit are listed below:\n"
+"        "
+msgstr ""
+"\n"
+"        У Rezine есть аккаунт на %(reddit)s. Обратите внимание на последние\n"
+"        популярные записи оттуда:\n"
+"        "
+
+#: rezine/templates/admin/information.html:4
+#: rezine/templates/admin/information.html:20
+msgid "About The System"
+msgstr "О системе"
+
+#: rezine/templates/admin/information.html:21
+msgid "Rezine Environment"
+msgstr "Окружение Rezine"
+
+#: rezine/templates/admin/information.html:23
+msgid "Rezine Version"
+msgstr "Версия Rezine"
+
+#: rezine/templates/admin/information.html:25
+msgid "Distribution Mode"
+msgstr "Режим дистрибуции"
+
+#: rezine/templates/admin/information.html:27
+msgid "Package Location"
+msgstr "Путь пакета"
+
+#: rezine/templates/admin/information.html:29
+msgid "Shared Data"
+msgstr "Общие данные"
+
+#: rezine/templates/admin/information.html:31
+msgid "Builtin Templates"
+msgstr "Встроенные темы"
+
+#: rezine/templates/admin/information.html:33
+msgid "Builtin Plugins"
+msgstr "Встроенные расширения"
+
+#: rezine/templates/admin/information.html:35
+msgid "Builtin Translations"
+msgstr "Встроенные локализации"
+
+#: rezine/templates/admin/information.html:37
+msgid "Path to Instance"
+msgstr "Путь к блогу"
+
+#: rezine/templates/admin/information.html:39
+msgid "Database URI"
+msgstr "Строка пути к БД"
+
+#: rezine/templates/admin/information.html:42
+msgid "Hosting Environment"
+msgstr "Хостинг"
+
+#: rezine/templates/admin/information.html:44
+msgid "Python Version"
+msgstr "Версия python"
+
+#: rezine/templates/admin/information.html:46
+msgid "Platform"
+msgstr "Платформа"
+
+#: rezine/templates/admin/information.html:48
+msgid "Persistent Environment"
+msgstr "Постоянное окружение"
+
+#: rezine/templates/admin/information.html:49
+#: rezine/templates/admin/information.html:59
+msgid "yes"
+msgstr "да"
+
+#: rezine/templates/admin/information.html:49
+#: rezine/templates/admin/information.html:55
+#: rezine/templates/admin/information.html:59
+msgid "no"
+msgstr "нет"
+
+#: rezine/templates/admin/information.html:50
+msgid "Multithreaded"
+msgstr "Многопоточный"
+
+#: rezine/templates/admin/information.html:53
+#, python-format
+msgid "yes (%(count)s active threads)"
+msgstr "да (%(count)s активных потоков)"
+
+#: rezine/templates/admin/information.html:58
+msgid "Multiprocess"
+msgstr "Несколько процессов"
+
+#: rezine/templates/admin/information.html:60
+msgid "WSGI Version"
+msgstr "Версия WSGI"
+
+#: rezine/templates/admin/information.html:63
+msgid "URL Endpoints"
+msgstr "Конечные точки URL"
+
+#: rezine/templates/admin/information.html:64
+msgid ""
+"\n"
+"    The following endpoints are registered on this instance:\n"
+"  "
+msgstr ""
+"\n"
+"    Следующие конечные точки зарегистрированы:\n"
+"  "
+
+#: rezine/templates/admin/information.html:72
+msgid "Absolute URL Handlers"
+msgstr "Абсолютные обработчики URL"
+
+#: rezine/templates/admin/information.html:73
+msgid ""
+"\n"
+"    The following absolute URL handlers are registered on this instance:\n"
+"  "
+msgstr ""
+"\n"
+"    Эти обработчики абсолютных URL зарегистрированы в системе:\n"
+"  "
+
+#: rezine/templates/admin/information.html:81
+msgid "View Handlers"
+msgstr "Обработчики"
+
+#: rezine/templates/admin/information.html:82
+msgid ""
+"\n"
+"    The following view handlers for endpoints are registered on this "
+"instance:\n"
+"  "
+msgstr ""
+"\n"
+"    Зарегистрированы следующие обработчики страниц для конечных точек:\n"
+"  "
+
+#: rezine/templates/admin/information.html:90
+msgid "Content Types"
+msgstr "Типы данных"
+
+#: rezine/templates/admin/information.html:91
+msgid ""
+"\n"
+"    The following content types are registered on this instance:\n"
+"  "
+msgstr ""
+"\n"
+"    Эти типы данных используются:\n"
+"  "
+
+#: rezine/templates/admin/information.html:103
+msgid ""
+"\n"
+"    The following privileges are known to the system:\n"
+"  "
+msgstr ""
+"\n"
+"    В системе существуют следующие привилегии:\n"
+"  "
+
+#: rezine/templates/admin/information.html:111
+msgid "Services"
+msgstr "Службы"
+
+#: rezine/templates/admin/information.html:112
+msgid ""
+"\n"
+"    The following servicepoints are registered on this instance to be "
+"callable\n"
+"    via one of the available services.\n"
+"    "
+msgstr ""
+"\n"
+"    Эти точки служб зарегистрированы и запускаются.\n"
+"    "
+
+#: rezine/templates/admin/information.html:121
+msgid "Installed APIs"
+msgstr "Установленные API"
+
+#: rezine/templates/admin/information.html:122
+msgid ""
+"\n"
+"    The following APIs are installed on this blog instance. APIs marked with"
+"\n"
+"    a star (*) are preferred.\n"
+"  "
+msgstr ""
+"\n"
+"    Эти API установлены. API, отмеченные\n"
+"    звездочкой (*) являются предпочтительными.\n"
+"  "
+
+#: rezine/templates/admin/information.html:135
+msgid "Markup Extensions"
+msgstr ""
+
+#: rezine/templates/admin/information.html:136
+#, fuzzy
+msgid ""
+"\n"
+"    The following markup extensions are registered on this instance:\n"
+"  "
+msgstr ""
+"\n"
+"    Следующие конечные точки зарегистрированы:\n"
+"  "
+
+#: rezine/templates/admin/information.html:143
+#, fuzzy
+msgid "no markup extensions installed."
+msgstr "не установлено документированных плагинов."
+
+#: rezine/templates/admin/information.html:146
+msgid "Parsers"
+msgstr "Парсеры"
+
+#: rezine/templates/admin/information.html:147
+msgid ""
+"\n"
+"    The following parsers are currently installed:\n"
+"  "
+msgstr ""
+"\n"
+"    Установлены следующие парсеры:\n"
+"  "
+
+#: rezine/templates/admin/information.html:156 rezine/views/admin.py:164
+msgid "Plugins"
+msgstr "Расширения"
+
+#: rezine/templates/admin/information.html:160
+msgid "active"
+msgstr "активен"
+
+#: rezine/templates/admin/information.html:161
+msgid "UID"
+msgstr "UID"
+
+#: rezine/templates/admin/information.html:165
+msgid "Location"
+msgstr "Расположение"
+
+#: rezine/templates/admin/information.html:170
+msgid "Configuration Variables"
+msgstr "Конфигурационные переменные"
+
+#: rezine/templates/admin/information.html:173
+#: rezine/templates/admin/write_page.html:11
+msgid "Key"
+msgstr "Ключ"
+
+#: rezine/templates/admin/information.html:174
+msgid "Value"
+msgstr "Значение"
+
+#: rezine/templates/admin/information.html:175
+msgid "Default"
+msgstr "По умолчанию"
+
+#: rezine/templates/admin/information.html:185
+msgid "Template Globals"
+msgstr "Глобальные переменные в шаблонах"
+
+#: rezine/templates/admin/information.html:191
+msgid "Template Filters"
+msgstr "Фильтры в шаблонах"
+
+#: rezine/templates/admin/information.html:198
+msgid ""
+"\n"
+"    You can export this list and share it for troubleshooting by clicking\n"
+"    on the button below.  The resulting file is stripped of confidential\n"
+"    information such as passwords.\n"
+"  "
+msgstr ""
+"\n"
+"    Вы можете экспортировать этот список с помощью кнопки «Экспорт».\n"
+"    Конфиденциальные данные не будут записаны в файл, поэтому\n"
+"    вы можете его использовать, например, в форумах, объясняя\n"
+"    какую-либо проблему.\n"
+"  "
+
+#: rezine/templates/admin/inspect_import.html:2
+#: rezine/templates/admin/inspect_import.html:4
+msgid "Inspect Import"
+msgstr "Изучить импорт"
+
+#: rezine/templates/admin/inspect_import.html:5
+msgid ""
+"\n"
+"    Here you can now inspect the imported data and select the data you want\n"
+"    to import into the database.\n"
+"  "
+msgstr ""
+"\n"
+"    Здесь вы можете изучить импортированные данные и выбрать те,\n"
+"    что будут записаны в базу данных.\n"
+"  "
+
+#: rezine/templates/admin/inspect_import.html:10
+msgid "Blog Details"
+msgstr "Описание блога"
+
+#: rezine/templates/admin/inspect_import.html:17
+msgid "Dump ID"
+msgstr "Идентификатор дампа"
+
+#: rezine/templates/admin/inspect_import.html:19
+msgid ""
+"If you have a special installation and want to rewrite the import "
+"programmatically you need this identifier."
+msgstr ""
+"Если у вас особая инсталляция и вы хотите перезаписать импорт программно, "
+"вам нужен этот идентификатор."
+
+#: rezine/templates/admin/inspect_import.html:24
+msgid ""
+"\n"
+"      Choose the authors whose posts you want to import.  In the dropdown "
+"you\n"
+"      can select one of the already existing users if you want to change the"
+"\n"
+"      author during importing.  In the default settings a new and inactive "
+"user\n"
+"      without a password is created.\n"
+"    "
+msgstr ""
+
+#: rezine/templates/admin/inspect_import.html:34
+msgid "no author information"
+msgstr "нет авторской информации"
+
+#: rezine/templates/admin/inspect_import.html:37
+msgid ""
+"\n"
+"      Authors are only converted if at least one of their posts is coverted."
+"\n"
+"      So if you unselect all the posts by a user in the list below it "
+"doesn't\n"
+"      matter what you select here.\n"
+"    "
+msgstr ""
+"\n"
+"      Авторы импортируются в том случае, если у них есть записи.\n"
+"      "
+
+#: rezine/templates/admin/inspect_import.html:42
+msgid "Posts"
+msgstr "Записи"
+
+#: rezine/templates/admin/inspect_import.html:43
+msgid ""
+"\n"
+"      Posts marked with a blue background are already imported.\n"
+"    "
+msgstr ""
+"\n"
+"      Записи, отмеченные синим фоном, уже были импортированы ранее.\n"
+"    "
+
+#: rezine/templates/admin/inspect_import.html:63
+msgid "unpublished"
+msgstr "не опубликовано"
+
+#: rezine/templates/admin/inspect_import.html:73
+msgid "Import into Blog"
+msgstr "Импортировать в блог"
+
+#: rezine/templates/admin/layout.html:16
+#, python-format
+msgid "%(blog_title)s Administration"
+msgstr "%(blog_title)s — Панель управления"
+
+#: rezine/templates/admin/log.html:2 rezine/templates/admin/log.html:4
+#: rezine/views/admin.py:167
+msgid "Log"
+msgstr "Лог"
+
+#: rezine/templates/admin/log.html:5
+msgid ""
+"\n"
+"    The log shows you important information about your system.  Whenever\n"
+"    problems happen, you can see it here.\n"
+"  "
+msgstr ""
+"\n"
+"    Лог показывает вам важную информацию о состоянии вашей системы.\n"
+"    Когда возникают проблемы, вы сможете отследить их здесь.\n"
+"  "
+
+#: rezine/templates/admin/log.html:9
+msgid "Recorded Events"
+msgstr "Записанные события"
+
+#: rezine/templates/admin/log.html:20
+msgid "The logfile is empty"
+msgstr "Лог-файл пуст"
+
+#: rezine/templates/admin/log.html:27
+msgid "▼ Down"
+msgstr "▼ Вниз"
+
+#: rezine/templates/admin/log.html:32
+msgid "Up ▲"
+msgstr "Вверх ▲"
+
+#: rezine/templates/admin/log.html:36
+msgid "Log Settings"
+msgstr "Настройки лога"
+
+#: rezine/templates/admin/log.html:40 rezine/templates/admin/plugins.html:58
+msgid "Apply"
+msgstr "Применить"
+
+#: rezine/templates/admin/maintenance.html:2 rezine/templates/admin/maintenance.html:4
+#: rezine/views/admin.py:163
+msgid "Maintenance"
+msgstr "Режим обслуживания"
+
+#: rezine/templates/admin/maintenance.html:5
+msgid ""
+"\n"
+"    From here you can set your blog into maintenance mode and do "
+"administrative\n"
+"    tasks.  It's recommend to enable maintenance mode before doing software\n"
+"    upgrades, imports, exports or plugin installations.  While it's not "
+"stricly\n"
+"    necessary for the latter it's good idea to test the changes before going"
+"\n"
+"    live with them.  As long as maintenance mode is enabled users will see a"
+"\n"
+"    message that says that the blog is in maintenance mode.\n"
+"  "
+msgstr ""
+"\n"
+"    Здесь вы можете включить режим обслуживания, чтобы решить\n"
+"    административные задачи. Мы рекомендуем включать режим обслуживания\n"
+"    перед обновлениями, импортированием, экспортированием, или установкой\n"
+"    новых расширений. Кроме этого, обычно бывает полезным самостоятельно\n"
+"    протестировать изменения перед тем как запускать их «в жизнь». Когда\n"
+"    установлен режим обслуживания, пользователи не могут заходить на сайт,\n"
+"    они лишь видят сообщение о ведущихся технических работах.\n"
+"   "
+
+#: rezine/templates/admin/maintenance.html:16
+msgid "Disable maintenance mode"
+msgstr "Выключить режим обслуживания"
+
+#: rezine/templates/admin/maintenance.html:17
+msgid "Enable maintenance mode"
+msgstr "Включить режим обслуживания"
+
+#: rezine/templates/admin/manage_categories.html:2
+#: rezine/templates/admin/manage_categories.html:4
+msgid "Manage Categories"
+msgstr "Управление категориями"
+
+#: rezine/templates/admin/manage_categories.html:7
+#: rezine/templates/admin/manage_groups.html:7
+#: rezine/templates/admin/manage_users.html:7
+msgid "ID"
+msgstr "ID"
+
+#: rezine/templates/admin/manage_categories.html:10
+msgid "Number of Posts"
+msgstr "Количество записей"
+
+#: rezine/templates/admin/manage_categories.html:26
+msgid "New Category"
+msgstr "Новая категория"
+
+#: rezine/templates/admin/manage_comments.html:15
+msgid "No comments."
+msgstr "Нет комментариев."
+
+#: rezine/templates/admin/manage_comments.html:23
+#, fuzzy
+msgid "Update"
+msgstr "Ключ обновления"
+
+#: rezine/templates/admin/manage_comments.html:39
+#: rezine/templates/admin/manage_comments.html:46
+#, fuzzy
+msgid "Delete All"
+msgstr "Удалить страницу"
+
+#: rezine/templates/admin/manage_comments.html:44
+msgid "Mark and Report as not Spam"
+msgstr ""
+
+#: rezine/templates/admin/manage_comments.html:59
+msgid "Toggle selection"
+msgstr "Переключить выбор"
+
+#: rezine/templates/admin/manage_groups.html:2
+#: rezine/templates/admin/manage_groups.html:4
+msgid "Manage Groups"
+msgstr "Управлять группами"
+
+#: rezine/templates/admin/manage_groups.html:17
+msgid "No groups."
+msgstr "Нет групп."
+
+#: rezine/templates/admin/manage_pages.html:3
+#: rezine/templates/admin/manage_pages.html:5
+msgid "Manage Pages"
+msgstr "Управлять страницами"
+
+#: rezine/templates/admin/manage_users.html:10
+msgid "Mail"
+msgstr "Почта"
+
+#: rezine/templates/admin/mark_comment.html:2
+#: rezine/templates/admin/mark_comment.html:4
+#, fuzzy, python-format
+msgid "Report Comment As %s"
+msgstr "Ответ на комментарий %s."
+
+#: rezine/templates/admin/mark_comment.html:7
+#, fuzzy, python-format
+msgid ""
+"\n"
+"        Do you really want to report the comment by %(comment_author)s as "
+"%(form_action)s ?\n"
+"      "
+msgstr ""
+"\n"
+"        Вы действительно хотите удалить комментарий, написанный "
+"%(comment_author)s?\n"
+"      "
+
+#: rezine/templates/admin/mark_ham_comments.html:2
+#: rezine/templates/admin/mark_ham_comments.html:4
+msgid "Report Comments As Not Spam"
+msgstr ""
+
+#: rezine/templates/admin/mark_ham_comments.html:7
+#, fuzzy
+msgid "Do you really want to report the selected comments as NOT Spam?"
+msgstr "Вы действительно хотите удалить выбранные комментарии?"
+
+#: rezine/templates/admin/mark_spam_comments.html:2
+#: rezine/templates/admin/mark_spam_comments.html:4
+msgid "Report Comments As Spam"
+msgstr ""
+
+#: rezine/templates/admin/mark_spam_comments.html:7
+#, fuzzy
+msgid "Do you really want to report the selected comments as Spam?"
+msgstr "Вы действительно хотите удалить выбранные комментарии?"
+
+#: rezine/templates/admin/pages_config.html:2
+#: rezine/templates/admin/pages_config.html:4
+msgid "Pages Configuration"
+msgstr "Конфигурация страниц"
+
+#: rezine/templates/admin/pages_config.html:5
+msgid ""
+"\n"
+"    Configure your pages settings.\n"
+"  "
+msgstr ""
+"\n"
+"    Установить настройки страниц.\n"
+"  "
+
+#: rezine/templates/admin/pages_config.html:10
+msgid "Show page title"
+msgstr "Показывать заголовок страницы"
+
+#: rezine/templates/admin/pages_config.html:13
+msgid "Show the title of the page on top of the page body"
+msgstr "Показывать заголовок страницы над содержанием"
+
+#: rezine/templates/admin/pages_config.html:16
+msgid "Show children"
+msgstr "Показывать подстраницы"
+
+#: rezine/templates/admin/pages_config.html:19
+msgid "Show the child-pages on the bottom of the page body"
+msgstr "Показывать дочерние страницы"
+
+#: rezine/templates/admin/perform_import.html:5
+msgid ""
+"\n"
+"    The importer converts now all the collected and selected data for\n"
+"    Rezine and inserts it into the database.  This can take some time.\n"
+"    <strong>Don't hit cancel!</strong>\n"
+"  "
+msgstr ""
+"\n"
+"    Импортер сейчас конвертирует все собранные данные в формат Rezine\n"
+"    и вставляет их в базу данных. Это займет некоторое время.\n"
+"    <strong>Не нажимайте «Отменить»!</strong>\n"
+"  "
+
+#: rezine/templates/admin/perform_import.html:11
+msgid ""
+"\n"
+"    Imported data successfully.\n"
+"  "
+msgstr ""
+"\n"
+"    Данные успешно импортированы.\n"
+"  "
+
+#: rezine/templates/admin/plugins.html:2 rezine/templates/admin/plugins.html:4
+msgid "Plugin Management"
+msgstr "Управление расширениями"
+
+#: rezine/templates/admin/plugins.html:7
+msgid ""
+"\n"
+"      Plugins extend the functionality of the Rezine system. Because of\n"
+"      security and convenience reasons you have to enable plugins by hand.\n"
+"      Some plugins could conflict with each other so it's up to you to\n"
+"      decide which plugins you want to enable. In case of doubt have a look\n"
+"      at the installation instructions of the plugin you've added.\n"
+"    "
+msgstr ""
+"\n"
+"      Расширения модернизируют функциональность Rezine. Из соображений\n"
+"      безопасности, вам необходимо активировать расширения вручную.\n"
+"      Бывает, какие-то расширения конфликтуют друг с другом, поэтому\n"
+"      вам нужно аккуратно следить за тем, какие расширения использовать,\n"
+"      а какие — нет. Старайтесь всегда читать инструкции к расширениям\n"
+"      перед установкой.    "
+
+#: rezine/templates/admin/plugins.html:16
+msgid "Plugin"
+msgstr "Расширение"
+
+#: rezine/templates/admin/plugins.html:17
+msgid "Version"
+msgstr "Версия"
+
+#: rezine/templates/admin/plugins.html:19
+msgid "Activate"
+msgstr "Активировать"
+
+#: rezine/templates/admin/plugins.html:28
+#, python-format
+msgid ""
+"\n"
+"          By %(author)s\n"
+"          "
+msgstr ""
+"\n"
+"          Автор: %(author)s\n"
+"          "
+
+#: rezine/templates/admin/plugins.html:32
+#, python-format
+msgid ""
+"\n"
+"            and %(contributors)s\n"
+"          "
+msgstr ""
+"\n"
+"            и %(contributors)s\n"
+"          "
+
+#: rezine/templates/admin/plugins.html:39
+msgid "Remove plugin"
+msgstr "Удалить расширение"
+
+#: rezine/templates/admin/plugins.html:46
+msgid ""
+"\n"
+"      <span class=\"bundlemarker\">*</span> marked plugins are bundled with "
+"Rezine\n"
+"      and upgraded as part of it.\n"
+"    "
+msgstr ""
+
+#: rezine/templates/admin/plugins.html:50
+msgid "Add New Plugin"
+msgstr "Добавить новое расширение"
+
+#: rezine/templates/admin/plugins.html:51
+msgid ""
+"\n"
+"      If you have a plugin as Rezine <tt>.plugin</tt> file you can upload it\n"
+"      to your Rezine instance using the following form. Plugins added this way"
+"\n"
+"      can also be completely removed.\n"
+"    "
+msgstr ""
+"\n"
+"      Если у вас есть расширение в виде файла <tt>.plugin</tt>, вы можете\n"
+"      загрузить его в Rezine, используя форму. Расширения, добавленные таким "
+"образом,\n"
+"      также могут быть полностью удалены.\n"
+"    "
+
+#: rezine/templates/admin/reddit.html:7
+#, python-format
+msgid ""
+"from <em>%(domain)s</em>, submitted by %(author)s @ %(submitted)s, "
+"%(comments)s"
+msgstr "от <em>%(domain)s</em>, добавил %(author)s @ %(submitted)s, %(comments)s"
+
+#: rezine/templates/admin/reddit.html:12
+#, fuzzy, python-format
+msgid "%d comment"
+msgid_plural "%d comments"
+msgstr[0] "%d комментарий"
+msgstr[1] "%d комментария"
+msgstr[2] "%d комментариев"
+
+#: rezine/templates/admin/reddit.html:20
+msgid "No items on the frontpage"
+msgstr "На главной странице ничего нет"
+
+#: rezine/templates/admin/remove_plugin.html:2
+#: rezine/templates/admin/remove_plugin.html:4
+msgid "Remove Plugin"
+msgstr "Удалить расширение"
+
+#: rezine/templates/admin/remove_plugin.html:7
+#, python-format
+msgid ""
+"\n"
+"      Do you really want to remove the plugin “%(plugin_name)s” permanently\n"
+"      from the instance folder? If you do so you have to reinstall the "
+"plugin\n"
+"      if you want to use it again.\n"
+"    "
+msgstr ""
+"\n"
+"      Вы действительно хотите полностью удалить расширение «%(plugin_name)s»"
+"\n"
+"      из блога? Если вы это сделаете, но захотите вновь использовать\n"
+"      это расширение, вам придется инсталлировать его заново.\n"
+"    "
+
+#: rezine/templates/admin/theme.html:2 rezine/templates/admin/theme.html:4
+msgid "Theme Manager"
+msgstr "Менеджер тем"
+
+#: rezine/templates/admin/theme.html:12
+msgid "Select this theme"
+msgstr ""
+
+#: rezine/templates/admin/theme.html:20
+#, python-format
+msgid "by %(author)s"
+msgstr "автор: %(author)s"
+
+#: rezine/templates/admin/theme.html:31
+msgid "Configure Theme"
+msgstr "Настроить тему"
+
+#: rezine/templates/admin/unblock_comment.html:2
+#: rezine/templates/admin/unblock_comment.html:4
+msgid "Unblock Comment"
+msgstr "Разблокировать комментарий"
+
+#: rezine/templates/admin/unblock_comment.html:7
+#, python-format
+msgid ""
+"\n"
+"      Do you really want to unblock the comment by %(comment_author)s\n"
+"      which was blocked with the following reason: %(reason)s?\n"
+"    "
+msgstr ""
+"\n"
+"      Вы действительно хотите разблокировать комментарий, написанный\n"
+"      %(comment_author)s? Он был заблокирован по следующей причине:\n"
+"      %(reason)s.\n"
+"    "
+
+#: rezine/templates/admin/url_options.html:2 rezine/templates/admin/url_options.html:4
+msgid "URL Options"
+msgstr "Опции URL"
+
+#: rezine/templates/admin/url_options.html:5
+msgid ""
+"\n"
+"    Here you can change some basic URL configuration settings.  This is "
+"especially\n"
+"    useful if you have plugins installed that that add a new index page or "
+"if you\n"
+"    want to move the administration to a different location.\n"
+"  "
+msgstr ""
+"\n"
+"    Здесь вы можете изменить кое-какие основные настройки конфигурации URL.\n"
+"    Обычно это нужно, если у вас установлены плагины, добавляющие новую\n"
+"    главную страницу, или если вы хотите изменить путь к панели\n"
+"    управления\n"
+"  "
+
+#: rezine/templates/admin/write_page.html:13
+msgid ""
+"\n"
+"        The key is used to build the url. If no key is given it's just the "
+"title-slug.\n"
+"      "
+msgstr ""
+"\n"
+"        Ключ, используемый чтобы сгенерировать url.\n"
+"      "
+
+#: rezine/templates/admin/write_page.html:18
+msgid "Content"
+msgstr "Содержание"
+
+#: rezine/templates/admin/write_page.html:29
+msgid "Parent Page"
+msgstr "Родительская страница"
+
+#: rezine/templates/admin/write_page.html:40
+msgid "Position"
+msgstr "Позиция"
+
+#: rezine/templates/widgets/latest_comments.html:2
+msgid "Latest Comments"
+msgstr "Последние комментарии"
+
+#: rezine/templates/widgets/latest_comments.html:7
+msgid "by"
+msgstr "написал(а)"
+
+#: rezine/templates/widgets/latest_posts.html:2
+msgid "Latest Posts"
+msgstr "Последние записи"
+
+#: rezine/templates/widgets/pages_navigation.html:2
+msgid "Navigation"
+msgstr "Навигация"
+
+#: rezine/templates/widgets/post_archive_summary.html:11
+msgid "Complete archive"
+msgstr "Полный архив"
+
+#: rezine/utils/account.py:29 rezine/utils/admin.py:36
+msgid "Error"
+msgstr "Ошибка"
+
+#: rezine/utils/account.py:31 rezine/utils/admin.py:38
+#, fuzzy
+msgid "Warning"
+msgstr "warning"
+
+#: rezine/utils/exceptions.py:59
+msgid "unkown file"
+msgstr "неизвестный файл"
+
+#: rezine/utils/forms.py:679
+msgid "No choices."
+msgstr "Нет вариантов выбора."
+
+#: rezine/utils/forms.py:779
+msgid "Submit"
+msgstr "Отправить"
+
+#: rezine/utils/forms.py:923
+msgid "This field is required."
+msgstr "Поле обязательно для заполнения."
+
+#: rezine/utils/forms.py:1091
+msgid "Invalid security token submitted."
+msgstr "Использован неверный код безопасности."
+
+#: rezine/utils/forms.py:1144 rezine/utils/forms.py:1528
+#, fuzzy, python-format
+msgid "Please provide at least %d item."
+msgid_plural "Please provide at least %d items."
+msgstr[0] "Укажите как минимум %d объект."
+msgstr[1] "Укажите как минимум %d объекта."
+msgstr[2] "Укажите как минимум %d объектов."
+
+#: rezine/utils/forms.py:1151 rezine/utils/forms.py:1535
+#, fuzzy, python-format
+msgid "Please provide no more than %d item."
+msgid_plural "Please provide no more than %d items."
+msgstr[0] "Укажите не более %d объекта."
+msgstr[1] "Укажите не более %d объектов."
+msgstr[2] "Укажите не более %d объектов."
+
+#: rezine/utils/forms.py:1266
+#, fuzzy, python-format
+msgid "Please enter at least %d character."
+msgid_plural "Please enter at least %d characters."
+msgstr[0] "Введите как минимум %d символ."
+msgstr[1] "Введите как минимум %d символа."
+msgstr[2] "Введите как минимум %d символов."
+
+#: rezine/utils/forms.py:1273
+#, fuzzy, python-format
+msgid "Please enter no more than %d character."
+msgid_plural "Please enter no more than %d characters."
+msgstr[0] "Введите не более %d символа."
+msgstr[1] "Введите не более %d символов."
+msgstr[2] "Введите не более %d символов."
+
+#: rezine/utils/forms.py:1297
+msgid "Please enter a valid date."
+msgstr "Введите дату правильно."
+
+#: rezine/utils/forms.py:1333
+#, python-format
+msgid "“%(value)s” does not exist"
+msgstr "«%(value)s» не существует"
+
+#: rezine/utils/forms.py:1392
+msgid "Invalid value."
+msgstr "Неверное значение."
+
+#: rezine/utils/forms.py:1393
+msgid "Key does not exist."
+msgstr "Ключ не существует."
+
+#: rezine/utils/forms.py:1463
+msgid "Please enter a valid choice."
+msgstr "Выберите вариант из существующих."
+
+#: rezine/utils/forms.py:1522
+#, python-format
+msgid "“%s” is not a valid choice"
+msgstr "«%s» не является верным вариантом"
+
+#: rezine/utils/forms.py:1567
+msgid "Please enter a whole number."
+msgstr "Введите целое число."
+
+#: rezine/utils/forms.py:1593
+#, python-format
+msgid "Ensure this value is greater than or equal to %s."
+msgstr "Убедитесь, что значение больше или равно %s."
+
+#: rezine/utils/forms.py:1599
+#, python-format
+msgid "Ensure this value is less than or equal to %s."
+msgstr "Убедитесь, что значение меньше или равно %s."
+
+#: rezine/utils/forms.py:1621
+msgid "True"
+msgstr "Истина"
+
+#: rezine/utils/forms.py:1622
+msgid "False"
+msgstr "Ложь"
+
+#: rezine/utils/log.py:35
+msgid "critical"
+msgstr "critical"
+
+#: rezine/utils/log.py:36
+msgid "error"
+msgstr "error"
+
+#: rezine/utils/log.py:37
+msgid "warning"
+msgstr "warning"
+
+#: rezine/utils/log.py:38
+msgid "notice"
+msgstr "notice"
+
+#: rezine/utils/log.py:39
+msgid "info"
+msgstr "info"
+
+#: rezine/utils/log.py:40
+msgid "debug"
+msgstr "debug"
+
+#: rezine/utils/pagination.py:113 rezine/utils/pagination.py:116
+msgid "Next »"
+msgstr "Вперед »"
+
+#: rezine/utils/pagination.py:120 rezine/utils/pagination.py:123
+msgid "« Previous"
+msgstr "« Назад"
+
+#: rezine/utils/validators.py:99
+msgid "You have to enter a valid URL."
+msgstr "Введите правильный URL."
+
+#: rezine/utils/validators.py:117
+msgid "The slug is too long"
+msgstr "Ярлык слишком длинный"
+
+#: rezine/utils/validators.py:119
+msgid "The slug must not start with a slash"
+msgstr "Ярлык не может начинаться со слеша"
+
+#: rezine/utils/validators.py:137 rezine/utils/validators.py:140
+msgid "You have to enter a valid net address."
+msgstr "Введите правильный сетевой адрес."
+
+#: rezine/utils/validators.py:142
+msgid "The port has to be numeric"
+msgstr "Порт должен быть числом"
+
+#: rezine/utils/validators.py:150
+msgid "Invalid character, < or > are not allowed."
+msgstr "Неверный символ. Символы < и > не разрешены."
+
+#: rezine/utils/validators.py:152
+msgid "URL prefix must not be a sole slash."
+msgstr "URL-префикс не может состоять только из слеша."
+
+#: rezine/utils/validators.py:155
+msgid "URL prefix must start with a slash."
+msgstr "URL-префикс должен начинаться со слеша."
+
+#: rezine/utils/validators.py:157
+msgid "URL prefix must not end with a slash."
+msgstr "URL-префикс не должен заканчиваться слешем."
+
+#: rezine/utils/validators.py:179
+#, fuzzy
+msgid "Invalid character, <, > or \\ are not allowed."
+msgstr "Неверный символ. Символы < и > не разрешены."
+
+#: rezine/utils/validators.py:183
+#, fuzzy
+msgid "URL format cannot start with a slash."
+msgstr "Ярлык не может начинаться со слеша"
+
+#: rezine/utils/validators.py:185
+msgid "URL cannot contain //."
+msgstr ""
+
+#: rezine/utils/validators.py:187
+msgid "URL cannot contain a reference toparent path."
+msgstr ""
+
+#: rezine/utils/validators.py:191
+#, python-format
+msgid "Unknown format code %s."
+msgstr ""
+
+#: rezine/utils/validators.py:201
+msgid "The text must not be empty."
+msgstr "Текст не должен быть пустым."
+
+#: rezine/utils/zeml.py:304
+msgid ""
+"Error when loading dynamic ZEML element. The system ignored the element.  "
+"Maybe a disabled plugin caused the problem."
+msgstr ""
+"Ошибка загрузки динамического элемента ZEML, он был проигнорирован. "
+"Возможно, проблема вызвана каким-то отключенным расширением."
+
+#: rezine/utils/zeml.py:680
+#, python-format
+msgid "Error loading dynamic element %s"
+msgstr "Ошибка загрузки динамического элемента %s"
+
+#: rezine/utils/zeml.py:694
+msgid "Error in markup"
+msgstr ""
+
+#: rezine/utils/zeml.py:1118
+#, python-format
+msgid "Invalid attribute given to %s tag: %s"
+msgstr ""
+
+#: rezine/views/account.py:40
+#, fuzzy
+msgid "Profile"
+msgstr "Creole"
+
+#: rezine/views/account.py:47
+msgid "About"
+msgstr "О Rezine"
+
+#: rezine/views/account.py:51 rezine/views/admin.py:156
+msgid "Help"
+msgstr "Помощь"
+
+#: rezine/views/account.py:53 rezine/views/admin.py:170
+msgid "System"
+msgstr "Система"
+
+#: rezine/views/account.py:174
+#, fuzzy
+msgid "Your profile was updated successfully."
+msgstr "Страница %s обновлена."
+
+#: rezine/views/account.py:203
+#, fuzzy
+msgid "Notification settings changed."
+msgstr "Настройки типографики изменены."
+
+#: rezine/views/admin.py:83
+msgid "Entry"
+msgstr "Запись"
+
+#: rezine/views/admin.py:85
+msgid "Page"
+msgstr "Страницу"
+
+#: rezine/views/admin.py:88
+msgid "Write"
+msgstr "Написать"
+
+#: rezine/views/admin.py:94
+msgid "Entries"
+msgstr "Записи"
+
+#: rezine/views/admin.py:98
+msgid "Pages"
+msgstr "Страницы"
+
+#: rezine/views/admin.py:107
+msgid "Manage"
+msgstr "Управление"
+
+#: rezine/views/admin.py:126
+msgid "Overview"
+msgstr "Обзор"
+
+#: rezine/views/admin.py:128
+#, python-format
+msgid "Awaiting Moderation (%d)"
+msgstr "Ожидающие проверки (%d)"
+
+#: rezine/views/admin.py:130
+#, fuzzy, python-format
+msgid "Approved (%d)"
+msgstr "Одобрить"
+
+#: rezine/views/admin.py:132
+#, fuzzy, python-format
+msgid "Blocked (%d)"
+msgstr "заблокировал(а) %s"
+
+#: rezine/views/admin.py:134
+#, python-format
+msgid "Spam (%d)"
+msgstr "Спам (%d)"
+
+#: rezine/views/admin.py:141
+msgid "Options"
+msgstr "Опции"
+
+#: rezine/views/admin.py:142
+msgid "Basic"
+msgstr "Основное"
+
+#: rezine/views/admin.py:143
+msgid "URLs"
+msgstr "URL-адреса"
+
+#: rezine/views/admin.py:145
+msgid "Cache"
+msgstr "Кэширование"
+
+#: rezine/views/admin.py:151
+msgid "Users"
+msgstr "Пользователи"
+
+#: rezine/views/admin.py:161
+msgid "Information"
+msgstr "Информация"
+
+#: rezine/views/admin.py:194
+#, python-format
+msgid ""
+"Rezine is in maintenance mode. Don't forget to <a href=\"%s\">turn it off "
+"again</a> once you finish your changes."
+msgstr ""
+"Rezine находится в режиме обслуживания. Не забудьте <a "
+"href=\"%s\">включить</a> блог, когда закончите настройку."
+
+#: rezine/views/admin.py:203
+#, python-format
+msgid "Could not activate plugin “%(name)s”: %(error)s"
+msgstr "Не получилось активировать расширение «%(name)s»: %(error)s"
+
+#: rezine/views/admin.py:256
+msgid "No URLs pinged so far because the post is not publicly available"
+msgstr "Никаких адресов не было пропинговано, поскольку запись не доступна публично."
+
+#: rezine/views/admin.py:259
+msgid ""
+"Could not ping URLs because the parser for the post is not available any "
+"longer."
+msgstr "Не получается сделать пинг, поскольку парсер для записи больше не доступен."
+
+#: rezine/views/admin.py:273
+#, python-format
+msgid "Could not ping %(url)s: %(error)s"
+msgstr "Не получается пропинговать %(url)s: %(error)s"
+
+#: rezine/views/admin.py:282
+#, fuzzy, python-format
+msgid "The following link was pinged successfully: %s"
+msgid_plural "The following links where pinged successfully: %s"
+msgstr[0] "%s успешно пропингован."
+msgstr[1] ""
+msgstr[2] ""
+
+#: rezine/views/admin.py:319
+msgid "Text here..."
+msgstr "Текст..."
+
+#: rezine/views/admin.py:321
+msgid "Untitled Page"
+msgstr "Безымянная страница"
+
+#: rezine/views/admin.py:391
+#, python-format
+msgid "The entry %s was created successfully."
+msgstr "Запись %s создана."
+
+#: rezine/views/admin.py:394
+#, python-format
+msgid "The entry %s was updated successfully."
+msgstr "Запись %s обновлена."
+
+#: rezine/views/admin.py:427
+#, python-format
+msgid "The entry %s was deleted successfully."
+msgstr "Запись %s удалена."
+
+#: rezine/views/admin.py:470
+#, python-format
+msgid "The page %s was created successfully."
+msgstr "Страница %s создана."
+
+#: rezine/views/admin.py:473
+#, python-format
+msgid "The page %s was updated successfully."
+msgstr "Страница %s обновлена."
+
+#: rezine/views/admin.py:506
+#, python-format
+msgid "The page %s was deleted successfully."
+msgstr "Страница %s удалена."
+
+#: rezine/views/admin.py:559
+msgid "“Delete All” can only be issued for “Spam” and “Blocked” comment types."
+msgstr ""
+
+#: rezine/views/admin.py:573
+#, fuzzy, python-format
+msgid "Deleted %d %s comments."
+msgstr "Удалить комментарии"
+
+#: rezine/views/admin.py:584
+msgid "Approved all the selected comments."
+msgstr "Все выбранные комментарии одобрены."
+
+#: rezine/views/admin.py:592
+#, fuzzy
+msgid "Blocked all the selected comments."
+msgstr "Все выбранные комментарии одобрены."
+
+#: rezine/views/admin.py:602
+#, fuzzy
+msgid "Reported all the selected comments as SPAM."
+msgstr "Все выбранные комментарии одобрены."
+
+#: rezine/views/admin.py:611
+#, fuzzy
+msgid "Reported all the selected comments as NOT SPAM."
+msgstr "Все выбранные комментарии одобрены."
+
+#: rezine/views/admin.py:625
+msgid "All Comments"
+msgstr "Все комментарии"
+
+#: rezine/views/admin.py:632
+msgid "Comments Awaiting Moderation"
+msgstr "Комментарии, ожидающие проверки"
+
+#: rezine/views/admin.py:640
+#, fuzzy
+msgid "Approved Commments"
+msgstr "Одобрить комментарий"
+
+#: rezine/views/admin.py:648
+#, fuzzy
+msgid "Blocked"
+msgstr "заблокировал(а) %s"
+
+#: rezine/views/admin.py:656 rezine/views/admin.py:803
+msgid "Spam"
+msgstr "Спам"
+
+#: rezine/views/admin.py:671
+#, python-format
+msgid "Comments for “%s”"
+msgstr "Комментарии к записи «%s»"
+
+#: rezine/views/admin.py:687 rezine/views/admin.py:719 rezine/views/admin.py:745
+#: rezine/views/admin.py:768 rezine/views/admin.py:790 rezine/views/admin.py:813
+#, fuzzy
+msgid "You're not allowed to manage this comment"
+msgstr "ответить"
+
+#: rezine/views/admin.py:697
+#, python-format
+msgid "Comment by %s moderated successfully."
+msgstr "Комментарий пользователя %s отмодерирован."
+
+#: rezine/views/admin.py:752
+#, python-format
+msgid "Comment by %s approved successfully."
+msgstr "Комментарий пользователя %s одобрен."
+
+#: rezine/views/admin.py:775
+#, python-format
+msgid "Comment by %s blocked successfully."
+msgstr "Категория %s заблокирована."
+
+#: rezine/views/admin.py:797
+#, fuzzy, python-format
+msgid "Comment by %s reported as Spam successfully."
+msgstr "Комментарий пользователя %s отмодерирован."
+
+#: rezine/views/admin.py:820
+#, fuzzy, python-format
+msgid "Comment by %s reported as NOT Spam successfully."
+msgstr "Комментарий пользователя %s отмодерирован."
+
+#: rezine/views/admin.py:826
+#, fuzzy
+msgid "NOT Spam"
+msgstr "Не спам"
+
+#: rezine/views/admin.py:860
+#, python-format
+msgid "Category %s created successfully."
+msgstr "Категория %s создана."
+
+#: rezine/views/admin.py:864
+#, python-format
+msgid "Category %s updated successfully."
+msgstr "Категория %s успешно изменена."
+
+#: rezine/views/admin.py:893
+#, python-format
+msgid "Category %s deleted successfully."
+msgstr "Категория %s удалена."
+
+#: rezine/views/admin.py:933
+#, python-format
+msgid "User %s created successfully."
+msgstr "Пользователь %s создан."
+
+#: rezine/views/admin.py:937
+#, python-format
+msgid "User %s edited successfully."
+msgstr "Пользователь %s успешно изменен."
+
+#: rezine/views/admin.py:961
+msgid "You cannot delete yourself."
+msgstr "Вы не можете удалить самого себя ;-)"
+
+#: rezine/views/admin.py:1001
+#, python-format
+msgid "Group %s created successfully."
+msgstr "Группа %s создана."
+
+#: rezine/views/admin.py:1005
+#, python-format
+msgid "Group %s edited successfully."
+msgstr "Группа %s успешно изменена."
+
+#: rezine/views/admin.py:1057
+msgid "Configuration altered successfully."
+msgstr "Конфигурация успешно изменена."
+
+#: rezine/views/admin.py:1084
+msgid "URL configuration changed."
+msgstr "URL-конфигурация изменена."
+
+#: rezine/views/admin.py:1105
+msgid "Theme changed successfully."
+msgstr "Тема успешно изменена."
+
+#: rezine/views/admin.py:1121
+msgid "This theme is not configurable"
+msgstr "Эта тема не имеет возможностей настройки"
+
+#: rezine/views/admin.py:1133
+msgid "Plugin configuration changed"
+msgstr "Конфигурация расширений изменена"
+
+#: rezine/views/admin.py:1142
+#, python-format
+msgid "Plugin “%s” added successfully. You can now enable it in the plugin list."
+msgstr "Расширение «%s» успешно добавлено. Вы можете теперь его активировать."
+
+#: rezine/views/admin.py:1169
+#, python-format
+msgid ""
+"Could not remove the plugin “%s” because an IO error occurred. Wrong "
+"permissions?"
+msgstr ""
+"Невозможно удалить расширение «%s», возникла ошибка ввода/вывода. Неверно "
+"установлены права доступа?"
+
+#: rezine/views/admin.py:1172
+#, python-format
+msgid "The plugin “%s” was removed from the instance successfully."
+msgstr "Расширение «%s» отключено."
+
+#: rezine/views/admin.py:1190
+msgid "The cache was cleared successfully."
+msgstr "Кэш очищен."
+
+#: rezine/views/admin.py:1194
+msgid "Cache settings were changed successfully."
+msgstr "Настойки кэширования успешно изменены."
+
+#: rezine/views/admin.py:1218
+#, fuzzy
+msgid "Configuration updated successfully."
+msgstr "Конфигурация успешно изменена."
+
+#: rezine/views/admin.py:1221
+#, fuzzy
+msgid "Could not save the configuration because the configuration is invalid."
+msgstr ""
+"Невозможно установить расширение, поскольку загруженный файл не является "
+"правильным файлом расширения."
+
+#: rezine/views/admin.py:1238
+msgid "Maintenance mode disabled.  The blog is now publicly available."
+msgstr "Режим обслуживания выключен. Блог теперь доступен публично!"
+
+#: rezine/views/admin.py:1299
+#, python-format
+msgid "The imported dump “%s” was deleted successfully."
+msgstr "Импортированнный дамп «%s» был успешно удален."
+
+#: rezine/views/admin.py:1426
+msgid "Log changes saved."
+msgstr "Изменения лога сохранены."
+
+#: rezine/views/admin.py:1443
+msgid "Password changed successfully."
+msgstr "Пароль успешно изменен."
+
+#: rezine/views/blog.py:52 rezine/views/blog.py:86
+msgid "Recent Posts Feed"
+msgstr "Поток последних записей"
+
+#: rezine/views/blog.py:118
+#, python-format
+msgid "All posts in category %s"
+msgstr "Все записи в категории %s"
+
+#: rezine/views/blog.py:147
+#, python-format
+msgid "All posts tagged %s"
+msgstr "Для всех записей установлен тег %s"
+
+#: rezine/views/blog.py:197
+#, python-format
+msgid "All posts written by %s"
+msgstr "Все записи пользователя %s"
+
+#: rezine/views/blog.py:394
+#, python-format
+msgid "Comment %(num)d on %(post)s"
+msgstr "Комментарий %(num)d к %(post)s"
+
+#: rezine/views/blog.py:451
+msgid "Comments Feed"
+msgstr "Поток комментариев"
+
+#: rezine/websetup/__init__.py:105
+#, python-format
+msgid ""
+"Instance folder does not exist.  You have to create the folder “%s” before "
+"proceeding."
+msgstr "Папка не существует. Вам следует создать папку «%s», чтобы продолжить."
+
+#: rezine/websetup/__init__.py:127
+msgid "You have to provide a username."
+msgstr "Введите имя пользователя."
+
+#: rezine/websetup/__init__.py:130
+msgid "You have to enter a mail address."
+msgstr "Введите почтовый адрес."
+
+#: rezine/websetup/__init__.py:132
+msgid "The mail address is not valid."
+msgstr "Неправильный почтовый адрес."
+
+#: rezine/websetup/__init__.py:135
+msgid "You have to enter a password."
+msgstr "Введите пароль."
+
+#: rezine/websetup/__init__.py:137
+msgid "The two passwords do not match."
+msgstr "Пароли не совпадают."
+
+#: rezine/websetup/__init__.py:206
+#, python-format
+msgid ""
+"The configuration file (%s) could not be opened for writing. Please adjust "
+"your permissions and try again."
+msgstr ""
+"Файл конфигурации (%s) не может быть открыт для записи. Проверьте права "
+"доступа и попробуйте снова."
+
+#: rezine/websetup/templates/admin_account.html:3
+msgid "Administrator Account"
+msgstr "Аккаунт администратора"
+
+#: rezine/websetup/templates/admin_account.html:4
+msgid ""
+"\n"
+"    In order to log into your Rezine installation you have to provide a\n"
+"    login name for the administration user. You can later rename or delete\n"
+"    that user if you want.\n"
+"  "
+msgstr ""
+"\n"
+"    Чтобы входить в Rezine, вам нужно создать пользователя-администратора.\n"
+"    Позже вы сможете удалить или переименовать его, если захотите.\n"
+"  "
+
+#: rezine/websetup/templates/admin_account.html:14
+msgid "Password (repeat)"
+msgstr "Пароль (еще раз)"
+
+#: rezine/websetup/templates/database.html:3
+msgid "Database"
+msgstr "База данных"
+
+#: rezine/websetup/templates/database.html:4
+msgid ""
+"\n"
+"    Rezine uses a database to store blog posts and other information. The\n"
+"    only information it requires therefore is a database URI. Depending on "
+"your\n"
+"    database this URI looks different. Have a look at the following table "
+"for\n"
+"    examples of database URIs.\n"
+"  "
+msgstr ""
+"\n"
+"    Rezine использует базу данных для хранения записей и другой информации.\n"
+"    Необходимо указать URI-формат пути к базе данных.\n"
+"    В зависимости от вашей БД, URI может выглядеть по-разному. Обратите\n"
+"    внимание на таблицу — она содержит примеры.\n"
+"  "
+
+#: rezine/websetup/templates/database.html:11
+msgid "SQLite"
+msgstr "SQLite"
+
+#: rezine/websetup/templates/database.html:12
+msgid "sqlite://database.db"
+msgstr "sqlite://database.db"
+
+#: rezine/websetup/templates/database.html:13
+msgid ""
+"\n"
+"        The SQLite database path is either absolute (if it starts with three"
+"\n"
+"        slashes on OS X / Linux or two slashes and a drive letter on a\n"
+"        Windows system) or otherwise relative to the instance folder.\n"
+"      "
+msgstr ""
+"\n"
+"        Путь к базе данных SQLite может быть как абсолютным (\n"
+"        если начинается с трех слешей на Mac/Linux или двух слешей и\n"
+"        буквы диска на Windows) так и относительным (от папки блога).\n"
+"      "
+
+#: rezine/websetup/templates/database.html:18
+msgid "MySQL"
+msgstr "MySQL"
+
+#: rezine/websetup/templates/database.html:19
+msgid "mysql://username:password@host/database_name"
+msgstr "mysql://username:password@host/database_name"
+
+#: rezine/websetup/templates/database.html:20
+msgid "Postgres"
+msgstr "Postgres"
+
+#: rezine/websetup/templates/database.html:21
+msgid "postgres://username:password@host/database_name"
+msgstr "postgres://username:password@host/database_name"
+
+#: rezine/websetup/templates/error.html:3
+msgid "Setup Failed"
+msgstr "Установка не получилась :-("
+
+#: rezine/websetup/templates/error.html:4
+msgid "The websetup was not able to finish the Rezine installation successfully."
+msgstr "Мастер не может успешно завершить установку Rezine."
+
+#: rezine/websetup/templates/error.html:5
+msgid ""
+"\n"
+"    If you need help for setting up Rezine have a look at the support\n"
+"    wepage that will be there once a beta is available :-)\n"
+"  "
+msgstr ""
+"\n"
+"    Если вам понадобится помощь в настройке Rezine, обратитесь\n"
+"    к странице поддержки. Она станет доступна когда\n"
+"    выйдет в свет бета-версия :-)\n"
+"  "
+
+#: rezine/websetup/templates/finished.html:3
+msgid "Setup Finished"
+msgstr "Установка завершена"
+
+#: rezine/websetup/templates/finished.html:4
+msgid ""
+"\n"
+"    The setup was finished successfully. You can now go to the\n"
+"    admin panel and start configuring your blog. Don't forget\n"
+"    to disable the maintenance mode after you finish your configuration.\n"
+"  "
+msgstr ""
+"\n"
+"    Инсталляция успешно завершена. Сейчас вы можете зайти\n"
+"    в панель управления и начать настраивать ваш блог.\n"
+"    Не забудьте выключить режим обслуживания, когда закончите.\n"
+"  "
+
+#: rezine/websetup/templates/layout.html:5 rezine/websetup/templates/layout.html:166
+msgid "Rezine Setup"
+msgstr "Мастер установки Rezine"
+
+#: rezine/websetup/templates/layout.html:175
+msgid "An Error Occurred"
+msgstr "Возникла ошибка"
+
+#: rezine/websetup/templates/layout.html:181
+msgid "Next"
+msgstr "Вперед"
+
+#: rezine/websetup/templates/layout.html:181
+msgid "Install"
+msgstr "Установить"
+
+#: rezine/websetup/templates/layout.html:182
+msgid "Back"
+msgstr "Назад"
+
+#: rezine/websetup/templates/start.html:3
+msgid "Welcome To The Rezine Setup"
+msgstr "Добро пожаловать в мастер установки Rezine!"
+
+#: rezine/websetup/templates/start.html:4
+msgid ""
+"\n"
+"    Welcome to the Rezine Setup. This Wizard will ask you some\n"
+"    basic questions and setup Rezine for you.\n"
+"  "
+msgstr ""
+"\n"
+"    Будет задано несколько простых вопросов, ответы на которые\n"
+"    нужны, чтобы установить Rezine.\n"
+"  "
+
+#: rezine/websetup/templates/start.html:8
+msgid ""
+"\n"
+"    The setup tried to determine the language from your browser\n"
+"    settings.  If you want to step through the wizard in another\n"
+"    language select it from the dropdown menu below and press next.\n"
+"  "
+msgstr ""
+"\n"
+"    Мы попробовали определить язык из настроек вашего браузера.\n"
+"    Если вы хотите пройти процедуру установки, используя другой язык,\n"
+"    выберите его в выпадающем меню.\n"
+"    Чтобы начать, нажмите «Вперед».\n"
+"  "
+
+#: rezine/websetup/templates/summary.html:3
+msgid "Setup Starting"
+msgstr "Запускается установка"
+
+#: rezine/websetup/templates/summary.html:4
+msgid ""
+"\n"
+"    Rezine knows now about all the information it needs to setup your\n"
+"    instance. After you click on the install button Rezine will create\n"
+"    the database tables and insert the default information. Right after that"
+"\n"
+"    Rezine will be online in maintenance mode which means that it's only\n"
+"    visible to the administrator, all other users will get a message that\n"
+"    shows that the blog is in maintenance mode right now.\n"
+"  "
+msgstr ""
+"\n"
+"    Теперь у Rezine есть вся нужная информация для установки\n"
+"    блога. Когда вы нажмете на кнопку, будут созданы нужные\n"
+"    таблицы в БД и заполнены стартовыми данными. После этого\n"
+"    Rezine будет работать в режиме обслуживания. Это означает,\n"
+"    что блог будет доступен только администратору, а все прочие\n"
+"    пользователи будут видеть соответствующее сообщение.\n"
+"    Спасибо за то, что выбрали Rezine!\n"
+"  "
+

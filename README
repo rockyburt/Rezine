@@ -1,8 +1,8 @@
 ===================================
-Zine - a Python powered blog engine
+Rezine - a Python powered blog engine
 ===================================
 
-This is Zine 0.2 the second release of Zine.
+This is Rezine 0.2 the second release of Rezine.
 It already provides quite a few features:
 
 - of course, basic blog functionality: posting, comments, categories,
@@ -15,14 +15,14 @@ It already provides quite a few features:
   English and German translations are available)
 
 But some things are still missing.  The following things (and more) will
-be included in Zine 0.2 (tentatively set to be released in April, 2009):
+be included in Rezine 0.2 (tentatively set to be released in April, 2009):
 
 - search functionality
 - file upload system
 - notifications about new posts, comments, etc
 - more translations
 - documentation for (plugin) developers (for now, there's a documented
-  example plugin called "Eric The Fish" included in Zine's source.  If
+  example plugin called "Eric The Fish" included in Rezine's source.  If
   you want to develop plugins, that's the starting point.)
 
 
@@ -36,11 +36,11 @@ instructions.
 License and Copyright
 =====================
 
-Zine was mainly written and is maintained by Armin Ronacher.  See the
+Rezine was mainly written and is maintained by Armin Ronacher.  See the
 files AUTHORS and THANKS for a complete list of contributors known as
-the Zine Team.
+the Rezine Team.
 
-Zine is released under a BSD-style license, see the LICENSE file for more
+Rezine is released under a BSD-style license, see the LICENSE file for more
 details.
 
 
@@ -49,16 +49,16 @@ Getting in touch with the developers
 
 The best way to communicate with the developers is the IRC channel
 `#pocoo`_ on irc.freenode.net.  Beware, several projects have their
-"home" there, so be sure to tell the people you're talking about Zine.
+"home" there, so be sure to tell the people you're talking about Rezine.
 
-The wiki and bug tracker is available on the `Zine Development Center`_.
+The wiki and bug tracker is available on the `Rezine Development Center`_.
 If you encounter bugs or if you want to suggest a new feature be sure to
 file a new ticket there.
 
 Other resources:
 
--  `Main repository <http://dev.pocoo.org/hg/zine-main>`_
--  `bitbucket mirror <http://www.bitbucket.org/mitsuhiko/zine-main>`_
+-  `Main repository <http://dev.pocoo.org/hg/rezine-main>`_
+-  `bitbucket mirror <http://www.bitbucket.org/mitsuhiko/rezine-main>`_
 
 .. _#pocoo: irc://irc.freenode.net/%23pocoo
-.. _Zine Development Center: http://dev.pocoo.org/projects/zine/
+.. _Rezine Development Center: http://dev.pocoo.org/projects/rezine/

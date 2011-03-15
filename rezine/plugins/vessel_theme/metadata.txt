@@ -1,0 +1,10 @@
+Name: Vessel Theme
+Name[de]: Vessel Thema
+Plugin URL: http://rezine.pocoo.org/plugins/vessel_theme
+Author: Armin Ronacher <armin.ronacher@active-4.com>
+Author URL: http://lucumr.pocoo.org/
+License: BSD
+Version: 0.2
+Description: A simple default theme
+Description[de]: Ein einfaches Standarddesign
+Preview: vessel_theme::preview.png

@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-    Zine Test Suite
+    Rezine Test Suite
     ~~~~~~~~~~~~~~~
 
-    This is the Zine test suite. It collects all modules in the zine
+    This is the Rezine test suite. It collects all modules in the rezine
     package, builds a TestSuite with their doctests and executes them. It also
     collects the tests from the text files in this directory (which are too
     extensive to put them into the code without cluttering it up).
@@ -13,7 +13,7 @@
     be patched to remove this incompatibility, the patch is at
     http://tinyurl.com/doctest-patch
 
-    :copyright: (c) 2010 by the Zine Team, see AUTHORS for more details.
+    :copyright: (c) 2010 by the Rezine Team, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
 """
 
@@ -24,9 +24,9 @@ from unittest import TestSuite, TextTestRunner
 from doctest import DocTestSuite, DocFileSuite
 
 #: the modules in this list are not tested in a full run
-untested = ['zine.broken_plugins.hyphenation_en',
-            'zine.broken_plugins.hyphenation_en.hyphenate',
-            'zine.broken_plugins.notification']
+untested = ['rezine.broken_plugins.hyphenation_en',
+            'rezine.broken_plugins.hyphenation_en.hyphenate',
+            'rezine.broken_plugins.notification']
 
 try:
     import coverage
@@ -38,7 +38,7 @@ def suite(modnames=[], return_covermods=False):
     """Generate the test suite.
 
     The first argument is a list of modules to be tested. If it is empty (which
-    it is by default), all sub-modules of the zine package are tested.
+    it is by default), all sub-modules of the rezine package are tested.
     If the second argument is True, this function returns two objects: a
     TestSuite instance and a list of the names of the tested modules. Otherwise
     (which is the default) it only returns the former. This is done so that
@@ -52,8 +52,8 @@ def suite(modnames=[], return_covermods=False):
     # The instance directory of this object is located in the tests directory.
     #
     # setup isn't imported at module level because this way coverage
-    # can track the whole zine imports
-    from zine import setup
+    # can track the whole rezine imports
+    from rezine import setup
     instance_path = join(dirname(__file__), 'instance')
     app = setup(instance_path)
 
@@ -68,7 +68,7 @@ def suite(modnames=[], return_covermods=False):
         if modname in untested:
             continue
 
-        # the fromlist must contain something, otherwise the zine
+        # the fromlist must contain something, otherwise the rezine
         # package is returned, not our module
         try:
             mod = __import__(modname, None, None, [''])
@@ -101,12 +101,12 @@ def suite(modnames=[], return_covermods=False):
 
 
 def find_tp_modules():
-    """Find all sub-modules of the zine package."""
+    """Find all sub-modules of the rezine package."""
     modules = []
-    import zine
-    base = dirname(zine.__file__)
+    import rezine
+    base = dirname(rezine.__file__)
     start = len(dirname(base))
-    if base != 'zine':
+    if base != 'rezine':
         start += 1
 
     for path, dirnames, filenames in os.walk(base):
@@ -127,7 +127,7 @@ def main():
     from optparse import OptionParser
     usage = ('Usage: %prog [option] [modules to be tested]\n'
              'Modules names have to be given in the form utils.mail (without '
-             'zine.)\nIf no module names are given, all tests are run')
+             'rezine.)\nIf no module names are given, all tests are run')
     parser = OptionParser(usage=usage)
     parser.add_option('-c', '--coverage', action='store_true', dest='coverage',
                       help='show coverage information (slow!)')
@@ -135,7 +135,7 @@ def main():
                       default=False, help='show which tests are run')
 
     options, args = parser.parse_args(sys.argv[1:])
-    modnames = ['zine.' + modname for modname in args]
+    modnames = ['rezine.' + modname for modname in args]
     if options.coverage:
         if coverage is not None:
             use_coverage = True

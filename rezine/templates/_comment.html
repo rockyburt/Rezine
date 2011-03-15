@@ -1,0 +1,69 @@
+{% macro render_comment(comment, add_reply_link=false) %}
+    <div class="comment{% if comment.is_pingback %} pingback{% endif %}{%
+      if comment.blocked %} blocked{% endif %}" id="comment-{{ comment.id }}">
+      <div class="text">{{ comment.body }}</div>
+      <p class="meta">{% if comment.is_pingback %}{{ _("Pingback by") }}
+        {%- else %}{{ _("Comment by") }}{% endif %} {% if comment.www
+        %}<a rel="nofollow" href="{{ comment.www|e }}">{{ comment.author|e }}</a>{%
+        elif not comment.author %}<span class="anonymous">{%
+        trans %}Anonymous{% endtrans %}</span>{%
+        else %}{{ comment.author|e }}{% endif %} &mdash; {{
+        comment.pub_date|datetimeformat }} |
+        <a href="#comment-{{ comment.id }}">#</a>
+      {%- if add_reply_link %}
+        - <a href="javascript:Rezine.replyToComment({{ comment.id
+          }})" title="{{ _('reply to this comment') }}">re</a>
+      {% endif -%}
+      </p>
+    </div>
+{%- endmacro %}
+
+{% macro render_comments(post) %}
+  {%- if cfg.use_flat_comments %}
+    <ol id="comments">
+    {%- for comment in post.visible_comments %}
+      <li class="comment">{{ render_comment(comment) }}</li>
+    {%- else %}
+      {# invisble LI to make validators happy.  We do not omit the
+         list itself because javascript might still want to reference it. #}
+      <li style="display: none"></li>
+    {%- endfor %}
+    </ol>
+  {%- else %}
+    <ul id="comments">
+    {%- for comment in post.visible_root_comments recursive %}
+      <li class="comment">
+        {{ render_comment(comment, post.comments_enabled) }}
+        {%- if comment.visible_children %}
+          <ul class="sub_comments">{{ loop(comment.visible_children) }}</ul>
+        {%- endif %}
+      </li>
+    {%- else %}
+      {# invisble LI to make validators happy.  We do not omit the
+         list itself because javascript might still want to reference it. #}
+      <li style="display: none"></li>
+    {%- endfor %}
+    </ul>
+  {%- endif %}
+{% endmacro %}
+
+{% macro render_comment_editor(post, form) %}
+  {%- call form(class='comments') %}
+    {{ emit_event('before-comment-editor-rendered', post) }}
+    {%- if not form.small_form %}
+    <dl>
+      {{ form.author.as_dd() }}
+      {{ form.email.as_dd() }}
+      {{ form.www.as_dd() }}
+    </dl>
+    {%- endif %}
+    <div>{{ form.body() }}{{ form.parent() }}</div>
+    <div id="comment-message">{# used for the reply callback #}</div>
+    {{ emit_event('before-comment-editor-buttons-rendered', post) }}
+    <div class="actions">
+      <input type="submit" value="{{ _('Submit Comment') }}">
+      <input type="reset" value="{{ _('Reset Form') }}">
+    </div>
+    {{ emit_event('after-comment-editor-rendered', post) }}
+  {%- endcall %}
+{% endmacro %}

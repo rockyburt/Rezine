@@ -1,0 +1,10 @@
+Name: Myrtle Theme
+Name[de]: Myrtle Thema
+Plugin URL: http://rezine.pocoo.org/plugins/myrtle_theme
+Author: Armin Ronacher <armin.ronacher@active-4.com>
+Author URL: http://lucumr.pocoo.org/
+License: BSD
+Version: 0.2
+Description: A brownish theme called "myrtle".
+Description[de]: Ein braunes Design namens "myrtle".
+Preview: myrtle_theme::preview.png

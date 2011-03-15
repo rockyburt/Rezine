@@ -6,7 +6,7 @@
 
     Simple configure script that creates a makefile.
 
-    :copyright: (c) 2010 by the Zine Team, see AUTHORS for more details.
+    :copyright: (c) 2010 by the Rezine Team, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
 """
 import os
@@ -41,7 +41,7 @@ def main():
     finally:
         f.close()
     print 'Generated Makefile'
-    print 'type "make install" to install Zine'
+    print 'type "make install" to install Rezine'
 
 
 if __name__ == '__main__':

@@ -7,7 +7,7 @@
     This script updates the translations of the main application or a plugin
     from a POT file.
 
-    :copyright: (c) 2010 by the Zine Team, see AUTHORS for more details.
+    :copyright: (c) 2010 by the Rezine Team, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
 """
 from os import path, listdir, rename
@@ -19,7 +19,7 @@ from babel.messages.pofile import write_po, read_po
 
 domains = ['messages']
 
-app_dir = 'zine'
+app_dir = 'rezine'
 i18n_dir = 'i18n'
 app_path = path.realpath(path.join(path.dirname(__file__), path.pardir, app_dir))
 

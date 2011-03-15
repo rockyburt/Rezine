@@ -5,12 +5,12 @@
     ~~~~~~~~~~~~~~~
 
     This script creates a .plugin file from a plugin installed in
-    the given Zine instance (which usually is a development
-    instance of Zine).
+    the given Rezine instance (which usually is a development
+    instance of Rezine).
 
     The file created can be used to distribute the plugin.
 
-    :copyright: (c) 2010 by the Zine Team, see AUTHORS for more details.
+    :copyright: (c) 2010 by the Rezine Team, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
 """
 import sys
@@ -19,13 +19,13 @@ from optparse import OptionParser
 
 
 sys.path.append(dirname(__file__))
-from _init_zine import find_instance
+from _init_rezine import find_instance
 
 
 def main():
     parser = OptionParser(usage='%prog [options] plugin [output-file]')
     parser.add_option('--instance', '-I', dest='instance',
-                      help='Use the path provided as Zine instance.')
+                      help='Use the path provided as Rezine instance.')
     parser.add_option('--dont-compile', '-N', default=False,
                       action='store_true',
                       help="don't compile available plugin translations")
@@ -36,9 +36,9 @@ def main():
     if instance is None:
         parser.error('instance not found.  Specify path to instance')
 
-    import zine
+    import rezine
     try:
-        plugin = zine.setup(instance).plugins[args[0]]
+        plugin = rezine.setup(instance).plugins[args[0]]
     except KeyError:
         parser.error('Plugin not found')
 

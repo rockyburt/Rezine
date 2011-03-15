@@ -4,11 +4,11 @@
     Build Translit-Tab
     ~~~~~~~~~~~~~~~~~~
 
-    Generates a conversion of a transtab map.  Used by `zine.utils.text`.
+    Generates a conversion of a transtab map.  Used by `rezine.utils.text`.
     You will need a version of transtab which you can get for example
     here: http://www.bitbucket.org/jek/translitcodec/
 
-    :copyright: (c) 2010 by the Zine Team, see AUTHORS for more details.
+    :copyright: (c) 2010 by the Rezine Team, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
 """
 import os
@@ -17,8 +17,8 @@ import csv
 from optparse import OptionParser
 
 
-import _init_zine
-import zine
+import _init_rezine
+import rezine
 sys.path.append(os.path.dirname(__file__))
 csv.register_dialect('transtab', delimiter=';')
 
@@ -87,7 +87,7 @@ def main():
     if len(args) != 1:
         parser.error('incorrect number of arguments')
 
-    mapping_file = os.path.join(os.path.dirname(zine.__file__),
+    mapping_file = os.path.join(os.path.dirname(rezine.__file__),
                                 '_dynamic', 'translit_tab.py')
     table = read_table(os.path.join(args[0], 'transtab'))
     update_mapping(path=mapping_file, *table)

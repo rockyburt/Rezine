@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="{{ cfg.language|e }}">
+<head>
+  <title>{% block title %}{% endblock %} &mdash; {{ cfg.blog_title|e }}</title>
+  <meta name="DC.title" content="{{ self.title() }} &mdash; {{ cfg.blog_title|e }}">
+  <link rel="stylesheet" type="text/css" href="{{ shared_url('vessel_theme::style.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ shared_url(cfg['vessel_theme/variation']) }}">
+  {{ get_page_metadata() }}
+</head>
+<body>
+  <div class="page">
+    <div class="header">
+      <h1><a href="{{ url_for('blog/index')|e }}">{{ cfg.blog_title|e }}</a></h1>
+      <p class="description">{{ cfg.blog_tagline }}</p>
+    </div>
+    <div class="contentwrapper">
+      <div class="contents">
+        {{ emit_event('before-contents-rendered') }}
+        {% block contents %}{% endblock %}
+        {{ emit_event('after-contents-rendered') }}
+      </div>
+      <div class="sidebar">
+        {{ render_widgets() }}
+      </div>
+    </div>
+    <div class="footer">
+      <p>{% trans rezine='<a href="http://rezine.pocoo.org/">Rezine</a>'
+        %}Proudly powered by {{ rezine }}.{% endtrans %}</p>
+    </div>
+  </div>
+</body>
+</html>

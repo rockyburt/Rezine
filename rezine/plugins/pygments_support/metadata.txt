@@ -1,0 +1,14 @@
+Name: Pygments Support
+Name[de]: Pygments Unterstützung
+Plugin URL: http://rezine.pocoo.org/plugins/pygments_support
+Author: Armin Ronacher <armin.ronacher@active-4.com>
+Author URL: http://lucumr.pocoo.org/
+License: BSD
+Version: 0.2
+Description: Adds support for <a href="http://pygments.org/">pygments</a>\
+ highlighted code blocks. Blocks marked with <code>&lt;sourcecode\
+ syntax="language"&gt;</code> are highlighted using the Pygments\
+ lexer defined in the <tt>syntax</tt> attribute.
+Description[de]: Fügt Unterstützung für <a href="http://pygments.org/">Pygments</a>\
+ zu Rezine hinzu.  Mit <code>&lt;sourcecode syntax="language"&gt;</code>\
+ markierte Blöcke werden von Pygments automatisch hervorgehoben.

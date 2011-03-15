@@ -3,10 +3,10 @@
     Create Package
     ~~~~~~~~~~~~~~
 
-    This script dumps Zine with all files required files into a .tar.gz
+    This script dumps Rezine with all files required files into a .tar.gz
     and .zip archive for distribution.
 
-    :copyright: (c) 2010 by the Zine Team, see AUTHORS for more details.
+    :copyright: (c) 2010 by the Rezine Team, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
 """
 import re
@@ -25,7 +25,7 @@ IGNORED = map(re.compile, r'''
 
 EXTRA_RST = 'README INSTALL'.split()
 
-_documented_plugin_re = re.compile(r'^zine/plugins/([^/]+)/docs/')
+_documented_plugin_re = re.compile(r'^rezine/plugins/([^/]+)/docs/')
 
 
 def is_ignored(filename):
@@ -54,8 +54,8 @@ def find_files(force):
             yield filename
 
 
-def get_zine_version():
-    from zine import __version__ as rv
+def get_rezine_version():
+    from rezine import __version__ as rv
     return rv
 
 
@@ -72,8 +72,8 @@ def delete_pycs(folder):
 
 
 def build(dst_dir, build_dir, options):
-    zine_version = get_zine_version()
-    release_name = 'Zine-%s' % '-'.join(zine_version.split())
+    rezine_version = get_rezine_version()
+    release_name = 'Rezine-%s' % '-'.join(rezine_version.split())
     archive_base = os.path.join(dst_dir, release_name)
 
     # create a subfolder for this release
@@ -105,7 +105,7 @@ def build(dst_dir, build_dir, options):
     run_script(release_dir, 'build-documentation')
     for plugin in documented_plugins:
         run_script(release_dir, 'build-documentation',
-                   [os.path.join(release_dir, 'zine', 'plugins', plugin)])
+                   [os.path.join(release_dir, 'rezine', 'plugins', plugin)])
 
     # build extra rst files into .html files
     old_dir = os.getcwd()
@@ -159,7 +159,7 @@ def main():
         os.makedirs(dst)
 
     try:
-        build_dir = tempfile.mkdtemp(prefix='zine')
+        build_dir = tempfile.mkdtemp(prefix='rezine')
         try:
             build(os.path.abspath(dst), build_dir, options)
         finally:

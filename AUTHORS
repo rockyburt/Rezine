@@ -1,4 +1,4 @@
-Zine is written and maintained by the Zine Team and various contributors:
+Rezine is written and maintained by the Rezine Team and various contributors:
 
 Project Leader:
 
@@ -30,7 +30,7 @@ Translators:
 - Vinicius Figueiredo; into Brazilian Portuguese
 - Pedro Algarvio; into Portuguese
 
-Authors of libraries or code snippets included in Zine:
+Authors of libraries or code snippets included in Rezine:
 
 - Matt Chisholm (PottyMouth, used by Text parser)
 - Manfred Stienstra and Yuri Takhteyev (markdown.py, used by Markdown plugin)

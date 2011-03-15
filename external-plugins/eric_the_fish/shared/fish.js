@@ -6,7 +6,7 @@
  * new div for the fish and a second one for the bubble. Then it assigns some
  * classes and registeres a click action for the fish that sends a request.
  *
- * :copyright: (c) 2010 by the Zine Team, see AUTHORS for more details.
+ * :copyright: (c) 2010 by the Rezine Team, see AUTHORS for more details.
  * :license: BSD, see LICENSE for more details.
  */
 
@@ -18,10 +18,10 @@ $(function() {
   var eric = $('<div class="eric-the-fish">').click(function() {
     /* if the fish is not visible get one quote from the server */
     if (bubble.css('display') == 'none') {
-      /* zine provides a function called `callJSONService` that
+      /* rezine provides a function called `callJSONService` that
          is used to call the json endpoint of a service point and return
          the value parsed. */
-      Zine.callJSONService('eric_the_fish/get_fortune', {}, function(q) {
+      Rezine.callJSONService('eric_the_fish/get_fortune', {}, function(q) {
         /* when the data comes back add the text to the bubble data */
         bubble_data.text(q.fortune);
         /* and fade the bubble slowly in */

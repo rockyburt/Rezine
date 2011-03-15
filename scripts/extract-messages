@@ -7,7 +7,7 @@
     This script extracts messages from the main application or a plugin and
     writes them into a PO-Template (POT).
 
-    :copyright: (c) 2010 by the Zine Team, see AUTHORS for more details.
+    :copyright: (c) 2010 by the Rezine Team, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
 """
 from os import path, makedirs
@@ -16,7 +16,7 @@ from babel.messages import Catalog
 from babel.messages.extract import extract_from_dir
 from babel.messages.pofile import write_po
 
-app_dir = 'zine'
+app_dir = 'rezine'
 i18n_dir = 'i18n'
 app_path = path.realpath(path.join(path.dirname(__file__), path.pardir, app_dir))
 
@@ -28,7 +28,7 @@ KEYWORDS = {
     'lazy_gettext': None,
     'lazy_ngettext': (1, 2)
 }
-BUGS_ADDRESS = 'zine-i18n@pocoo.org'
+BUGS_ADDRESS = 'rezine-i18n@pocoo.org'
 COPYRIGHT = 'The Pocoo Team'
 METHODS = [
     ('**.py', 'python'),

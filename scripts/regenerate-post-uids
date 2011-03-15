@@ -16,22 +16,22 @@
       Old postings still contain the old uids though, so
       they need to be regenerated.
 
-    :copyright: (c) 2010 by the Zine Team, see AUTHORS for more details.
+    :copyright: (c) 2010 by the Rezine Team, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
 """
 
 from optparse import OptionParser
 
-from _init_zine import find_instance
+from _init_rezine import find_instance
 
 
 def regenerate_post_uids(instance):
-    from zine import setup
+    from rezine import setup
     app = setup(instance)
     del setup
-    from zine.models import Post
-    from zine.database import db
-    from zine.utils.text import build_tag_uri
+    from rezine.models import Post
+    from rezine.database import db
+    from rezine.utils.text import build_tag_uri
 
     for post in Post.query.all():
         post.uid = build_tag_uri(app, post.pub_date, post.content_type,
@@ -43,7 +43,7 @@ def regenerate_post_uids(instance):
 def main():
     parser = OptionParser(usage='%prog -I /path/to/instance')
     parser.add_option('--instance', '-I', dest='instance',
-                      help='Use the given Zine instance.')
+                      help='Use the given Rezine instance.')
     options, args = parser.parse_args()
     if args:
         parser.error('incorrect number of arguments')

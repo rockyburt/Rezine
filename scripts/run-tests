@@ -3,10 +3,10 @@
     Test Runner
     ~~~~~~~~~~~
 
-    This is a wrapper script for running the Zine unittests.
+    This is a wrapper script for running the Rezine unittests.
     Run it with the --help option for usage information.
 
-    :copyright: (c) 2010 by the Zine Team, see AUTHORS for more details.
+    :copyright: (c) 2010 by the Rezine Team, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
 """
 import os

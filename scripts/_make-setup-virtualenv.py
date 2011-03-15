@@ -5,7 +5,7 @@
 
     Execute this file to regenerate the `setup-virtualenv` script.
 
-    :copyright: (c) 2010 by the Zine Team, see AUTHORS for more details.
+    :copyright: (c) 2010 by the Rezine Team, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
 """
 import os
@@ -66,7 +66,7 @@ def after_install(options, home_dir):
     for requirement in REQUIREMENTS:
         install(home_dir, requirement)
     install(home_dir, 'lxml>=2.0', static_deps=lxml_static_deps)
-    call(['ln', '-s', %(zine_path)r, os.path.join(site_packages, 'zine')])
+    call(['ln', '-s', %(rezine_path)r, os.path.join(site_packages, 'rezine')])
 '''
 
 
@@ -75,7 +75,7 @@ if __name__ == '__main__':
     f = file(FILENAME, 'w')
     try:
         f.write(create_bootstrap_script(CODE % {
-            'zine_path':    os.path.normpath(os.path.join('..', 'zine'))
+            'rezine_path':    os.path.normpath(os.path.join('..', 'rezine'))
         }))
     finally:
         f.close()

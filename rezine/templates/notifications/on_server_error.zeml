@@ -1,0 +1,13 @@
+<title>{% trans %}Rezine Server Error{% endtrans %}</title>
+<summary>{% trans summary=summary|e %}Rezine has suffered an internal error: “{{ summary }}”{% endtrans %}</summary>
+<longtext>
+ {% trans %}Request Details:{% endtrans %}
+--------------------------------------------------------------------------------
+ <pre>{{ request_details|e }}</pre>
+--------------------------------------------------------------------------------
+
+ {% trans %}Python Traceback:{% endtrans %}
+--------------------------------------------------------------------------------
+ <pre>{{ longtext|e }}</pre>
+--------------------------------------------------------------------------------
+</longtext>

@@ -7,17 +7,17 @@ of them or create your own.
 
 The following files exist currently:
 
-`zine.cgi`
-    This file implements can be used to use Zine over CGI.  This
-    should *NOT* be used unless you have to.  Zine is not designed
+`rezine.cgi`
+    This file implements can be used to use Rezine over CGI.  This
+    should *NOT* be used unless you have to.  Rezine is not designed
     for the run-once nature of CGI and will perform poorly on it.
 
-`zine.fcgi`
-    This file serves Zine over FastCGI.  It requires the flup
+`rezine.fcgi`
+    This file serves Rezine over FastCGI.  It requires the flup
     module for Python.
 
-`zine.wsgi`
-    This file can be used to execute Zine over mod_wsgi.
+`rezine.wsgi`
+    This file can be used to execute Rezine over mod_wsgi.
 
 Just take the file of choice, copy it to where you want it to be and
 adjust it.
@@ -36,7 +36,7 @@ example via the apache `SetEnv` directive) if you prefix them with
     that the pool begins with no connections; once this number of
     connections is requested, that number of connections will remain.
     Defaults to 5.
-    If you are deploying Zine in a forking environment you want to set
+    If you are deploying Rezine in a forking environment you want to set
     this number to 1 or 2.
 
 `POOL_RECYCLE`
@@ -50,7 +50,7 @@ example via the apache `SetEnv` directive) if you prefix them with
     connection.  Defaults to 30.
 
 `BEHIND_PROXY`
-    If you are proxying into Zine somehow (caching proxies or external
+    If you are proxying into Rezine somehow (caching proxies or external
     fastcgi/http servers) set this value to True to enable proxy support.
     Do not set this to True if you are not using proxies as this would
     be a security risk.

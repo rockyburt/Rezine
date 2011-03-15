@@ -1,0 +1,30 @@
+# -*- coding: utf-8 -*-
+"""
+    rezine.plugins.miniblog_theme
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    Very simple rezine theme.
+
+    :copyright: (c) 2010 by the Rezine Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+"""
+from os.path import join, dirname
+
+TEMPLATE_FILES = join(dirname(__file__), 'templates')
+SHARED_FILES = join(dirname(__file__), 'shared')
+
+THEME_SETTINGS = {
+    # small pagination
+    'pagination.simple':            True,
+    'pagination.prev_link':         True,
+    'pagination.next_link':         True,
+    'pagination.active':            u'· <strong>%(page)d</strong> ·',
+
+    # and ultra short date formats
+    'date.datetime_format.default': 'short',
+    'date.date_format.default':     'short'
+}
+
+def setup(app, plugin):
+    app.add_theme('miniblog', TEMPLATE_FILES, plugin.metadata, THEME_SETTINGS)
+    app.add_shared_exports('miniblog_theme', SHARED_FILES)

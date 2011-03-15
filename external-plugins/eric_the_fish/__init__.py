@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 """
-    zine.plugins.eric_the_fish
+    rezine.plugins.eric_the_fish
     ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
     Annoying fish for the admin panel.  This is somewhat of an demonstration
     plugin because it uses quite a lot of the internal signaling and
     registration system.
 
-    :copyright: (c) 2010 by the Zine Team, see AUTHORS for more details.
+    :copyright: (c) 2010 by the Rezine Team, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
 """
 from os.path import dirname, join
@@ -16,39 +16,39 @@ from random import choice
 # the API gives us access to a bunch of functions useful for plugins. The
 # api module just acts as a collection module which is safe to star import.
 # The objects' implementations are in different modules.
-from zine.api import *
+from rezine.api import *
 
 # because we want to add an admin panel page for our fish we need the
 # render_admin_response function that works like the normal render_response
 # function, but assembles a navigation bar for the admin layout template
 # and emits the `modify-admin-navigation-bar` event also use here.
-from zine.views.admin import render_admin_response
+from rezine.views.admin import render_admin_response
 
 # the following method is used to show notifications in the admin panel.
-from zine.utils.admin import flash
+from rezine.utils.admin import flash
 
 # this function is used for redirecting the user to another page
-from zine.utils.http import redirect
+from rezine.utils.http import redirect
 
 # Because our fish uses JSON and JavaScript we use the dump_json function
 # from the utils module.
-from zine.utils import dump_json
+from rezine.utils import dump_json
 
 # TextField is used as a type of a configuration variable
-from zine.utils.forms import TextField
+from rezine.utils.forms import TextField
 
 # the following exception is raised when the config could not be changed
-from zine.config import ConfigurationTransactionError
+from rezine.config import ConfigurationTransactionError
 
 # we only want the admin to be able to configure eric. so we need the
 # BLOG_ADMIN privilege
-from zine.privileges import BLOG_ADMIN
+from rezine.privileges import BLOG_ADMIN
 
-# import Zine's database related stuff
-from zine.database import db
+# import Rezine's database related stuff
+from rezine.database import db
 
 # the last thing is importing the Fortunes database mapped object.
-from zine.plugins.eric_the_fish.database import Fortune
+from rezine.plugins.eric_the_fish.database import Fortune
 
 # because we have an admin panel page we need to store the templates
 # somewhere. So here we calculate the path to the templates and save them
@@ -124,7 +124,7 @@ def get_fortune(req):
 
 
 def setup(app, plugin):
-    """This function is called by Zine in the application initialisation
+    """This function is called by Rezine in the application initialisation
     phase. Here we connect to the events and register our template paths,
     url rules, views etc.
     """
@@ -154,7 +154,7 @@ def setup(app, plugin):
 
     # Whenever we click on the fish we want a quote to appear. Because the
     # quotes are stored on the server we add a servicepoint that sends one
-    # quote back. Zine provides JSON and XML export for this servicepoint
+    # quote back. Rezine provides JSON and XML export for this servicepoint
     # automatically, plugins may add more export formats.
     app.add_servicepoint('eric_the_fish/get_fortune', get_fortune)
 
@@ -164,6 +164,6 @@ def setup(app, plugin):
                      endpoint='eric_the_fish/config',
                      view=show_eric_options)
 
-    # add our templates to the searchpath so that Zine can find the
+    # add our templates to the searchpath so that Rezine can find the
     # admin panel template for the fish config panel.
     app.add_template_searchpath(TEMPLATES)

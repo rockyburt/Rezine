@@ -6,7 +6,7 @@
 
     This script resets the development instance.
 
-    :copyright: (c) 2010 by the Zine Team, see AUTHORS for more details.
+    :copyright: (c) 2010 by the Rezine Team, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
 """
 import sys
@@ -16,7 +16,7 @@ from optparse import OptionParser
 
 
 sys.path.append(path.dirname(__file__))
-from _init_zine import find_instance
+from _init_rezine import find_instance
 
 
 def main():
@@ -24,7 +24,7 @@ def main():
     parser.add_option('--username', '-u', dest='username', default='admin')
     parser.add_option('--password', '-p', dest='password', default='default')
     parser.add_option('--blog-url', dest='blog_url', default='http://localhost:4000/')
-    parser.add_option('--database', dest='database_uri', default='sqlite:///zine.db')
+    parser.add_option('--database', dest='database_uri', default='sqlite:///rezine.db')
     parser.add_option('--language', dest='lang', default='en')
     parser.add_option('--keep-plugins', default=False, action='store_true')
 
@@ -51,15 +51,15 @@ def main():
             elif path.isdir(fpath) and file != 'plugins':
                 rmtree(fpath)
 
-    import zine.application
-    from zine import setup
-    from zine.database import users, init_database, db
-    from zine.utils.crypto import gen_pwhash, gen_secret_key
-    from zine.config import Configuration
+    import rezine.application
+    from rezine import setup
+    from rezine.database import users, init_database, db
+    from rezine.utils.crypto import gen_pwhash, gen_secret_key
+    from rezine.config import Configuration
     e = db.create_engine(options.database_uri, instance)
     init_database(e)
 
-    cfg = Configuration(path.join(instance, 'zine.ini'))
+    cfg = Configuration(path.join(instance, 'rezine.ini'))
     t = cfg.edit()
     t.update(
         maintenance_mode=False,
@@ -72,8 +72,8 @@ def main():
     )
     t.commit()
 
-    from zine.models import User
-    from zine.privileges import BLOG_ADMIN
+    from rezine.models import User
+    from rezine.privileges import BLOG_ADMIN
     app = setup(instance)
     user = User(options.username, options.password, 'admin@localhost',
                 is_author=True)

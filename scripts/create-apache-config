@@ -6,7 +6,7 @@
 
     This creates an apache config for static exports.
 
-    :copyright: (c) 2010 by the Zine Team, see AUTHORS for more details.
+    :copyright: (c) 2010 by the Rezine Team, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
 """
 import sys
@@ -16,24 +16,24 @@ from urlparse import urlparse
 
 
 HELP_TEXT = '''\
-This script generates an Apache config for the static data Zine or
-Zine plugins export.  It's recommended to generate this configuration
+This script generates an Apache config for the static data Rezine or
+Rezine plugins export.  It's recommended to generate this configuration
 every time a plugin is enabled/disabled and included in the vhost
-of your regular Zine Apache configuration.
+of your regular Rezine Apache configuration.
 
-This will greatly improve the performance of your Zine installation.\
+This will greatly improve the performance of your Rezine installation.\
 '''
 
 
 sys.path.append(dirname(__file__))
-from _init_zine import find_instance
-from zine import setup
+from _init_rezine import find_instance
+from rezine import setup
 
 
 def main():
     parser = OptionParser(usage='%prog [options]\n\n' + HELP_TEXT)
     parser.add_option('--instance', '-I', dest='instance',
-                      help='Use the path provided as Zine instance.')
+                      help='Use the path provided as Rezine instance.')
     options, args = parser.parse_args()
     if args:
         parser.error('incorrect number of arguments')

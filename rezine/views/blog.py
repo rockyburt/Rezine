@@ -1,0 +1,483 @@
+# -*- coding: utf-8 -*-
+"""
+    rezine.views.blog
+    ~~~~~~~~~~~~~~~
+
+    This module implements all the views (some people call that controller)
+    for the core module.
+
+    :copyright: (c) 2010 by the Rezine Team, see AUTHORS for more details.
+    :license: BSD, see LICENSE for more details.
+"""
+from datetime import date
+
+from rezine import cache, pingback
+from rezine.i18n import _
+from rezine.application import add_link, url_for, render_response, \
+     iter_listeners, Response
+from rezine.models import Post, Category, User, Tag
+from rezine.utils import dump_json, log
+from rezine.utils.text import build_tag_uri
+from rezine.utils.xml import generate_rsd, dump_xml
+from rezine.utils.http import redirect_to, redirect
+from rezine.utils.redirects import lookup_redirect
+from rezine.forms import NewCommentForm
+from rezine.feeds import Rss201rev2Feed as RssFeed, Atom1Feed
+from werkzeug.exceptions import NotFound, Forbidden
+
+
+@cache.response(vary=('user',))
+def index(req, page=1):
+    """Render the most recent posts.
+
+    Available template variables:
+
+        `posts`:
+            a list of post objects we want to display
+
+        `pagination`:
+            a pagination object to render a pagination
+
+    :Template name: ``index.html``
+    :URL endpoint: ``blog/index``
+    """
+    data = Post.query.theme_lightweight('index').published() \
+               .for_index().get_list(endpoint='blog/index',
+                                     page=page)
+
+    add_link('alternate', url_for('blog/atom_feed'), 'application/atom+xml',
+             _(u'Recent Posts Feed'))
+    return render_response('index.html', **data)
+
+
+def archive(req, year=None, month=None, day=None, page=1):
+    """Render the monthly archives.
+
+    Available template variables:
+
+        `posts`:
+            a list of post objects we want to display
+
+        `pagination`:
+            a pagination object to render a pagination
+
+        `year` / `month` / `day`:
+            integers or None, useful to entitle the page
+
+    :Template name: ``archive.html``
+    :URL endpoint: ``blog/archive``
+    """
+    if not year:
+        return render_response('archive.html', month_list=True,
+                               **Post.query.published().for_index()
+                                     .get_archive_summary())
+
+    url_args = dict(year=year, month=month, day=day)
+    per_page = req.app.theme.settings['archive.per_page']
+    data = Post.query.theme_lightweight('archive_overview') \
+               .published().for_index().date_filter(year, month, day) \
+               .get_list(page=page, endpoint='blog/archive',
+                         url_args=url_args, per_page=per_page)
+
+    add_link('alternate', url_for('blog/atom_feed', **url_args),
+             'application/atom+xml', _(u'Recent Posts Feed'))
+
+    return render_response('archive.html', year=year, month=month, day=day,
+                           date=date(year, month or 1, day or 1),
+                           month_list=False, **data)
+
+
+def show_category(req, slug, page=1):
+    """Show all posts categoryged with a given category slug.
+
+    Available template variables:
+
+        `posts`:
+            a list of post objects we want to display
+
+        `pagination`:
+            a pagination object to render a pagination
+
+        `category`
+            the category object for this page
+
+    :Template name: ``show_category.html``
+    :URL endpoint: ``blog/show_category``
+    """
+    category = Category.query.filter_by(slug=slug).first(True)
+    per_page = req.app.theme.settings['category.per_page']
+    data = category.posts.theme_lightweight('category') \
+                   .published().get_list(page=page, per_page=per_page,
+                                         endpoint='blog/show_category',
+                                         url_args=dict(slug=slug))
+
+    add_link('alternate', url_for('blog/atom_feed', category=slug),
+             'application/atom+xml', _(u'All posts in category %s') % category.name)
+    return render_response('show_category.html', category=category, **data)
+
+
+def show_tag(req, slug, page=1):
+    """Show all posts categoryged with a given tag slug.
+
+    Available template variables:
+
+        `posts`:
+            a list of post objects we want to display
+
+        `pagination`:
+            a pagination object to render a pagination
+
+        `tag`
+            the tag object for this page
+
+    :Template name: ``show_tag.html``
+    :URL endpoint: ``blog/show_tag``
+    """
+    tag = Tag.query.filter_by(slug=slug).first(True)
+    per_page = req.app.theme.settings['tag.per_page']
+    data = tag.posts.theme_lightweight('tag') \
+                    .published().get_list(page=page, endpoint='blog/show_tag',
+                                          per_page=per_page,
+                                          url_args=dict(slug=slug))
+
+    add_link('alternate', url_for('blog/atom_feed', tag=slug),
+             'application/atom+xml', _(u'All posts tagged %s') % tag.name)
+    return render_response('show_tag.html', tag=tag, **data)
+
+
+def tags(req):
+    """
+    Show a tagcloud.
+
+    Available template variables:
+
+        `tags`:
+            list of tag summaries that contain the size of the cloud
+            item, the name of the tag and its slug
+
+    :Template name: ``tags.html``
+    :URL endpoint: ``blog/tags``
+    """
+    return render_response('tags.html',
+                           tags=Tag.query.get_cloud())
+
+
+def show_author(req, username, page=1):
+    """Show the user profile of an author / editor or administrator.
+
+    Available template variables:
+
+        `posts`:
+            a list of post objects this author wrote and are
+            visible on this page
+
+        `pagination`:
+            a pagination object to render a pagination
+
+        `user`
+            the user object for this author
+
+    :Template name: ``show_author.html``
+    :URL endpoint: ``blog/show_author``
+    """
+    user = User.query.filter_by(username=username).first()
+    if user is None or not user.is_author:
+        raise NotFound()
+
+    per_page = req.app.theme.settings['author.per_page']
+    data = user.posts.theme_lightweight('author').published() \
+                     .get_list(page=page, per_page=per_page,
+                               endpoint='blog/show_author',
+                               url_args=dict(username=user.username))
+
+    add_link('alternate', url_for('blog/atom_feed', author=user.username),
+             'application/atom+xml', _(u'All posts written by %s') %
+             user.display_name)
+
+    return render_response('show_author.html', user=user, **data)
+
+
+def authors(req):
+    """Show a list of authors.
+
+    Available template variables:
+
+        `authors`:
+            list of author objects to display
+
+    :Template name: ``authors.html``
+    :URL endpoint: ``blog/authors``
+    """
+    return render_response('authors.html', authors=User.query.authors().all())
+
+
+@cache.response(vary=('user',))
+@pingback.inject_header
+def show_entry(req, post, comment_form):
+    """Show as post and give users the possibility to comment to this
+    story if comments are enabled.
+
+    Available template variables:
+
+        `post`:
+            the post object we display
+
+        `form`:
+            a dict of form values (name, email, www and body)
+
+        `errors`:
+            list of error messages that occurred while posting the
+            comment, if empty the form was not submitted or everything
+            worked well
+
+    Events emitted:
+
+        `before-comment-created`:
+            this event is sent with the form as event data. Can return
+            a list of error messages to prevent the user from posting
+            that comment.
+
+        `before-comment-saved`:
+            executed right before the comment is saved to the database.
+            The event data is set to the comment. This is usually used
+            to block the comment (setting the status and blocked_msg
+            attributes) so that administrators have to approve them.
+
+        `after-comment-saved`:
+            executed right after comment was saved to the database. Can be
+            used to send mail notifications and stuff like that.
+
+    This view supports pingbacks via `rezine.pingback.pingback_post`
+
+    :Template name: ``show_entry.html``
+    """
+    response = comment_form.create_if_valid(req)
+    if response is not None:
+        return response
+
+    return render_response('show_entry.html',
+        entry=post,
+        form=comment_form.as_widget()
+    )
+
+
+def show_page(req, post, comment_form):
+    """Shows a post that is a page."""
+    response = comment_form.create_if_valid(req)
+    if response is not None:
+        return response
+
+    cfg = req.app.cfg
+    return render_response(['pages/%s.html' % post.slug.strip('/'),
+                            post.extra.get('page_template'), 'page.html'],
+        page=post,
+        form=comment_form.as_widget(),
+        show_title=cfg['show_page_title']
+    )
+
+
+def service_rsd(req):
+    """Serves and RSD definition (really simple discovery) so that blog
+    frontends can query the apis that are available.
+
+    :URL endpoint: ``blog/service_rsd``
+    """
+    return Response(generate_rsd(req.app), mimetype='application/xml')
+
+
+def json_service(req, identifier):
+    """Handle a JSON service req."""
+    handler = req.app._services.get(identifier)
+    if handler is None:
+        raise NotFound()
+
+    #! if this event returns a handler it is called instead of the default
+    #! handler.  Useful to intercept certain requests.
+    for callback in iter_listeners('before-json-service-called'):
+        rv = callback(identifier, handler)
+        if rv is not None:
+            handler = rv
+    result = handler(req)
+
+    #! called right after json callback returned some data with the identifier
+    #! of the req method and the result object.  Note that events *have*
+    #! to return an object, even if it's just changed in place, otherwise the
+    #! return value will be `null` (None).
+    for callback in iter_listeners('after-json-service-called'):
+        result = callback(identifier, result)
+    return Response(dump_json(result), mimetype='text/javascript')
+
+
+def xml_service(req, identifier):
+    """Handle a XML service req."""
+    handler = req.app._services.get(identifier)
+    if handler is None:
+        raise NotFound()
+
+    #! if this event returns a handler it is called instead of the default
+    #! handler.  Useful to intercept certain requests.
+    for callback in iter_listeners('before-xml-service-called'):
+        rv = callback(identifier, handler)
+        if rv is not None:
+            handler = rv
+    result = handler(req)
+
+    #! called right after xml callback returned some data with the identifier
+    #! of the req method and the result object.  Note that events *have*
+    #! to return an object, even if it's just changed in place, otherwise the
+    #! return value will be None.
+    for callback in iter_listeners('after-xml-service-called'):
+        rv = callback(identifier, result)
+        if rv is not None:
+            result = rv
+    return Response(dump_xml(result), mimetype='text/xml')
+
+
+@cache.response(vary=('user',))
+def atom_feed(req, author=None, year=None, month=None, day=None,
+              category=None, tag=None, post=None):
+    feed = Atom1Feed(req.app.cfg['blog_title'], req.app.cfg['blog_url'],
+                    "", # Description not supported
+                    subtitle=req.app.cfg['blog_tagline'], feed_url=req.url)
+
+    results = populate_feed(req, feed, author, year, month, day, category,
+                         tag, post)
+
+    return Response(results, mimetype="application/atom+xml")
+
+
+@cache.response(vary=('user',))
+def rss_feed(req, author=None, year=None, month=None, day=None,
+              category=None, tag=None, post=None):
+    feed = RssFeed(req.app.cfg['blog_title'], req.app.cfg['blog_url'],
+                    "", # Description not supported
+                    subtitle=req.app.cfg['blog_tagline'], feed_url=req.url)
+
+    results = populate_feed(req, feed, author, year, month, day, category,
+                         tag, post)
+
+    return Response(results, mimetype="application/rss+xml")
+
+
+def populate_feed(req, feed, author=None, year=None, month=None, day=None,
+              category=None, tag=None, post=None):
+    """Renders an atom feed requested.
+
+    :URL endpoint: ``blog/atom_feed``
+    """
+    # the feed only contains published items
+    query = Post.query.lightweight(lazy=('comments',)).published()
+
+    # feed for a category
+    if category is not None:
+        category = Category.query.filter_by(slug=category).first(True)
+        query = query.filter(Post.categories.contains(category))
+
+    # feed for a tag
+    if tag is not None:
+        tag = Tag.query.filter_by(slug=tag).first(True)
+        query = query.filter(Post.tags.contains(tag))
+
+    # feed for an author
+    if author is not None:
+        author = User.query.filter_by(username=author).first(True)
+        query = query.filter(Post.author == author)
+
+    # feed for dates
+    if year is not None:
+        query = query.for_index().date_filter(year, month, day)
+
+    # if no post slug is given we filter the posts by the cretereons
+    # provided and pass them to the feed builder.  This will only return
+    # a feed for posts with a content type listed in `index_content_types`
+    if post is None:
+        for post in query.for_index().order_by(Post.pub_date.desc()) \
+                         .limit(15).all():
+            alt_title = '%s @ %s' % (post.author.display_name, post.pub_date)
+            feed.add_item(post.title or alt_title,
+                          url_for(post, _external=True), unicode(post.body),
+                          author_name=post.author.display_name,
+                          pubdate=post.pub_date, unique_id=post.uid)
+
+    # otherwise we create a feed for all the comments of a post.
+    # the function is called this way by `dispatch_content_type`.
+    else:
+        comment_num = 1
+        for comment in post.comments:
+            if not comment.visible:
+                continue
+            uid = build_tag_uri(req.app, comment.pub_date, 'comment',
+                                comment.id)
+            title = _(u'Comment %(num)d on %(post)s') % {
+                'num':  comment_num,
+                'post': post.title
+            }
+            author = {'name': comment.author}
+            if comment.www:
+                author['uri'] = comment.www
+            feed.add_item(title, url_for(comment, _external=True),
+                          unicode(comment.body), author_name=author,
+                          pubdate=comment.pub_date, unique_id=uid)
+            comment_num += 1
+
+    return feed.writeString('utf-8')
+
+
+@cache.response(vary=('user',))
+def dispatch_content_type(req):
+    """Show the post for a specific content type."""
+    slug = req.path[1:]
+
+    # feed for the post
+    if slug.endswith('/feed.atom'):
+        slug = slug[:-10]
+        want_feed = True
+    else:
+        want_feed = False
+
+    post = Post.query.filter_by(slug=slug).first()
+
+    if post is None:
+        # if the post does not exist, check if a post with a trailing slash
+        # exists.  If it does, redirect to that post.  This is allows users
+        # to emulate folders and to get relative links working.
+        if not slug.endswith('/'):
+            real_post = Post.query.filter_by(slug=slug + '/').first()
+            if real_post is None:
+                raise NotFound()
+            # if we want the feed, we don't want a redirect
+            elif want_feed:
+                post = real_post
+            else:
+                return redirect_to(real_post)
+        else:
+            raise NotFound()
+
+    # make sure the current user can access that page.
+    if not post.can_read():
+        raise Forbidden()
+
+    # feed requested?  jump to the feed page
+    if want_feed:
+        return atom_feed(req, post=post)
+
+    # create the comment form
+    form = NewCommentForm(post, req.user)
+    if post.comments_enabled or post.comments:
+        add_link('alternate', post.comment_feed_url, 'application/atom+xml',
+                 _(u'Comments Feed'))
+
+    # now dispatch to the correct view
+    handler = req.app.content_type_handlers.get(post.content_type)
+    if handler is None:
+        log.warn('No handler for the content type %r found.' % post.content_type)
+        raise NotFound()
+
+    return handler(req, post, form)
+
+
+def handle_redirect(req):
+    """Handles redirects from the redirect table."""
+    new_url = lookup_redirect(req.path)
+    if new_url is not None:
+        return redirect(new_url, 301)
