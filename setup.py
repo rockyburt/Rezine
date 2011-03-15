@@ -26,9 +26,9 @@ except ImportError:
 
 setup(
     name='Rezine',
-    version='0.2dev-sz1',
+    version='0.3dev',
     url='https://github.com/rockyburt/Rezine',
-    license='GPLv2',
+    license='BSD',
     author='Armin Ronacher',
     author_email='armin.ronacher@active-4.com',
     description='A WSGI-based weblog engine in Python',
