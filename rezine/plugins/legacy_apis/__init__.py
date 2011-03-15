@@ -49,6 +49,7 @@ def dump_post(post):
     """Dumps a post into a structure for the MetaWeblog API."""
     link = url_for(post, _external=True)
     tags = ','.join([x.name for x in post.tags])
+    print '[%s]' % tags
 
     return dict(
         pubDate=post.pub_date,
@@ -216,13 +217,29 @@ def blogger_delete_post(post_id, username, password, publish):
     return True
 
 
-def blogger_get_users_blogs(username, password):
+def blogger_get_users_blogs(appkey, username, password):
     request = login(username, password)
     return [{'isAdmin': request.user.has_privilege(BLOG_ADMIN),
              'url': request.app.cfg['blog_url'],
              'blogid': 1,
              'blogName': request.app.cfg['blog_title'],
              'xmlrpc': url_for("services/WordPress", _external=True)}]
+
+
+def blogger_get_recent_posts(appkey, blogid, username, password,
+                             number_of_posts):
+    login(username, password)
+    number_of_posts = min(50, number_of_posts)
+    return map(dump_post, Post.query.filter_by(content_type='entry')
+               .limit(number_of_posts).all())
+
+
+    # request = login(username, password)
+    # return [{'isAdmin': request.user.has_privilege(BLOG_ADMIN),
+    #          'url': request.app.cfg['blog_url'],
+    #          'blogid': 1,
+    #          'blogName': request.app.cfg['blog_title'],
+    #          'xmlrpc': url_for("services/WordPress", _external=True)}]
 
 
 def wp_get_page(blog_id, page_id, username, password):
@@ -397,7 +414,7 @@ service.register_functions([
 # Blogger
 service.register_functions([
     (blogger_delete_post, 'blogger.deletePost'),
-    (blogger_get_users_blogs, 'blogger.getUsersBlogs')
+    (blogger_get_users_blogs, 'blogger.getUsersBlogs'),
 ])
 
 # MetaWeblog Blogger-Aliases
@@ -423,11 +440,17 @@ service.register_functions([
     (wp_set_options, 'wp.setOptions')
 ])
 
+
+def mt_supported_methods():
+    return service.funcs.keys()
+
+
 # MovableType
 service.register_functions([
     (mt_get_post_categories, 'mt.getPostCategories'),
     (mt_set_post_categories, 'mt.setPostCategories'),
-    (mt_supported_text_filters, 'mt.supportedTextFilters')
+    (mt_supported_text_filters, 'mt.supportedTextFilters'),
+    (mt_supported_methods, 'mt.supportedMethods')
 ])
 
 
