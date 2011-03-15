@@ -1,0 +1,1 @@
+global-include README AUTHORS CHANGES INSTALL LICENSE *.css *.html *.cgi *.fcgi *.wsgi *.db *.png *.zeml *.txt *.sql *.js *.ini *.po *.rst scripts/* *.py *.pot *.svg Makefile
