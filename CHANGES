@@ -8,6 +8,9 @@ Rezine 0.3
 
 - Can now add plugins via [rezine_plugins] entry points (eggs)
 
+- Install is setuptools/distutils compatible, make process has
+  been removed
+
 Zine 0.2
 --------
 
