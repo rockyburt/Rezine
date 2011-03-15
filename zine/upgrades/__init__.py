@@ -22,7 +22,7 @@ except ImportError:
 
 from migrate.versioning import api
 from migrate.versioning.util import construct_engine
-from migrate.versioning.exceptions import KnownError
+from migrate.exceptions import KnownError
 
 from werkzeug.utils import escape
 

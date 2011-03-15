@@ -13,7 +13,8 @@ import warnings
 from os import listdir
 from os.path import dirname, join
 
-from migrate.versioning import api, exceptions
+from migrate import exceptions
+from migrate.versioning import api
 from migrate.versioning.config import operations as migrate_ops
 from migrate.versioning.repository import Repository as MigrateRepository
 from migrate.versioning.script.py import PythonScript as MigratePythonScript
