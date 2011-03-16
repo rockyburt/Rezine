@@ -13,7 +13,7 @@ The Rezine team suggests you use `virtualenv <http://pypi.python.org/pypi/virtua
 to separate dev work from your normal Python environment. Setting
 up a virtualenv_ is as simple as the following:
 
-.. code-block:: bash
+.. code-block:: console
  :linenos:
 
  wget http://pypi.python.org/packages/source/v/virtualenv/virtualenv-1.5.2.tar.gz
@@ -30,7 +30,7 @@ The source code repository is hosted at github here:
 
 Clone the branch using git:
 
-.. code-block:: bash
+.. code-block:: console
  :linenos:
 
  git clone git://github.com/rockyburt/Rezine.git
@@ -39,7 +39,7 @@ Once the code has been cloned you can install it into your
 development environment by simply using (assuming your virtualenv_
 is still active) ``pip``:
 
-.. code-block:: bash
+.. code-block:: console
  :linenos:
 
  cd Rezine
@@ -47,7 +47,7 @@ is still active) ``pip``:
 
 To leave the virtual environment run this command:
 
-.. code-block:: bash
+.. code-block:: console
  :linenos:
 
  deactivate

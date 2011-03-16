@@ -9,4 +9,6 @@ Contents:
  :maxdepth: 2
 
  intro
+ isolated_environment
  developers
+ glossary
