@@ -27,7 +27,8 @@ setup(
     author='Rocky Burt',
     author_email='rocky@serverzen.com',
     description='A WSGI-based weblog engine in Python',
-    long_description=open('README').read() + '\n\n' + open('CHANGES').read(),
+    long_description=open('README.rst').read() + '\n\n' \
+        + open('CHANGES.rst').read(),
     zip_safe=False,
     classifiers=[
         'Development Status :: 2 - Pre-Alpha',

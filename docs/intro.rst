@@ -1,53 +1,83 @@
 Introduction
 ============
 
-To work on Rezine you have to have a Mac running OS X, a BSD syystem or
-Linux.  It's currently not possible to develop on Windows as some of
-tools depend on a POSIX environment.  You may have success by using
-cygwin, but we don't have any experience with it.
+Rezine provides quite a few features:
 
-Creating a Development Environment
-----------------------------------
+- of course, basic blog functionality: posting, comments, categories,
+  tags, and ATOM feeds
+- user, group and permission management
+- theming support
+- importers for WordPress and Atom feeds.
+- an advanced plugin system
+- a translatable interface (although with this first release, only
+  English and German translations are available)
 
-The Rezine team suggests you use `virtualenv <http://pypi.python.org/pypi/virtualenv>`_
-to separate dev work from your normal Python environment. Setting
-up a virtualenv_ is as simple as the following:
+Installation
+============
 
-.. code-block:: bash
- :linenos:
+Simple to install via ``easy_install``::
 
- wget http://pypi.python.org/packages/source/v/virtualenv/virtualenv-1.5.2.tar.gz
- tar zxf virtualenv-1.5.2.tar.gz
- python virtualenv-1.5.2/virtualenv.py rezine
- source rezine/bin/activate
+    $ easy_install Rezine
 
-Checking out the Code
----------------------
+*To install lxml you may need the development packages of libxml2 and libxslt*
 
-The source code repository is hosted at github here:
+mod_wsgi
+--------
 
-- `Rezine GitHub Project <https://github.com/rockyburt/Rezine>`_
+The following example shows how to set up Rezine for `mod_wsgi`.
 
-Clone the branch using git:
+1.  Create a new folder `/var/rezine/yourblog` where `yourblog` is a name
+    that make sense for you.
+2.  Copy the `rezine.wsgi` file from
+    `/path/to/python/lib/python/site-packages/rezine/servers`
+    into the newly created folder and open it with an editor.
+3.  Modify the `INSTANCE_FOLDER` variable to point to the `yourblog` folder.
+4.  Open your Apache vhost config or your Apache config, whatever you use
+    and add the following lines::
 
-.. code-block:: bash
- :linenos:
+        WSGIScriptAlias /yourblog /var/lib/rezine/yourblog/rezine.wsgi
 
- git clone git://github.com/rockyburt/Rezine.git
+    This tells Apache that it should hook your blog into the webserver at
+    `/yourblog`.  You can also move it to a different vhost and mount it
+    in the root or ask Apache to spawn as different user.  More details
+    about that are available in the `mod_wsgi documentation`_.
+5.  Make sure the user your Apache (or application if you configured a
+    different user for mod_wsgi) has read and write access to the
+    `yourblog` folder.
+6.  Reload your apache and go to the URL of your blog and follow the
+    installation instructions.
 
-Once the code has been cloned you can install it into your
-development environment by simply using (assuming your virtualenv_
-is still active) ``pip``:
 
-.. code-block:: bash
- :linenos:
+.. _mod_wsgi documentation: http://code.google.com/p/modwsgi/wiki/InstallationInstructions
 
- cd Rezine
- pip install -e .
 
-To leave the virtual environment run this command:
+Development Quickstart
+----------------------
 
-.. code-block:: bash
- :linenos:
+For a quickstart with the development server do this::
 
- deactivate
+    $ mkdir yourblog
+    $ rezine-manage -I yourblog
+
+After the first start you will find yourself in an installation wizard
+that helps you to create the database tables and an administrator
+account.
+
+
+License and Copyright
+=====================
+
+Rezine is a fork of the `Zine <http://zine.pocoo.org/>`_ weblog software.
+It is currently maintained by Rocky Burt.
+
+Zine was mainly written by Armin Ronacher.  See the
+files AUTHORS and THANKS for a complete list of contributors known as
+the Rezine Team.
+
+Rezine is released under a BSD-style license, see the LICENSE file for more
+details.
+
+Resources
+=========
+
+-  `Main repository <https://github.com/rockyburt/Rezine>`_
