@@ -8,11 +8,6 @@
     collects the tests from the text files in this directory (which are too
     extensive to put them into the code without cluttering it up).
 
-    Please note that coverage reporting and doctest don't play well together
-    and your reports will probably miss some of the executed code. Doctest can
-    be patched to remove this incompatibility, the patch is at
-    http://tinyurl.com/doctest-patch
-
     :copyright: (c) 2010 by the Rezine Team, see AUTHORS for more details.
     :license: BSD, see LICENSE for more details.
 """
@@ -20,7 +15,7 @@
 import sys
 import os
 from os.path import join, dirname
-from unittest import TestSuite, TextTestRunner
+from unittest import TestSuite
 from doctest import DocTestSuite, DocFileSuite
 
 #: the modules in this list are not tested in a full run
@@ -28,13 +23,8 @@ untested = ['rezine.broken_plugins.hyphenation_en',
             'rezine.broken_plugins.hyphenation_en.hyphenate',
             'rezine.broken_plugins.notification']
 
-try:
-    import coverage
-except ImportError:
-    coverage = None
 
-
-def suite(modnames=[], return_covermods=False):
+def test_suite(modnames=[]):
     """Generate the test suite.
 
     The first argument is a list of modules to be tested. If it is empty (which
@@ -51,14 +41,13 @@ def suite(modnames=[], return_covermods=False):
     #    write >>> my_function(app, ...) in the tests
     # The instance directory of this object is located in the tests directory.
     #
-    # setup isn't imported at module level because this way coverage
-    # can track the whole rezine imports
-    from rezine import setup
-    instance_path = join(dirname(__file__), 'instance')
-    app = setup(instance_path)
+    from rezine import is_rezine_setup, setup_rezine, get_rezine
+    if not is_rezine_setup():
+        instance_path = join(dirname(__file__), 'instance')
+        app = setup_rezine(instance_path)
+    else:
+        app = get_rezine()
 
-    if return_covermods:
-        covermods = []
     suite = TestSuite()
 
     if modnames == []:
@@ -92,12 +81,7 @@ def suite(modnames=[], return_covermods=False):
             # skip modules without any tests
             if subsuite.countTestCases():
                 suite.addTest(subsuite)
-                if return_covermods and i == 0:
-                    covermods.append(mod)
-    if return_covermods:
-        return suite, covermods
-    else:
-        return suite
+    return suite
 
 
 def find_tp_modules():
@@ -121,43 +105,3 @@ def find_tp_modules():
                 modname = stripped.replace('/', '.')
                 modules.append(modname)
     return modules
-
-
-def main():
-    from optparse import OptionParser
-    usage = ('Usage: %prog [option] [modules to be tested]\n'
-             'Modules names have to be given in the form utils.mail (without '
-             'rezine.)\nIf no module names are given, all tests are run')
-    parser = OptionParser(usage=usage)
-    parser.add_option('-c', '--coverage', action='store_true', dest='coverage',
-                      help='show coverage information (slow!)')
-    parser.add_option('-v', '--verbose', action='store_true', dest='verbose',
-                      default=False, help='show which tests are run')
-
-    options, args = parser.parse_args(sys.argv[1:])
-    modnames = ['rezine.' + modname for modname in args]
-    if options.coverage:
-        if coverage is not None:
-            use_coverage = True
-        else:
-            sys.stderr.write("coverage information requires Ned Batchelder's "
-                             "coverage.py to be installed!\n")
-            sys.exit(1)
-    else:
-        use_coverage = False
-
-    if use_coverage:
-        coverage.erase()
-        coverage.start()
-        s, covermods = suite(modnames, True)
-    else:
-        s = suite(modnames)
-    TextTestRunner(verbosity=options.verbose + 1).run(s)
-    if use_coverage:
-        coverage.stop()
-        print '\n\n' + '=' * 25 + ' coverage information ' + '=' * 25
-        coverage.report(covermods)
-
-
-if __name__ == '__main__':
-    main()

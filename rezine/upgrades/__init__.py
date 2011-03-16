@@ -26,7 +26,7 @@ from migrate.exceptions import KnownError
 
 from werkzeug.utils import escape
 
-from rezine import __version__ as VERSION, setup
+from rezine import __version__ as VERSION, setup_rezine
 # imported for side-effects
 from rezine.upgrades import customisation
 
@@ -75,7 +75,7 @@ class CommandLineInterface(object):
         if not self.instance_path:
             self.parser.error('you need to pass your Rezine instance path.')
         if not hasattr(self, 'rezine_instance'):
-            self.rezine_instance = setup(expanduser(self.instance_path))
+            self.rezine_instance = setup_rezine(expanduser(self.instance_path))
         return self.rezine_instance
 
     def _general_help(self):

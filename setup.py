@@ -48,5 +48,5 @@ setup(
         },
     platforms='any',
     include_package_data=True,
-    test_suite='rezine.tests.suite',
+    test_suite='rezine.tests.test_suite',
 )

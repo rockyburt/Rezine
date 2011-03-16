@@ -120,7 +120,7 @@ def _unload_rezine():
         _setup_lock.release()
 
 
-def setup(instance_folder):
+def setup_rezine(instance_folder):
     """Creates a new instance of the application.  This must be called only
     once per interpreter and afterwards (until python shuts down or all
     rezine modules are unloaded and the references are deleted) rezine is
@@ -128,9 +128,17 @@ def setup(instance_folder):
 
     The setup function returns the application that was set up.
     """
-    if _application is not None:
+    if is_rezine_setup():
         raise RuntimeError('application already set up')
     return _create_rezine(instance_folder, in_reloader=False)
+
+
+def is_rezine_setup():
+    return _application is not None
+
+
+def get_rezine():
+    return _application
 
 
 def get_wsgi_app(instance_folder):

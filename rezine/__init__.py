@@ -36,5 +36,5 @@ __url__ = 'http://rezine.pocoo.org/'
 # does not start with two leading underscores is wiped out on reload and
 # the core module is *not* reloaded, thus stuff will get lost if it's not
 # properly listed.
-from rezine._core import setup, get_wsgi_app, override_environ_config
+from rezine._core import setup_rezine, is_rezine_setup, get_rezine, get_wsgi_app, override_environ_config
 __all__ = ('setup', 'get_wsgi_app', 'override_environ_config')
