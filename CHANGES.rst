@@ -3,18 +3,18 @@ Rezine Changelog
 
 This file lists the major changes between the Rezine and Zine releases.
 
-Rezine 0.3
-----------
+Rezine 0.3 (unreleased)
+-----------------------
+
+- Can now work with legacy Zine blog instances
 
 - Can now add plugins via [rezine_plugins] entry points (eggs)
 
 - Install is setuptools/distutils compatible, make process has
   been removed
 
-Zine 0.2
---------
-
-(not released)
+Zine 0.2 (will not be released)
+-------------------------------
 
 - Themes can specify the number of items they want to have on a
   tag/category/author post listing.
