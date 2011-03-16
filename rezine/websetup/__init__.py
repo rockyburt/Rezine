@@ -17,15 +17,13 @@
 import sys
 from os import path
 from rezine import environment
-from rezine.config import Configuration
 from rezine.api import db
 from rezine.config import ConfigurationTransactionError
-from rezine.utils.crypto import gen_pwhash, gen_secret_key, new_iid
 from rezine.utils.validators import is_valid_email, check
 from rezine.i18n import load_core_translations, has_language, list_languages
 from werkzeug import Request, Response, redirect
 from jinja2 import Environment, FileSystemLoader
-
+from rezine.manage import create_instance
 
 template_path = path.join(path.dirname(__file__), 'templates')
 jinja_env = Environment(loader=FileSystemLoader(template_path),
@@ -58,7 +56,7 @@ class WebSetup(object):
     def __init__(self, instance_folder):
         self.instance_folder = instance_folder
         views = [
-            ('start', self.test_instance_folder),
+            ('start', None),
             ('database', self.test_database),
             ('admin_account', self.test_admin_account),
             ('summary', None)
@@ -92,17 +90,6 @@ class WebSetup(object):
             'languages':   list_languages(self_translated=True)
         })
         return render_response(request, name + '.html', ctx)
-
-    def test_instance_folder(self, request):
-        """Check if the instance folder exists."""
-        _ = request.translations.gettext
-        if not path.exists(self.instance_folder):
-            folder = self.instance_folder
-            if not isinstance(folder, unicode):
-                folder = folder.decode(sys.getfilesystemencoding() or 'utf-8',
-                                       'ignore')
-            return {'error': _(u'Instance folder does not exist.  You have to '
-                    u'create the folder “%s” before proceeding.') % folder}
 
     def test_database(self, request):
         """Check if the database uri is valid."""
@@ -148,83 +135,38 @@ class WebSetup(object):
         value = request.values.get
         error = None
         database_uri = value('database_uri', '').strip()
-        
-        # set up the initial config
-        config_filename = path.join(self.instance_folder, 'rezine.ini')
-        cfg = Configuration(config_filename)
-        t = cfg.edit()
+
+        rezine_app = create_instance(instance_folder=self.instance_folder,
+                                     database_uri=database_uri,
+                                     admin_username=value('admin_username'),
+                                     admin_password=value('admin_password'),
+                                     admin_email=value('admin_email'))
+
+        from rezine._core import setup_rezine
+        rezine_app = setup_rezine(self.instance_folder)
+
+        t = rezine_app.cfg.edit()
         t.update(
             maintenance_mode=environment.MODE != 'development',
             blog_url=request.url_root,
-            secret_key=gen_secret_key(),
-            database_uri=database_uri,
             language=request.translations.language,
-            iid=new_iid(),
-            # load one plugin by default for a better theme
-            plugins='vessel_theme',
-            theme='vessel'
         )
-        cfg._comments['[rezine]'] = CONFIG_HEADER
         try:
             t.commit()
         except ConfigurationTransactionError:
             _ = request.translations.gettext
             error = _('The configuration file (%s) could not be opened '
                       'for writing. Please adjust your permissions and '
-                      'try again.') % config_filename
+                      'try again.') % rezine_app.cfg.filename
             return render_response(request, 'error.html', {
             'finished': False,
             'error':    error
             })
 
-        try:
-            from rezine.database import init_database
-
-            # create database and all tables
-            e = db.create_engine(database_uri, self.instance_folder)
-            init_database(e)
-        except Exception, error:
-            error = str(error).decode('utf-8', 'ignore')
-        else:
-            from rezine.database import users, user_privileges, privileges, \
-                 schema_versions
-            from rezine.privileges import BLOG_ADMIN
-
-            # a newly created database has a schema version corresponding
-            # to the latest available version in the repository
-            from rezine.upgrades import REPOSITORY_PATH
-            from rezine.upgrades.customisation import Repository
-            repo = Repository(REPOSITORY_PATH, 'Rezine')
-            e.execute(schema_versions.insert(),
-                      repository_id=repo.config.get('repository_id'),
-                      repository_path=repo.path,
-                      version=int(repo.latest))
-
-            # create admin account
-            user_id = e.execute(users.insert(),
-                username=value('admin_username'),
-                pw_hash=gen_pwhash(value('admin_password')),
-                email=value('admin_email'),
-                real_name=u'',
-                description=u'',
-                extra={},
-                display_name='$username',
-                is_author=True
-            ).inserted_primary_key[0]
-
-            # insert a privilege for the user
-            privilege_id = e.execute(privileges.insert(),
-                name=BLOG_ADMIN.name
-            ).inserted_primary_key[0]
-            e.execute(user_privileges.insert(),
-                user_id=user_id,
-                privilege_id=privilege_id
-            )
-
-
         # use a local variable, the global render_response could
         # be None because we reloaded rezine and this module.
-        return render_response(request, error and 'error.html' or 'finished.html', {
+        return render_response(request, error and 'error.html' \
+                                   or 'finished.html', {
             'finished': True,
             'error':    error
         })
@@ -233,7 +175,8 @@ class WebSetup(object):
         request = Request(environ)
         lang = request.values.get('_lang')
         if lang is None:
-            lang = (request.accept_languages.best or 'en').split('-')[0].lower()
+            lang = request.accept_languages.best or 'en'
+            lang = lang.split('-')[0].lower()
         if not has_language(lang):
             lang = 'en'
         request.translations = load_core_translations(lang)

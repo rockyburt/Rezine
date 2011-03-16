@@ -9,7 +9,7 @@
   {% endtrans %}</p>
   <dl>
     <dt>{{ _('SQLite') }}
-    <dd><code>{{ _('sqlite://database.db') }}</code> &mdash;
+    <dd><code>{{ _('sqlite://rezine.db') }}</code> &mdash;
       {% trans %}
         The SQLite database path is either absolute (if it starts with three
         slashes on OS X / Linux or two slashes and a drive letter on a
@@ -20,5 +20,5 @@
     <dt>{{ _('Postgres') }}
     <dd><code>{{ _('postgres://username:password@host/database_name') }}</code>
   </dl>
-  <input type="text" name="database_uri" value="{{ values.database_uri|e }}" size="40">
+  <input type="text" name="database_uri" value="{{ values.database_uri or 'sqlite://rezine.db' }}" size="40">
 {% endblock %}

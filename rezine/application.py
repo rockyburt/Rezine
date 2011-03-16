@@ -676,6 +676,9 @@ class Rezine(object):
                 self.cfg = Configuration(full)
                 break
 
+        if not hasattr(self, 'cfg'):
+            self.cfg = Configuration(path.join(instance_folder, 'rezine.ini'))
+
         if not self.cfg.exists:
             raise _core.InstanceNotInitialized()
 

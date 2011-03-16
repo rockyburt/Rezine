@@ -6,6 +6,9 @@ This file lists the major changes between the Rezine and Zine releases.
 Rezine 0.3 (unreleased)
 -----------------------
 
+- manage script (rezine-manage) now provides a ``newinstance``
+  command
+
 - Can now work with legacy Zine blog instances
 
 - Can now add plugins via [rezine_plugins] entry points (eggs)

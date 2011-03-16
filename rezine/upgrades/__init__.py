@@ -26,7 +26,8 @@ from migrate.exceptions import KnownError
 
 from werkzeug.utils import escape
 
-from rezine import __version__ as VERSION, setup_rezine
+from rezine import __version__ as VERSION
+from rezine._core import setup_rezine
 # imported for side-effects
 from rezine.upgrades import customisation
 
