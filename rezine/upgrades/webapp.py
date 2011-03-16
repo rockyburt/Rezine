@@ -53,9 +53,10 @@ class WebUpgrades(object):
         self.maintenance_url = app.url_adapter.build('admin/maintenance')
 
     def __getattr__(self, name):
-        if not hasattr(self, name):
+        try:
+            return object.__getattr__(self, name)
+        except AttributeError:
             return getattr(self.app, name)
-        return getattr(self, name)
 
     def get_request(self, environ):
         request = Request(environ)
