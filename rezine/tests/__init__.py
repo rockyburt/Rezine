@@ -17,6 +17,8 @@ import os
 from os.path import join, dirname
 from unittest import TestSuite
 from doctest import DocTestSuite, DocFileSuite
+from tempfile import mkdtemp
+from shutil import copytree
 
 #: the modules in this list are not tested in a full run
 untested = ['rezine.broken_plugins.hyphenation_en',
@@ -42,8 +44,13 @@ def test_suite(modnames=[]):
     # The instance directory of this object is located in the tests directory.
     #
     from rezine import is_rezine_setup, setup_rezine, get_rezine
+
     if not is_rezine_setup():
-        instance_path = join(dirname(__file__), 'instance')
+        # instance files potentially get changed, lets
+        # set them up in a temp dir first
+        tmpdir = mkdtemp()
+        instance_path = join(tmpdir, 'instance')
+        copytree(join(dirname(__file__), 'instance'), instance_path)
         app = setup_rezine(instance_path)
     else:
         app = get_rezine()
