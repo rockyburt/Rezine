@@ -322,7 +322,7 @@ class Configuration(object):
                 else:
                     key, value = line.split('=', 1)
                     key = key.strip()
-                    if section != 'rezine':
+                    if section not in ('rezine', 'zine'):
                         key = section + '/' + key
                     self._values[key] = unquote_value(value.strip())
                     if current_comment.strip():

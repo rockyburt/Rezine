@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     rezine.websetup
-    ~~~~~~~~~~~~~
+    ~~~~~~~~~~~~~~~
 
     This module installs Rezine automatically if the app is not ready.
     Because the whole Rezine infrastructure is not available during the

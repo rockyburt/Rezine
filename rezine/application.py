@@ -668,10 +668,14 @@ class Rezine(object):
         self.initialized = False
         self._event_manager = EventManager(self)
 
-        # and instanciate the configuration. this won't fail,
-        # even if the database is not connected.
         from rezine.config import Configuration
-        self.cfg = Configuration(path.join(instance_folder, 'rezine.ini'))
+
+        for x in ('zine.ini', 'rezine.ini'):
+            full = path.join(instance_folder, x)
+            if path.exists(full):
+                self.cfg = Configuration(full)
+                break
+
         if not self.cfg.exists:
             raise _core.InstanceNotInitialized()
 
