@@ -10,13 +10,11 @@
     :license: BSD, see LICENSE for more details.
 """
 import sys
-from os.path import abspath, join, pardir, isfile, dirname
 from optparse import OptionParser
 from werkzeug import run_simple, Response, DispatcherMiddleware
 
 
-sys.path.append(dirname(__file__))
-from _init_rezine import find_instance
+from rezine._init_rezine import find_instance
 from rezine import get_wsgi_app
 
 
