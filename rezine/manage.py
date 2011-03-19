@@ -4,7 +4,7 @@ from os import path, mkdir
 from rezine.utils.crypto import gen_pwhash, gen_secret_key, new_iid
 
 DEFAULT_DATABASE_URI = 'sqlite://rezine.db'
-DEFAULT_INSTANCE_FOLDER = 'instance'
+DEFAULT_INSTANCE_FOLDER = 'rezine-blog'
 DEFAULT_ADMIN_USERNAME = 'admin'
 DEFAULT_ADMIN_PASSWORD = ''
 DEFAULT_ADMIN_EMAIL = ''
@@ -22,6 +22,8 @@ def create_instance(instance_folder=DEFAULT_INSTANCE_FOLDER,
                     admin_username=DEFAULT_ADMIN_USERNAME,
                     admin_password=DEFAULT_ADMIN_PASSWORD,
                     admin_email=DEFAULT_ADMIN_EMAIL):
+    """Create a new blog instance.
+    """
 
     if not admin_password:
         raise ValueError('Must specify admin_password')

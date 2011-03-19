@@ -20,6 +20,8 @@ from doctest import DocTestSuite, DocFileSuite
 from tempfile import mkdtemp
 from shutil import copytree
 
+from rezine.manage import DEFAULT_INSTANCE_FOLDER
+
 #: the modules in this list are not tested in a full run
 untested = ['rezine.broken_plugins.hyphenation_en',
             'rezine.broken_plugins.hyphenation_en.hyphenate',
@@ -49,8 +51,8 @@ def test_suite(modnames=[]):
         # instance files potentially get changed, lets
         # set them up in a temp dir first
         tmpdir = mkdtemp()
-        instance_path = join(tmpdir, 'instance')
-        copytree(join(dirname(__file__), 'instance'), instance_path)
+        instance_path = join(tmpdir, DEFAULT_INSTANCE_FOLDER)
+        copytree(join(dirname(__file__), DEFAULT_INSTANCE_FOLDER), instance_path)
         app = setup_rezine(instance_path)
     else:
         app = get_rezine()

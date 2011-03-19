@@ -29,10 +29,12 @@ sys.path.append(dirname(__file__))
 from _init_rezine import find_instance
 from rezine import setup
 
+from rezine.manage import DEFAULT_INSTANCE_FOLDER
+
 
 def main():
     parser = OptionParser(usage='%prog [options]\n\n' + HELP_TEXT)
-    parser.add_option('--instance', '-I', dest='instance',
+    parser.add_option('--instance', '-I', dest=DEFAULT_INSTANCE_FOLDER,
                       help='Use the path provided as Rezine instance.')
     options, args = parser.parse_args()
     if args:

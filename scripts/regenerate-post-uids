@@ -22,7 +22,8 @@
 
 from optparse import OptionParser
 
-from _init_rezine import find_instance
+from rezine._init_rezine import find_instance
+from rezine.manage import DEFAULT_INSTANCE_FOLDER
 
 
 def regenerate_post_uids(instance):
@@ -42,7 +43,7 @@ def regenerate_post_uids(instance):
 
 def main():
     parser = OptionParser(usage='%prog -I /path/to/instance')
-    parser.add_option('--instance', '-I', dest='instance',
+    parser.add_option('--instance', '-I', dest=DEFAULT_INSTANCE_FOLDER,
                       help='Use the given Rezine instance.')
     options, args = parser.parse_args()
     if args:

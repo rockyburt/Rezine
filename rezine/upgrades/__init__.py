@@ -30,6 +30,8 @@ from rezine import __version__ as VERSION
 from rezine._core import setup_rezine
 # imported for side-effects
 from rezine.upgrades import customisation
+from rezine.manage import DEFAULT_INSTANCE_FOLDER
+
 
 REPOSITORY_PATH = dirname(__file__)
 
@@ -56,7 +58,8 @@ class CommandLineInterface(object):
                                    version=self.cmdline_version)
         self.parser.disable_interspersed_args()
         self.parser.print_help = self._general_help
-        self.parser.add_option('-I', '--instance', dest='instance',
+        self.parser.add_option('-I', '--instance',
+                               dest=DEFAULT_INSTANCE_FOLDER,
                                help="Rezine instance path")
 
         options, args = self.parser.parse_args(argv[1:])

@@ -21,12 +21,14 @@ if ZINE_LIB is None:
 # make sure we load the correct rezine
 sys.path.insert(0, ZINE_LIB)
 
+from rezine.manage import DEFAULT_INSTANCE_FOLDER
+
 
 def find_instance():
     """Find the Rezine instance."""
     instance = None
-    if isfile(join('instance', 'rezine.ini')):
-        instance = abspath('instance')
+    if isfile(join(DEFAULT_INSTANCE_FOLDER, 'rezine.ini')):
+        instance = abspath(DEFAULT_INSTANCE_FOLDER)
     else:
         old_path = None
         path = abspath('.')

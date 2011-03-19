@@ -19,6 +19,8 @@ sys.path.append(os.path.dirname(__file__))
 from _init_rezine import find_instance
 import rezine
 
+from rezine.manage import DEFAULT_INSTANCE_FOLDER
+
 
 try:
     import _ast
@@ -93,7 +95,7 @@ def build_eventmap(instance_folder):
 
 def main():
     parser = OptionParser(usage='%prog')
-    parser.add_option('--instance', '-I', dest='instance',
+    parser.add_option('--instance', '-I', dest=DEFAULT_INSTANCE_FOLDER,
                       help='Use the path provided as Rezine instance.')
     options, args = parser.parse_args()
     if args:

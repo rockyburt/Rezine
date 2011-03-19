@@ -29,10 +29,12 @@ def init_func(instance):
 
 
 def main():
+    from rezine.manage import DEFAULT_INSTANCE_FOLDER
+
     parser = OptionParser(usage='%prog [options]')
     parser.add_option('--no-ipython', dest='no_ipython', action='store_true',
                       help='Do not launch ipython, even if present.')
-    parser.add_option('--instance', '-I', dest='instance',
+    parser.add_option('--instance', '-I', dest=DEFAULT_INSTANCE_FOLDER,
                       help='Use the path provided as Rezine instance.')
     options, args = parser.parse_args()
     if args:
