@@ -39,6 +39,5 @@ if ZINE_LIB not in sys.path:
     sys.path.insert(0, ZINE_LIB)
 
 from rezine import get_wsgi_app, override_environ_config
-from flup.server.fcgi import WSGIServer
 override_environ_config(POOL_SIZE, POOL_RECYCLE, POOL_TIMEOUT, BEHIND_PROXY)
 application = get_wsgi_app(INSTANCE_FOLDER)
