@@ -3,8 +3,8 @@ Rezine Changelog
 
 This file lists the major changes between the Rezine and Zine releases.
 
-Rezine 0.3 (unreleased)
------------------------
+Rezine 0.3a1 (Mar-19-2011)
+--------------------------
 
 - manage script (rezine-manage) now provides a ``newinstance``
   command
@@ -15,6 +15,8 @@ Rezine 0.3 (unreleased)
 
 - Install is setuptools/distutils compatible, make process has
   been removed
+
+- Many docs updated
 
 Zine 0.2 (will not be released)
 -------------------------------
