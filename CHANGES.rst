@@ -1,5 +1,5 @@
 Rezine Changelog
-==============
+================
 
 This file lists the major changes between the Rezine and Zine releases.
 
@@ -18,8 +18,10 @@ Rezine 0.3a1 (Mar-19-2011)
 
 - Many docs updated
 
-Zine 0.2 (will not be released)
--------------------------------
+- Rezine forked from the no-longer-maintained Zine project 
+
+Zine 0.2 (no official release)
+------------------------------
 
 - Themes can specify the number of items they want to have on a
   tag/category/author post listing.
