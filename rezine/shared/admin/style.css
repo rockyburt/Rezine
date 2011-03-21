@@ -981,6 +981,10 @@ table.plugins td.active {
     text-align: right;
 }
 
+table.plugins tr:hover {
+    background-color: #ffc;
+}
+
 table.plugins td.description span.author {
     font-style: italic;
     font-size: 0.8em;
@@ -1001,8 +1005,12 @@ table.plugins td {
     vertical-align: middle;
 }
 
-table.plugins tr.plugin-active td {
+table.plugins tr.plugin-active {
     background-color: #DEEEF8;
+}
+
+table.plugins tr.plugin-active:hover {
+    background-color: #ffc;
 }
 
 span.bundlemarker {
