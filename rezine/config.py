@@ -190,10 +190,6 @@ DEFAULT_VARS = {
         u'is not absolute, it\'s considered relative to the instance '
         u'folder.')),
 
-    #admin settings
-    'dashboard_reddit':         BooleanField(default=True, help_text=
-        l_(u'Set this to true if you want to see the most recent '
-        u'entries on the Rezine reddit on your dashboard.'))
 }
 
 HIDDEN_KEYS = set(('iid', 'secret_key', 'blogger_auth_token',

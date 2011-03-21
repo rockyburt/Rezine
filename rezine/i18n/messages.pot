@@ -192,12 +192,6 @@ msgid ""
 "instance folder."
 msgstr ""
 
-#: rezine/config.py:188
-msgid ""
-"Set this to true if you want to see the most recent entries on the Rezine "
-"reddit on your dashbaord."
-msgstr ""
-
 #: rezine/config.py:243
 msgid ""
 "\n"
@@ -2467,20 +2461,6 @@ msgstr ""
 msgid "Last Posts"
 msgstr ""
 
-#: rezine/templates/admin/index.html:76
-msgid "Rezine at Reddit"
-msgstr ""
-
-#: rezine/templates/admin/index.html:77
-#, python-format
-msgid ""
-"\n"
-"        Rezine is present at %(reddit)s.  The latest popular items in the Rezine"
-"\n"
-"        subreddit are listed below:\n"
-"        "
-msgstr ""
-
 #: rezine/templates/admin/information.html:4
 #: rezine/templates/admin/information.html:20
 msgid "About The System"
@@ -3072,24 +3052,6 @@ msgid ""
 "\n"
 "      can also be completely removed.\n"
 "    "
-msgstr ""
-
-#: rezine/templates/admin/reddit.html:7
-#, python-format
-msgid ""
-"from <em>%(domain)s</em>, submitted by %(author)s @ %(submitted)s, "
-"%(comments)s"
-msgstr ""
-
-#: rezine/templates/admin/reddit.html:12
-#, python-format
-msgid "%d comment"
-msgid_plural "%d comments"
-msgstr[0] ""
-msgstr[1] ""
-
-#: rezine/templates/admin/reddit.html:20
-msgid "No items on the frontpage"
 msgstr ""
 
 #: rezine/templates/admin/remove_plugin.html:2

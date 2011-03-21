@@ -48,34 +48,3 @@ def require_admin_privilege(expr=None):
     else:
         expr = ENTER_ADMIN_PANEL
     return require_privilege(expr)
-
-
-def load_rezine_reddit():
-    """Load the rezine reddit."""
-    reddit_url = 'http://www.reddit.com'
-    reddit_rezine_url = reddit_url + '/r/rezine'
-
-    response = open_url(reddit_rezine_url + '.json')
-    try:
-        data = load_json(response.data)
-    finally:
-        response.close()
-
-    result = []
-    for item in islice(data['data']['children'], 20):
-        d = item['data']
-        if not d['url'].startswith("http"):
-            d['url'] = reddit_url + d['url']
-        result.append({
-            'author':       d['author'],
-            'created':      datetime.utcfromtimestamp(d['created']),
-            'score':        d['score'],
-            'title':        d['title'],
-            'comments':     d['num_comments'],
-            'url':          d['url'],
-            'domain':       d['domain'],
-            'author_url':   reddit_url + '/user/%s/' %
-                            url_quote(d['author']),
-            'comment_url':  '%s/comments/%s' % (reddit_rezine_url, d['id'])
-        })
-    return result

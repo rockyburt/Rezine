@@ -24,7 +24,7 @@ from rezine.application import get_request, url_for, emit_event, \
      render_response
 from rezine.models import User, Group, Post, Category, Comment
 from rezine.database import db, secure_database_uri
-from rezine.utils.admin import flash, load_rezine_reddit, require_admin_privilege
+from rezine.utils.admin import flash, require_admin_privilege
 from rezine.utils.pagination import AdminPagination
 from rezine.utils.http import redirect_to, redirect
 from rezine.importers import list_import_queue, load_import_dump, \
@@ -276,18 +276,12 @@ def index(request):
     such as "new post", etc. and the recent blog activity (unmoderated
     comments etc.)
     """
-    # the template loads the reddit with a separate http request via
-    # javascript to not slow down the page loading
-    if request.args.get('load') == 'reddit':
-        return render_response('admin/reddit.html', items=load_rezine_reddit())
-
     return render_admin_response('admin/index.html', 'dashboard',
         drafts=Post.query.drafts().all(), unmoderated_comments=
             Comment.query.post_lightweight().unmoderated().for_user(request.user).all(),
         your_posts=Post.query.filter(Post.author_id==request.user.id).count(),
         last_posts=Post.query.published(ignore_privileges=True)
-            .order_by(Post.pub_date.desc()).limit(5).all(),
-        show_reddit = request.app.cfg['dashboard_reddit']
+            .order_by(Post.pub_date.desc()).limit(5).all()
     )
 
 

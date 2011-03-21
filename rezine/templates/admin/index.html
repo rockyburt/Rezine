@@ -75,18 +75,6 @@
       </ul>
       {% endif %}
     </div>
-    {% if show_reddit %}
-    <div class="reddit">
-      <h2>{{ _('Rezine at Reddit') }}</h2>
-      <p>{% trans reddit='<a href="http://www.reddit.com/r/rezine/">reddit</a>' %}
-        Rezine is present at {{ reddit }}.  The latest popular items in the Rezine
-        subreddit are listed below:
-        {% endtrans %}</p>
-      <script type="text/javascript">
-        $('<div>').load('?load=reddit').appendTo('div.reddit');
-      </script>
-    </div>
-    {% endif %}
     <div class="clear"></div>
   </div>
 {% endblock %}
