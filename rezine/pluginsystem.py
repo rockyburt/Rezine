@@ -86,7 +86,6 @@ from os import path, listdir, walk, makedirs
 from types import ModuleType
 from shutil import rmtree
 from time import localtime, time
-import sys
 
 import pkg_resources
 from urllib import quote
@@ -130,6 +129,7 @@ def find_plugins(app):
     """Return an iterator over all plugins available."""
     enabled_plugins = set()
     found_plugins = set()
+    objs = []
     for plugin in app.cfg['plugins']:
         plugin = plugin.strip()
         if plugin:
@@ -144,18 +144,16 @@ def find_plugins(app):
                path.isfile(path.join(full_name, 'metadata.txt')) and \
                filename not in found_plugins:
                 found_plugins.add(filename)
-                yield Plugin(app, str(filename), path.abspath(full_name),
-                             filename in enabled_plugins)
+                objs.append(FilesystemPlugin(app, str(filename),
+                                             path.abspath(full_name),
+                                             filename in enabled_plugins))
 
     for ep in pkg_resources.iter_entry_points('rezine_plugins'):
-        m = ep.load()
-        if pkg_resources.resource_exists(m.__name__, 'metadata.txt') and \
-                ep.name not in found_plugins:
-            package = sys.modules[m.__package__]
-            p = Plugin(app, ep.name, package.__path__[0],
-                       ep.name in enabled_plugins)
-            p.module = package
-            yield p
+        if ep.name not in found_plugins:
+            objs.append(EntryPointPlugin(app, ep,
+                                         ep.name in enabled_plugins))
+
+    return sorted(objs)
 
 
 def install_package(app, package):
@@ -210,7 +208,7 @@ def install_package(app, package):
         if filename.endswith('.py'):
             py_compile.compile(dst_filename)
 
-    plugin = Plugin(app, plugin_name, plugin_path, False)
+    plugin = FilesystemPlugin(app, plugin_name, plugin_path, False)
     app.plugins[plugin_name] = plugin
     app.cfg.touch()
     return plugin
@@ -388,6 +386,13 @@ def make_setup_error(exc_info=None):
 
 
 class Plugin(object):
+    name = None
+
+    def __cmp__(self, p):
+        return cmp(self.name.lower(), p.name.lower())
+
+
+class FilesystemPlugin(Plugin):
     """Wraps a plugin module."""
 
     def __init__(self, app, name, path_, active):
@@ -608,6 +613,80 @@ class Plugin(object):
             self.__class__.__name__,
             self.name
         )
+
+
+class EntryPointPlugin(FilesystemPlugin):
+    """Wraps a plugin module."""
+
+    def __init__(self, app, entry_point, active):
+        self.app = app
+        self.entry_point = entry_point
+        self.active = active
+        self.setup_error = None
+
+    @cached_property
+    def name(self):
+        return self.entry_point.name
+
+    def remove(self):
+        """Remove the plugin from the instance folder."""
+        raise ValueError('cannot remove non instance-plugins')
+
+    def dump(self, fp):
+        raise NotImplementedError('Plugin dumps are not supported by '
+                                  'entrypoint plugins')
+
+    @cached_property
+    def metadata(self):
+        m = self.module
+        if not pkg_resources.resource_exists(m.__name__, 'metadata.txt'):
+            return {}
+        try:
+            f = pkg_resources.resource_stream(m.__name__, 'metadata.txt')
+        except IOError:
+            return {}
+        try:
+            return parse_metadata(f)
+        finally:
+            f.close()
+
+    @cached_property
+    def path(self):
+        package = sys.modules[self.module.__package__]
+        return package.__path__[0]
+
+    @cached_property
+    def module(self):
+        """The module of the plugin. The first access imports it."""
+        try:
+            return self.entry_point.load()
+        except:
+            if not self.app.cfg['plugin_guard']:
+                raise
+            self.setup_error = make_setup_error()
+
+    @property
+    def display_name(self):
+        """The full name from the metadata."""
+        return self.metadata.get('name', self.name)
+
+    @cached_property
+    def distribution(self):
+        return pkg_resources.get_distribution(self.name)
+
+    @property
+    def version(self):
+        """The version of the plugin."""
+        return self.metadata.get('version', self.distribution.version)
+
+    @property
+    def depends(self):
+        """A list of depenencies for this plugin.
+
+        Plugins listed here won't be loaded automaticly.
+        """
+        depends = self.metadata.get('depends', '').strip()
+        return filter(None, [x.strip() for x in depends.split(',')])
 
 
 def set_plugin_searchpath(searchpath):

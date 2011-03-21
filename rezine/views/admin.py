@@ -1122,7 +1122,7 @@ def plugins(request):
 
     return render_admin_response('admin/plugins.html', 'system.plugins',
         form=form.as_widget(),
-        plugins=sorted(request.app.plugins.values(), key=lambda x: x.name)
+        plugins=sorted(request.app.plugins.values())
     )
 
 
@@ -1369,7 +1369,7 @@ def information(request):
             'multiprocess':     request.is_multiprocess,
             'wsgi_version':     '.'.join(map(str, request.environ['wsgi.version']))
         },
-        plugins=sorted(request.app.plugins.values(), key=lambda x: not x.active and x.name),
+        plugins=sorted(request.app.plugins.values()),
         python_version='<br>'.join(map(escape, python_version.splitlines())),
         rezine_env=environment,
         rezine_version=rezine_version,
