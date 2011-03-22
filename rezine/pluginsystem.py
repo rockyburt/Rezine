@@ -129,7 +129,7 @@ def find_plugins(app):
     """Return an iterator over all plugins available."""
     enabled_plugins = set()
     found_plugins = set()
-    objs = []
+    plugins = []
     for plugin in app.cfg['plugins']:
         plugin = plugin.strip()
         if plugin:
@@ -140,20 +140,20 @@ def find_plugins(app):
             continue
         for filename in listdir(folder):
             full_name = path.join(folder, filename)
-            if path.isdir(full_name) and \
-               path.isfile(path.join(full_name, 'metadata.txt')) and \
-               filename not in found_plugins:
+            if (filename not in found_plugins and
+                path.isdir(full_name) and
+                path.isfile(path.join(full_name, 'metadata.txt'))):
                 found_plugins.add(filename)
-                objs.append(FilesystemPlugin(app, str(filename),
-                                             path.abspath(full_name),
-                                             filename in enabled_plugins))
+                plugins.append(FilesystemPlugin(app, str(filename),
+                                                path.abspath(full_name),
+                                                filename in enabled_plugins))
 
     for ep in pkg_resources.iter_entry_points('rezine_plugins'):
         if ep.name not in found_plugins:
-            objs.append(EntryPointPlugin(app, ep,
-                                         ep.name in enabled_plugins))
+            plugins.append(EntryPointPlugin(app, ep,
+                                            ep.name in enabled_plugins))
 
-    return sorted(objs)
+    return sorted(plugins)
 
 
 def install_package(app, package):
@@ -637,27 +637,24 @@ class EntryPointPlugin(FilesystemPlugin):
                                   'entrypoint plugins')
 
     @cached_property
-    def metadata(self):
-        m = self.module
-        if not pkg_resources.resource_exists(m.__name__, 'metadata.txt'):
-            return {}
-        try:
-            f = pkg_resources.resource_stream(m.__name__, 'metadata.txt')
-        except IOError:
-            return {}
-        try:
-            return parse_metadata(f)
-        finally:
-            f.close()
-
-    @cached_property
     def path(self):
-        package = sys.modules[self.module.__package__]
-        return package.__path__[0]
+        rel = self.entry_point.module_name.replace('.', path.sep)
+        full = path.join(self.entry_point.dist.location, rel)
+        if path.isdir(full):
+            return full
+        return path.dirname(full)
 
     @cached_property
     def module(self):
         """The module of the plugin. The first access imports it."""
+        try:
+            return __import__(self.entry_point.module_name, None, None,
+                              ['setup'])
+        except:
+            if not self.app.cfg['plugin_guard']:
+                raise
+            self.setup_error = make_setup_error()
+
         try:
             return self.entry_point.load()
         except:
@@ -670,14 +667,10 @@ class EntryPointPlugin(FilesystemPlugin):
         """The full name from the metadata."""
         return self.metadata.get('name', self.name)
 
-    @cached_property
-    def distribution(self):
-        return pkg_resources.get_distribution(self.name)
-
     @property
     def version(self):
         """The version of the plugin."""
-        return self.metadata.get('version', self.distribution.version)
+        return self.metadata.get('version', self.entry_point.dist.version)
 
     @property
     def depends(self):
