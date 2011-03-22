@@ -3,6 +3,16 @@ Rezine Changelog
 
 This file lists the major changes between the Rezine and Zine releases.
 
+Rezine 0.3a2 (Mar-22-2011)
+--------------------------
+
+- Removed included rst parser... please use `rezine_rst <https://github.com/rockyburt/rezine_rst>`_
+
+- Removed reddit support
+
+- Changes made to the plugin system to make entry point loading
+  more robust
+
 Rezine 0.3a1 (Mar-19-2011)
 --------------------------
 

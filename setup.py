@@ -21,7 +21,7 @@ except ImportError:
 
 setup(
     name='Rezine',
-    version='0.3a1',
+    version='0.3a2',
     url='https://github.com/rockyburt/Rezine',
     license='BSD',
     author='Rocky Burt',
