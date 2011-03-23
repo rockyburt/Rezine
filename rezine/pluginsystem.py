@@ -147,11 +147,19 @@ def find_plugins(app):
                 plugins.append(FilesystemPlugin(app, str(filename),
                                                 path.abspath(full_name),
                                                 filename in enabled_plugins))
+                log.info('added filesystem plugin "%s" - %s'
+                         % (filename, full_name))
 
     for ep in pkg_resources.iter_entry_points('rezine_plugins'):
         if ep.name not in found_plugins:
+            found_plugins.add(ep.name)
             plugins.append(EntryPointPlugin(app, ep,
                                             ep.name in enabled_plugins))
+            log.info('added entry point plugin "%s" - %s'
+                     % (ep.name, str(ep)))
+        else:
+            log.info('skipped entry point plugin "%s" - %s'
+                     % (ep.name, str(ep)))
 
     return sorted(plugins)
 
@@ -650,13 +658,6 @@ class EntryPointPlugin(FilesystemPlugin):
         try:
             return __import__(self.entry_point.module_name, None, None,
                               ['setup'])
-        except:
-            if not self.app.cfg['plugin_guard']:
-                raise
-            self.setup_error = make_setup_error()
-
-        try:
-            return self.entry_point.load()
         except:
             if not self.app.cfg['plugin_guard']:
                 raise
